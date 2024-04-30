@@ -1,0 +1,48 @@
+.productionHead {
+  font-size: 76px;
+  font-weight: 800;
+  letter-spacing: 1.14px;
+  text-align: center;
+  text-transform: capitalize;
+  margin: 50px 0;
+}
+
+.productionTitle {
+  font-size: 57px;
+  font-weight: 800;
+  letter-spacing: -0.855px;
+  text-align: center;
+  text-transform: capitalize;
+  margin-bottom: 24px;
+}
+
+.description {
+  display: flex;
+  gap: 50px;
+}
+
+.img {
+  width: 264px;
+  height: 264px;
+  mask-image: url('../../assets/mask-3.svg');
+  -webkit-mask-image: url('../../assets/mask-3.svg');
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+}
+
+.aboutProduct {
+  color: #ffffffb2;
+  font-family: 'Inter Tight', Arial, Helvetica;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.285px;
+  line-height: 24px;
+}
+
+.aboutProduct p:not(:last-child) {
+  margin-bottom: 20px;
+}
