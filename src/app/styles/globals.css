@@ -15,3 +15,7 @@ h1,
 h2 {
   font-family: Inter, Arial, Helvetica, sans-serif;
 }
+
+ul {
+  list-style-type: none;
+}

@@ -19,6 +19,7 @@
 .description {
   display: flex;
   gap: 50px;
+  align-items: center;
 }
 
 .img {
@@ -45,4 +46,8 @@
 
 .aboutProduct p:not(:last-child) {
   margin-bottom: 20px;
+}
+
+.productionList:not(:last-child) {
+  margin-bottom: 40px;
 }
