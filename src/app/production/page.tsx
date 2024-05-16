@@ -23,6 +23,8 @@ export default function Production() {
                 <MyImg
                   imgSrc={droneImg}
                   alt="Зображення логотипу бойового безпілотника"
+                  width={264}
+                  height={264}
                 />
                 <div className={style.aboutProduct}>
                   <p>
@@ -72,6 +74,8 @@ export default function Production() {
                 <MyImg
                   imgSrc={repeaterImg}
                   alt="Зображення логотиу радіоретранслятора з двома антенами"
+                  width={264}
+                  height={264}
                 />
               </div>
             </article>
@@ -80,7 +84,12 @@ export default function Production() {
             <article>
               <h2 className={style.productionTitle}>Антени</h2>
               <div className={style.description}>
-                <MyImg imgSrc={antennaImg} alt="Зображення логотипу антени" />
+                <MyImg
+                  imgSrc={antennaImg}
+                  alt="Зображення логотипу антени"
+                  width={264}
+                  height={264}
+                />
                 <div className={style.aboutProduct}>
                   <p>
                     Кожна наша антена йде з вказанням індивідуальних параметрів
@@ -116,6 +125,8 @@ export default function Production() {
                 <MyImg
                   imgSrc={moduleImg}
                   alt="Зображення логотипу модуля для БПЛА"
+                  width={264}
+                  height={264}
                 />
               </div>
             </article>
@@ -127,6 +138,8 @@ export default function Production() {
                 <MyImg
                   imgSrc={saperImg}
                   alt="Зображення логотипу саперного пристрою"
+                  width={264}
+                  height={264}
                 />
                 <div className={style.aboutProduct}>
                   <p>

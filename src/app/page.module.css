@@ -56,21 +56,7 @@
 .columnWidth {
   width: 50%;
 }
-
-/* .columnGradient {
-  width: 50%;
-  height: 500px;
-  background-image: radial-gradient(
-      circle at bottom right,
-      #98bf7b 10%,
-      #3aa9c0 50%,
-      #353863 90%
-    ),
-    radial-gradient(circle at top left, #98bf7b 10%, #ecae37 50%, #a66434 90%);
-  background-size: 100% 100%;
-} */
 .containerGradient {
-  /* width: 50%; */
   height: 100%;
   overflow: hidden;
   position: relative;
@@ -115,5 +101,33 @@
   position: absolute;
   z-index: 0;
   bottom: -10%;
-  right: -70%;
+  left: -30%;
+}
+
+.productionTitle {
+  font-size: 57px;
+  font-weight: 800;
+  letter-spacing: -0.855px;
+  text-align: center;
+  text-transform: capitalize;
+  margin-bottom: 24px;
+}
+
+.description {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+.aboutProduct {
+  color: #ffffffb2;
+  font-family: 'Inter Tight', Arial, Helvetica;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.285px;
+  line-height: 24px;
+}
+
+.aboutProduct p:not(:last-child) {
+  margin-bottom: 20px;
 }

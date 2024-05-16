@@ -5,7 +5,9 @@ import Wrapper from './components/Wrapper/Wrapper';
 import style from './page.module.css';
 import team from '../assets/emwhee_logo_minimalistic_monotone_team_of_engineers_and_softwar_685efe77-84c7-43a1-bd9b-6d94cf643fcb-400x400.png';
 import soldiers from '../assets/emwhee_soldiers_drones_and_robots_at_battle_in_steppes_of_Ukrai_52d7435b-fbbf-484f-841f-a86087451f35-400x400.png';
-import bg from '../assets/hero-bg.svg';
+import bg from '../assets/hero-bg2.svg';
+import droneEngineer from '../assets/emwhee_fpv_drone_assembly_by_engineer_4bb4fd62-b8e7-42af-a528-56fe348a5bcc-1-600x600.png';
+import quadrocopter from '../assets/emwhee_assembly_of_fpv_war_quardocopter_by_engineer_as_oil_pain_32f65bf5-3221-46ab-86ff-68eb3aed0b5f-600x600.png';
 
 export default function Home() {
   return (
@@ -36,19 +38,66 @@ export default function Home() {
             </div>
             <div className={style.imgGradient}>
               <Image src={bg} alt="Не важливо" className={style.bg} />
-              <div className={style.bg}>
-                <MyImg imgSrc={bg} alt="Не важливо" />
-              </div>
               <div className={style.team}>
-                <MyImg imgSrc={team} alt="Ілюстративне зображення команди" />
+                <MyImg
+                  imgSrc={team}
+                  alt="Ілюстративне зображення команди"
+                  width={264}
+                  height={264}
+                />
               </div>
               <div className={style.soldiers}>
-                <MyImg imgSrc={soldiers} alt="Ілюстративне зображення солдат" />
+                <MyImg
+                  imgSrc={soldiers}
+                  alt="Ілюстративне зображення солдат"
+                  width={264}
+                  height={264}
+                />
               </div>
               <div className={style.containerGradient}>
                 <div className={style.columnGradient}></div>
               </div>
             </div>
+          </div>
+        </section>
+        <section>
+          <div className={style.description}>
+            <MyImg
+              imgSrc={droneEngineer}
+              alt="Зображення інженера"
+              width={432}
+              height={432}
+            />
+            <div>
+              <h2 className={style.productionTitle}>
+                ВКЕРУЄМОСЬ ЗАПИТАМИ, А НЕ ВЛАСНИМИ ВРАЖЕННЯМИ
+              </h2>
+              <p className={style.aboutProduct}>
+                В своїй роботі особливу роль віддаємо зворотньому зв’язку від
+                операторів наших систем
+              </p>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div className={style.description}>
+            <div>
+              <h2 className={style.productionTitle}>
+                ГОТОВІ РОЗРОБИТИ ТА ВИРОБИТИ РІШЕННЯ ПІД КОНКРЕТНУ ЗАДАЧУ
+              </h2>
+              <p className={style.aboutProduct}>
+                Знаємо – кожна ділянка фронту по своєму різна, на кожній ділянці
+                фронту діють свої засоби протидії противника. Ми готові
+                оснащувати наші комплекси під певні потреби підрозділів в плані
+                модулів зв’язку, безпечного взведення та інше.
+              </p>
+            </div>
+            <MyImg
+              imgSrc={quadrocopter}
+              alt="Зображення квадрокоптера"
+              width={432}
+              height={432}
+            />
           </div>
         </section>
       </Wrapper>
