@@ -1,0 +1,119 @@
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
+}
+
+/* .main {
+} */
+
+.sectionContainer {
+  /* background-image: url(../assets/hero-bg.svg); */
+  padding: 40px 0;
+}
+
+.flexContainer {
+  display: flex;
+}
+
+.title {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-bottom: 80px;
+  margin-bottom: 40px;
+  /* width: 200px; */
+
+  font-size: 62px;
+  font-weight: 800;
+  letter-spacing: -0.93px;
+  line-height: 67px;
+}
+
+.title span {
+  position: absolute;
+  bottom: 0;
+  left: 100%;
+  animation: running-text 20s linear infinite;
+  white-space: nowrap;
+  color: #0047ff;
+}
+
+@keyframes running-text {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: -1800px;
+  }
+}
+
+.columnWidth {
+  width: 50%;
+}
+
+/* .columnGradient {
+  width: 50%;
+  height: 500px;
+  background-image: radial-gradient(
+      circle at bottom right,
+      #98bf7b 10%,
+      #3aa9c0 50%,
+      #353863 90%
+    ),
+    radial-gradient(circle at top left, #98bf7b 10%, #ecae37 50%, #a66434 90%);
+  background-size: 100% 100%;
+} */
+.containerGradient {
+  /* width: 50%; */
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 10px;
+}
+
+.columnGradient {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at top left, #4bbbf4, transparent),
+    radial-gradient(ellipse at bottom right, #ecae37, transparent);
+}
+
+.text {
+  color: #ffffffb2;
+  font-family: 'Inter Tight', Arial, Helvetica;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.285px;
+  line-height: 24px;
+  max-width: 400px;
+  margin-bottom: 80px;
+}
+.imgGradient {
+  position: relative;
+  width: 50%;
+  margin: 0 80px;
+}
+.team {
+  position: absolute;
+  top: 40px;
+  left: -100px;
+  z-index: 100;
+}
+.soldiers {
+  position: absolute;
+  z-index: 100;
+  bottom: 40px;
+  right: -100px;
+}
+.bg {
+  position: absolute;
+  z-index: 0;
+  bottom: -10%;
+  right: -70%;
+}

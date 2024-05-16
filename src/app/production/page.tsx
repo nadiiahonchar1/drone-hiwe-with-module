@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import droneImg from '../../assets/emwhee_war_drone_with_computer_vision_logo_minimalistic_monoton_cbcbfb68-25f2-41cc-8332-d63165bfccc4.png';
 import repeaterImg from '../../assets/emwhee_minimalistic_logo_of_radio_repeater_with_2_antennas_conn_02658b5a-fe17-451d-970f-e018f6a7e0dc.png';
 import antennaImg from '../../assets/emwhee_coil_radio_antenna_logo_minimalistic_monotone_a28a9040-6117-43c2-bac5-ff3abb3c56fb.png';
@@ -6,6 +5,8 @@ import moduleImg from '../../assets/1drone_assembly_by_tinkerer_fe194485-6561-4c
 import saperImg from '../../assets/2_minimalistic_illustration_of_device_for_explosion_initia_3fa34307-1eeb-4e0d-9d28-7d473998f874-1.png';
 import Wrapper from '../components/Wrapper/Wrapper';
 import style from './production.module.css';
+import Button from '../components/Button/Button';
+import MyImg from '../components/MyImg/MyImg';
 
 export default function Production() {
   return (
@@ -19,10 +20,9 @@ export default function Production() {
                 БПАК <span lang="en">“HIVE”</span>
               </h2>
               <div className={style.description}>
-                <Image
-                  src={droneImg}
+                <MyImg
+                  imgSrc={droneImg}
                   alt="Зображення логотипу бойового безпілотника"
-                  className={style.img}
                 />
                 <div className={style.aboutProduct}>
                   <p>
@@ -45,6 +45,7 @@ export default function Production() {
                     повітряного базування (оператори і ретранслятори в цьому
                     випадку менше нараженні на небезпеку)
                   </p>
+                  <Button buttonText="Перейти до каталогу" redirectPath="#" />
                 </div>
               </div>
             </article>
@@ -66,11 +67,11 @@ export default function Production() {
                     передачі, та від 250МГц до 1,1 ГГц для передачі сигналів
                     радіо-керування.
                   </p>
+                  <Button buttonText="Перейти до каталогу" redirectPath="#" />
                 </div>
-                <Image
-                  src={repeaterImg}
+                <MyImg
+                  imgSrc={repeaterImg}
                   alt="Зображення логотиу радіоретранслятора з двома антенами"
-                  className={style.img}
                 />
               </div>
             </article>
@@ -79,11 +80,7 @@ export default function Production() {
             <article>
               <h2 className={style.productionTitle}>Антени</h2>
               <div className={style.description}>
-                <Image
-                  src={antennaImg}
-                  alt="Зображення логотипу антени"
-                  className={style.img}
-                />
+                <MyImg imgSrc={antennaImg} alt="Зображення логотипу антени" />
                 <div className={style.aboutProduct}>
                   <p>
                     Кожна наша антена йде з вказанням індивідуальних параметрів
@@ -91,6 +88,7 @@ export default function Production() {
                     нашу думку якісна антена є чи не найголовнішою запорукою
                     стабільної та якісної роботи каналу радіо зв’язку.
                   </p>
+                  <Button buttonText="Перейти до каталогу" redirectPath="#" />
                 </div>
               </div>
             </article>
@@ -113,11 +111,11 @@ export default function Production() {
                     Дзвоніть без вагань завжди раді допомогти і по-співпрацювати
                     над вирішенням задач
                   </p>
+                  <Button buttonText="Перейти до каталогу" redirectPath="#" />
                 </div>
-                <Image
-                  src={moduleImg}
+                <MyImg
+                  imgSrc={moduleImg}
                   alt="Зображення логотипу модуля для БПЛА"
-                  className={style.img}
                 />
               </div>
             </article>
@@ -126,10 +124,9 @@ export default function Production() {
             <article>
               <h2 className={style.productionTitle}>Саперні Пристрої</h2>
               <div className={style.description}>
-                <Image
-                  src={saperImg}
+                <MyImg
+                  imgSrc={saperImg}
                   alt="Зображення логотипу саперного пристрою"
-                  className={style.img}
                 />
                 <div className={style.aboutProduct}>
                   <p>
@@ -139,6 +136,7 @@ export default function Production() {
                     більш ефективною. З радістю надамо по запиту повний перелік
                     нашої продукції, тож дзвоніть без вагань
                   </p>
+                  <Button buttonText="Перейти до каталогу" redirectPath="#" />
                 </div>
               </div>
             </article>
