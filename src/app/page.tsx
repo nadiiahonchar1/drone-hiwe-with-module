@@ -60,7 +60,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section>
+        <section className={style.sectionContainer}>
           <div className={style.description}>
             <MyImg
               imgSrc={droneEngineer}
@@ -70,7 +70,7 @@ export default function Home() {
             />
             <div>
               <h2 className={style.productionTitle}>
-                ВКЕРУЄМОСЬ ЗАПИТАМИ, А НЕ ВЛАСНИМИ ВРАЖЕННЯМИ
+                КЕРУЄМОСЬ ЗАПИТАМИ, А НЕ ВЛАСНИМИ ВРАЖЕННЯМИ
               </h2>
               <p className={style.aboutProduct}>
                 В своїй роботі особливу роль віддаємо зворотньому зв’язку від
@@ -79,7 +79,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section>
+        <section className={style.sectionContainer}>
           <div className={style.description}>
             <div>
               <h2 className={style.productionTitle}>
@@ -99,6 +99,60 @@ export default function Home() {
               height={432}
             />
           </div>
+        </section>
+        <section className={style.sectionContainer}>
+          <h2 className={style.productTitle}>Наша Продукція</h2>
+          <ul className={style.flexContainerWrapp}>
+            <li className={style.productList}>
+              <article className={style.productArticle}>
+                <h3 className={style.productListTitle}>БПАК</h3>
+                <p className={style.aboutProductList}>
+                  Безпілотний авіаційний комплекс “HIVE”, оснащується –
+                  ретрансляторами повітряного базування, з різноманітними
+                  багатороторними БПЛА для скидання боєприпасів, враження
+                  супротивника самопідривом, ведення розвідки, та можливістю
+                  роботи в 24 години на добу за рахунок різноманітних модулів
+                  камери та інших рішень
+                </p>
+                <Button buttonText="Переглянути" redirectPath="#" />
+              </article>
+            </li>
+            <li className={style.productList}>
+              <article className={style.productArticle}>
+                <h3 className={style.productListTitle}>
+                  Дрони та підсистеми до них
+                </h3>
+                <p className={style.aboutProductList}>
+                  Системи: безпечного взведення БЧ, скиду, платформи для
+                  безпечного запуску дронів, системи гарантованого знищення
+                  дрону та різного роду підровачі
+                </p>
+                <Button buttonText="Переглянути" redirectPath="#" />
+              </article>
+            </li>
+            <li className={style.productList}>
+              <article className={style.productArticle}>
+                <h3 className={style.productListTitle}>Саперні Пристрої</h3>
+                <p className={style.aboutProductList}>
+                  Спеціальні технічні засоби, призначені для виявлення,
+                  розмінування та нейтралізації небезпечних об’єктів
+                </p>
+                <Button buttonText="Переглянути" redirectPath="#" />
+              </article>
+            </li>
+            <li className={style.productList}>
+              <article className={style.productArticle}>
+                <h3 className={style.productListTitle}>
+                  Ретранслятори та станції зв’язку для БПЛА
+                </h3>
+                <p className={style.aboutProductList}>
+                  Ретранслятори та станції зв’язку для керування БПЛА, по запиту
+                  на конкретну частоту
+                </p>
+                <Button buttonText="Переглянути" redirectPath="#" />
+              </article>
+            </li>
+          </ul>
         </section>
       </Wrapper>
     </main>
