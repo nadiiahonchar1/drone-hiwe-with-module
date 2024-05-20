@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+// import { Inter } from 'next/font/google';
 import './styles/globals.css';
+import ThemeProvider from './hooks/ThemeProvider';
 
-const inter = Inter({ subsets: ['latin'] });
+// const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Drone-hive',
@@ -17,7 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="uk">
-      <body className={inter.className}>{children}</body>
+      <ThemeProvider>
+        <body>{children}</body>
+      </ThemeProvider>
     </html>
   );
 }

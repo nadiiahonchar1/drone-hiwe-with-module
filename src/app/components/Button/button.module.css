@@ -19,3 +19,13 @@
 .button:focus {
   transform: scale(1.02);
 }
+
+/* .baseButton {
+  border: 2px solid darkgray;
+  background-color: gray;
+}
+
+.submitButton {
+  composes: baseButton from "./base_button.css";
+  background-color: blue;
+} */

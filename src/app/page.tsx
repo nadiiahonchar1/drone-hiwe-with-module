@@ -8,6 +8,7 @@ import soldiers from '../assets/emwhee_soldiers_drones_and_robots_at_battle_in_s
 import bg from '../assets/hero-bg2.svg';
 import droneEngineer from '../assets/emwhee_fpv_drone_assembly_by_engineer_4bb4fd62-b8e7-42af-a528-56fe348a5bcc-1-600x600.png';
 import quadrocopter from '../assets/emwhee_assembly_of_fpv_war_quardocopter_by_engineer_as_oil_pain_32f65bf5-3221-46ab-86ff-68eb3aed0b5f-600x600.png';
+// import ThemeSwitcher from './components/ThemeSwitcher/ThemeSwitcher';
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         <h1 lang="en" className={style.visuallyHidden}>
           Drone Hive
         </h1>
+        {/* <ThemeSwitcher /> */}
         <section className={style.sectionContainer}>
           <div className={style.flexContainer}>
             <div className={style.columnWidth}>
