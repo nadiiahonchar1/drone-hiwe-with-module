@@ -1,0 +1,37 @@
+.header {
+  background-color: #333;
+  padding: 24px;
+  padding-top: 4px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logoContainer {
+  margin-right: 20px;
+}
+
+.navLinks {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  margin-right: 20px;
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+}
+
+.navLink:hover span {
+  text-decoration: underline;
+}
+
+.cartIcon {
+  margin-left: auto;
+}
