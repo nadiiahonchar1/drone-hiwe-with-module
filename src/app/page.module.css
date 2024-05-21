@@ -95,7 +95,7 @@
 .bg {
   position: absolute;
   z-index: 0;
-  bottom: -10%;
+  top: -10%;
   left: -30%;
 }
 

@@ -1,13 +1,25 @@
 .header {
-  background-color: #333;
-  padding: 24px;
-  padding-top: 4px;
+  background-color: #1a202c;
+  padding: 1rem 6rem;
 }
 
 .container {
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
-  justify-content: space-between;
+  max-width: 80rem;
   align-items: center;
+  justify-content: space-between;
+}
+
+.headerLogo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.containerLogo {
+  margin-right: 0.75rem;
 }
 
 .logoContainer {
@@ -16,22 +28,50 @@
 
 .navLinks {
   display: flex;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+  align-items: center;
+  gap: 1rem;
+  line-height: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .navLinks {
+    gap: 1.5rem;
+  }
 }
 
 .navLink {
-  margin-right: 20px;
-  font-size: 16px;
-  color: white;
-  text-decoration: none;
+  position: relative;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
 }
 
-.navLink:hover span {
-  text-decoration: underline;
+@media (min-width: 640px) {
+  .navLink {
+    display: block;
+  }
 }
+/* .navLink:hover span {
+  text-decoration: underline;
+} */
 
 .cartIcon {
   margin-left: auto;
+}
+.spanLink {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  transform: translateY(0.5rem);
+  background-color: white;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.navLink:hover .spanLink,
+.navLink:focus .spanLink,
+.navLink:active .spanLink {
+  opacity: 1;
 }

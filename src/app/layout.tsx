@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import './styles/globals.css';
 import ThemeProvider from './hooks/ThemeProvider';
 import Header from './components/Header';
+import Wrapper from './components/Wrapper/Wrapper';
 
 // const inter = Inter({ subsets: ['latin'] });
 
@@ -21,8 +22,10 @@ export default function RootLayout({
     <html lang="uk">
       <ThemeProvider>
         <body>
-          <Header />
-          {children}
+          <main>
+            <Header />
+            <Wrapper>{children}</Wrapper>
+          </main>
         </body>
       </ThemeProvider>
     </html>
