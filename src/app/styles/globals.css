@@ -1,5 +1,4 @@
 @import url('./normalize.css');
-@import url('./variables.css');
 @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 * {
@@ -9,15 +8,10 @@
 
 body {
   background-color: var(--bgColor);
-  color: var(--text-color-main);
+  color: var(--primaryColor);
   font-family: 'Inter', sans-serif;
   /* font-family: "Inter Tight", sans-serif; */
 }
-
-/* h1,
-h2 {
-  font-family: Inter, Arial, Helvetica, sans-serif;
-} */
 
 ul {
   padding: 0;

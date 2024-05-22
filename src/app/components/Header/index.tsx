@@ -4,7 +4,9 @@ import Image from 'next/image';
 import Logo from '@/assets/Logo.png';
 // import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 // import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
-import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
+// import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
+// import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
+import ShoppingBasketTwoToneIcon from '@mui/icons-material/ShoppingBasketTwoTone';
 import style from './header.module.css';
 const Header = () => {
   return (
@@ -27,9 +29,11 @@ const Header = () => {
             </Link>
           ))}
         </div>
-        <div>
+        <div className={style.cartBox}>
           <Link href="/cart" aria-label="Cart">
-            <ShoppingBasketOutlinedIcon sx={{ color: 'white', fontSize: 40 }} />
+            <ShoppingBasketTwoToneIcon
+              sx={{ color: '#0047ff', fontSize: 40 }}
+            />
           </Link>
         </div>
       </div>

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Theme, lightTheme, darkTheme } from '../../hooks/theme';
+import style from './ThemeToggle.module.css';
 
 interface ThemeToggleProps {
   onChangeTheme: (theme: Theme) => void;
@@ -20,8 +21,8 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ onChangeTheme }) => {
   };
 
   return (
-    <button onClick={toggleTheme}>
-      {isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+    <button className={style.toggleButton} onClick={toggleTheme}>
+      {isDarkMode ? 'Світла тема' : 'Темна тема'}
     </button>
   );
 };

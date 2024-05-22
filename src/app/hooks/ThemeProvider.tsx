@@ -3,7 +3,7 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 // import { useRouter } from 'next/router';
 import { Theme, lightTheme, darkTheme } from './theme';
-import ThemeToggle from '../components/ThemeSwitcher/ThemeToggle';
+import ThemeToggle from '../components/ThemeToggle/ThemeToggle';
 
 interface ThemeProviderProps {
   children: ReactNode;

@@ -36,7 +36,7 @@
   left: 100%;
   animation: running-text 20s linear infinite;
   white-space: nowrap;
-  color: #0047ff;
+  color: var(--accentText);
 }
 
 @keyframes running-text {
@@ -61,12 +61,16 @@
 .columnGradient {
   width: 100%;
   height: 100%;
-  background: radial-gradient(ellipse at top left, #4bbbf4, transparent),
-    radial-gradient(ellipse at bottom right, #ecae37, transparent);
+  background: radial-gradient(
+      ellipse at top left,
+      var(--gradientDark),
+      transparent
+    ),
+    radial-gradient(ellipse at bottom right, var(--gradientLight), transparent);
 }
 
 .text {
-  color: #ffffffb2;
+  color: var(--colorProduct);
   font-family: 'Inter Tight', Arial, Helvetica;
   font-size: 18px;
   font-weight: 400;
@@ -95,8 +99,8 @@
 .bg {
   position: absolute;
   z-index: 0;
-  top: -10%;
-  left: -30%;
+  top: -30px;
+  right: -70%;
 }
 
 .productionTitle {
@@ -113,13 +117,13 @@
 }
 
 .aboutProduct {
-  color: #ffffffb2;
-  font-family: 'Inter Tight', Arial, Helvetica;
+  color: var(--colorProduct);
+  font-family: 'Inter Tight', sans-serif;
   font-size: 18px;
   font-weight: 400;
   letter-spacing: 0.285px;
   line-height: 24px;
-  border-bottom: 1px solid #ffffffb2;
+  border-bottom: 1px solid var(--colorProduct);
   padding-bottom: 40px;
 }
 
@@ -134,7 +138,7 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  background-color: #18191d;
+  background-color: var(--productList);
   border-radius: 10px;
   position: relative;
   overflow: hidden;
@@ -154,7 +158,7 @@
 }
 
 .productTitle {
-  color: #f6e760;
+  color: var(--accentText);
   font-size: 62px;
   font-weight: 800;
   letter-spacing: -0.93px;
@@ -168,7 +172,7 @@
 .productTitle:hover,
 .productTitle:active,
 .productTitle:focus {
-  color: #0047ff;
+  color: var(--accentTextInvert);
 }
 
 .productListTitle {
@@ -181,8 +185,8 @@
 }
 
 .aboutProductList {
-  color: #ffffffb2;
-  font-family: 'Inter Tight', Arial, Helvetica;
+  color: var(--colorProduct);
+  font-family: 'Inter', sans-serif;
   font-size: 18px;
   font-weight: 400;
   letter-spacing: 0.285px;

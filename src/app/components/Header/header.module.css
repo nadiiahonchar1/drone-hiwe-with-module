@@ -1,6 +1,7 @@
 .header {
-  background-color: #1a202c;
+  background-color: var(--bgColor);
   padding: 1rem 6rem;
+  border-bottom: 4px double var(--colorProduct);
 }
 
 .container {
@@ -43,7 +44,7 @@
   position: relative;
   font-size: 1rem;
   font-weight: 500;
-  color: #fff;
+  color: var(--primaryColor);
 }
 
 @media (min-width: 640px) {
@@ -51,9 +52,6 @@
     display: block;
   }
 }
-/* .navLink:hover span {
-  text-decoration: underline;
-} */
 
 .cartIcon {
   margin-left: auto;
@@ -65,7 +63,7 @@
   height: 1px;
   width: 100%;
   transform: translateY(0.5rem);
-  background-color: white;
+  background-color: var(--primaryColor);
   opacity: 0;
   transition: opacity 0.5s;
 }
@@ -75,3 +73,9 @@
 .navLink:active .spanLink {
   opacity: 1;
 }
+
+/* .cartBox {
+  background-color: #0e0f11;
+  padding: 10px;
+  border-radius: 50%;
+} */
