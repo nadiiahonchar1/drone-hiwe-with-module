@@ -3,15 +3,12 @@ import repeaterImg from '../../assets/emwhee_minimalistic_logo_of_radio_repeater
 import antennaImg from '../../assets/emwhee_coil_radio_antenna_logo_minimalistic_monotone_a28a9040-6117-43c2-bac5-ff3abb3c56fb.png';
 import moduleImg from '../../assets/1drone_assembly_by_tinkerer_fe194485-6561-4cf5-989f-4aff958e1fd8-1.png';
 import saperImg from '../../assets/2_minimalistic_illustration_of_device_for_explosion_initia_3fa34307-1eeb-4e0d-9d28-7d473998f874-1.png';
-// import Wrapper from '../components/Wrapper/Wrapper';
 import style from './production.module.css';
 import Button from '../components/Button/Button';
 import MyImg from '../components/MyImg/MyImg';
 
 export default function Production() {
   return (
-    // <main>
-    // <Wrapper>
     <>
       <h1 className={style.productionHead}>Продукція</h1>
       <ul>
@@ -156,7 +153,5 @@ export default function Production() {
         </li>
       </ul>
     </>
-    // </Wrapper>
-    // </main>
   );
 }

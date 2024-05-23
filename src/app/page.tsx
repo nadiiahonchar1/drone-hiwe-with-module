@@ -113,8 +113,10 @@ export default function Home() {
                 роботи в 24 години на добу за рахунок різноманітних модулів
                 камери та інших рішень
               </p>
-              <Button buttonText="Переглянути" redirectPath="#" />
             </article>
+            <div className={style.buttonContainer}>
+              <Button buttonText="Переглянути" redirectPath="#" />
+            </div>
           </li>
           <li className={style.productList}>
             <article className={style.productArticle}>
@@ -126,8 +128,10 @@ export default function Home() {
                 безпечного запуску дронів, системи гарантованого знищення дрону
                 та різного роду підровачі
               </p>
-              <Button buttonText="Переглянути" redirectPath="#" />
             </article>
+            <div className={style.buttonContainer}>
+              <Button buttonText="Переглянути" redirectPath="#" />
+            </div>
           </li>
           <li className={style.productList}>
             <article className={style.productArticle}>
@@ -136,8 +140,10 @@ export default function Home() {
                 Спеціальні технічні засоби, призначені для виявлення,
                 розмінування та нейтралізації небезпечних об’єктів
               </p>
-              <Button buttonText="Переглянути" redirectPath="#" />
             </article>
+            <div className={style.buttonContainer}>
+              <Button buttonText="Переглянути" redirectPath="#" />
+            </div>
           </li>
           <li className={style.productList}>
             <article className={style.productArticle}>
@@ -148,8 +154,10 @@ export default function Home() {
                 Ретранслятори та станції зв’язку для керування БПЛА, по запиту
                 на конкретну частоту
               </p>
-              <Button buttonText="Переглянути" redirectPath="#" />
             </article>
+            <div className={style.buttonContainer}>
+              <Button buttonText="Переглянути" redirectPath="#" />
+            </div>
           </li>
         </ul>
       </section>
