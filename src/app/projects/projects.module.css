@@ -62,3 +62,36 @@
   color: var(--colorProduct);
   margin-bottom: 30px;
 }
+
+.projectSection {
+  background-image: radial-gradient(
+      var(--gradientDarkProjects),
+      var(--gradientLightProjects)
+    ),
+    url(../../assets/emwhee_detail_shot_Photographic_Portrait_photorealistic_An_18-y_ff409613-025d-4d60-b2ff-5d864ee2d497-1.png);
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  /* display: flex;
+  gap: 20px;
+  padding: 20px;
+  align-items: center; */
+}
+
+.projectSectionTitle {
+  font-size: 57px;
+  font-weight: 400;
+  letter-spacing: 0.285px;
+  line-height: 48px;
+  margin-top: 20px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 4px double var(--colorProduct);
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.aboutProjects {
+  display: flex;
+  gap: 20px;
+}
