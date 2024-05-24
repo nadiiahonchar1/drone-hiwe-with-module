@@ -7,6 +7,8 @@ export interface Theme {
   colorProduct: string;
   productList: string;
   accentTextInvert: string;
+  gradientDarkProjects: string;
+  gradientLightProjects: string;
 }
 
 export const lightTheme: Theme = {
@@ -16,6 +18,8 @@ export const lightTheme: Theme = {
   accentTextInvert: '#f6e760',
   gradientDark: '#4bbbf4',
   gradientLight: '#ecae37',
+  gradientDarkProjects: 'rgba(255, 255, 255, 0.1)',
+  gradientLightProjects: 'rgba(241, 240, 238, 0.9)',
   colorProduct: '#000000b2',
   productList: '#e7e6e2',
 };
@@ -27,6 +31,8 @@ export const darkTheme: Theme = {
   accentTextInvert: '#0047ff',
   gradientDark: '#4bbbf4',
   gradientLight: '#ecae37',
+  gradientDarkProjects: 'rgba(241, 240, 238, 0.5)',
+  gradientLightProjects: 'rgba(255, 255, 255, 0.2)',
   colorProduct: '#ffffffb2',
   productList: '#18191d',
 };

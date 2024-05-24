@@ -1,0 +1,64 @@
+.heroSection {
+  background-image: radial-gradient(
+      var(--gradientDarkProjects),
+      var(--gradientLightProjects)
+    ),
+    url(../../assets/banner-6.jpg);
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  align-items: center;
+}
+
+.title {
+  margin: 0;
+  font-size: 62px;
+  font-weight: 800;
+  letter-spacing: -0.93px;
+  text-align: left;
+  text-transform: capitalize;
+  margin-bottom: 30px;
+}
+
+.text {
+  font-size: 19px;
+  font-weight: 400;
+  letter-spacing: 0.285px;
+  text-align: start;
+  color: var(--colorProduct);
+  margin-bottom: 30px;
+}
+
+.typeProject {
+  background-color: var(--productList);
+  border-radius: 10px;
+  padding: 20px;
+  width: 45%;
+}
+
+.typeProjectLeft {
+  composes: typeProject;
+  margin-left: auto;
+}
+
+.projectTitle {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.33px;
+  text-align: left;
+  text-transform: capitalize;
+  margin-bottom: 15px;
+}
+
+.projectText {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.24px;
+  text-transform: uppercase;
+  text-align: start;
+  color: var(--colorProduct);
+  margin-bottom: 30px;
+}

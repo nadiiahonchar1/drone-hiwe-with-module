@@ -1,7 +1,7 @@
-.header {
+.footer {
   background-color: var(--productList);
   padding: 1rem 6rem;
-  border-bottom: 4px double var(--colorProduct);
+  border-top: 4px double var(--colorProduct);
 }
 
 .container {
@@ -13,7 +13,7 @@
   justify-content: space-between;
 }
 
-.headerLogo {
+.footerLogo {
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './styles/globals.css';
 import ThemeProvider from './hooks/ThemeProvider';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Wrapper from './components/Wrapper/Wrapper';
 
 export const metadata: Metadata = {
@@ -22,6 +23,7 @@ export default function RootLayout({
           <ThemeProvider>
             <Header />
             <Wrapper>{children}</Wrapper>
+            <Footer />
           </ThemeProvider>
         </main>
       </body>
