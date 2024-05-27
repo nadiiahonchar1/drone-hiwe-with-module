@@ -72,6 +72,7 @@
   background-repeat: no-repeat;
   background-position: center top;
   background-size: cover;
+  padding: 20px;
   /* display: flex;
   gap: 20px;
   padding: 20px;
@@ -94,4 +95,69 @@
 .aboutProjects {
   display: flex;
   gap: 20px;
+  /* position: relative; */
+}
+.growContainer {
+  flex-grow: 1;
+}
+
+.aboutProjectsTitle {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.33px;
+  line-height: 29px;
+  padding: 40px;
+  text-transform: capitalize;
+  text-align: center;
+  margin-left: 10px;
+  color: var(--goldText);
+}
+
+.iconTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--blueBackground);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.descriptionProject {
+  background-color: var(--darckBlueBackground);
+  background-image: linear-gradient(
+    180deg,
+    rgba(222, 229, 234, 0.22) 45%,
+    rgba(206, 220, 234, 0.11) 100%
+  );
+  color: var(--primaryColor);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.33px;
+  line-height: 29px;
+  border-radius: 10px;
+  padding: 40px;
+  margin-bottom: 20px;
+}
+.stage {
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.24px;
+  line-height: 19.2px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.stageProduction {
+  composes: stage;
+  background-color: #62a200;
+}
+.stageDevelopment {
+  composes: stage;
+  background-color: #bcbc29;
+}
+.stageNonFinancing {
+  composes: stage;
+  background-color: #c98d8d;
 }

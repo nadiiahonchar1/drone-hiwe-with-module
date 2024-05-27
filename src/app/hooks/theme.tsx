@@ -9,6 +9,9 @@ export interface Theme {
   accentTextInvert: string;
   gradientDarkProjects: string;
   gradientLightProjects: string;
+  goldText: string;
+  blueBackground: string;
+  darckBlueBackground: string;
 }
 
 export const lightTheme: Theme = {
@@ -22,6 +25,9 @@ export const lightTheme: Theme = {
   gradientLightProjects: 'rgba(241, 240, 238, 0.9)',
   colorProduct: '#000000b2',
   productList: '#e7e6e2',
+  goldText: '#5e5c03',
+  blueBackground: '#dee4ea',
+  darckBlueBackground: 'rgba(222, 228, 234, 0.19)',
 };
 
 export const darkTheme: Theme = {
@@ -35,4 +41,7 @@ export const darkTheme: Theme = {
   gradientLightProjects: 'rgba(255, 255, 255, 0.2)',
   colorProduct: '#ffffffb2',
   productList: '#18191d',
+  goldText: '#5e5c03',
+  blueBackground: '#dee4ea',
+  darckBlueBackground: 'rgba(222, 228, 234, 0.19)',
 };
