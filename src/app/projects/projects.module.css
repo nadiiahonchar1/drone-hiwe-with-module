@@ -1,7 +1,9 @@
 .heroSection {
-  background-image: radial-gradient(
-      var(--gradientDarkProjects),
-      var(--gradientLightProjects)
+  background-image: linear-gradient(
+      90deg,
+      var(--bgColor),
+      var(--gradientLightProjects),
+      var(--bgColor)
     ),
     url(../../assets/banner-6.jpg);
   background-repeat: no-repeat;
@@ -64,19 +66,17 @@
 }
 
 .projectSection {
-  background-image: radial-gradient(
-      var(--gradientDarkProjects),
-      var(--gradientLightProjects)
+  background-image: linear-gradient(
+      90deg,
+      var(--bgColor),
+      var(--gradientLightProjects),
+      var(--bgColor)
     ),
     url(../../assets/emwhee_detail_shot_Photographic_Portrait_photorealistic_An_18-y_ff409613-025d-4d60-b2ff-5d864ee2d497-1.png);
   background-repeat: no-repeat;
   background-position: center top;
   background-size: cover;
   padding: 20px;
-  /* display: flex;
-  gap: 20px;
-  padding: 20px;
-  align-items: center; */
 }
 
 .projectSectionTitle {
@@ -95,7 +95,6 @@
 .aboutProjects {
   display: flex;
   gap: 20px;
-  /* position: relative; */
 }
 .growContainer {
   flex-grow: 1;

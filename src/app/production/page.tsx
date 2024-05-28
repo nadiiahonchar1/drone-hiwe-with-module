@@ -9,7 +9,7 @@ import MyImg from '../components/MyImg/MyImg';
 
 export default function Production() {
   return (
-    <>
+    <section className={style.section}>
       <h1 className={style.productionHead}>Продукція</h1>
       <ul>
         <li className={style.productionList}>
@@ -152,6 +152,6 @@ export default function Production() {
           </article>
         </li>
       </ul>
-    </>
+    </section>
   );
 }
