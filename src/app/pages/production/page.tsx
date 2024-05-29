@@ -4,8 +4,8 @@ import antennaImg from '../../assets/emwhee_coil_radio_antenna_logo_minimalistic
 import moduleImg from '../../assets/1drone_assembly_by_tinkerer_fe194485-6561-4cf5-989f-4aff958e1fd8-1.png';
 import saperImg from '../../assets/2_minimalistic_illustration_of_device_for_explosion_initia_3fa34307-1eeb-4e0d-9d28-7d473998f874-1.png';
 import style from './production.module.css';
-import Button from '../components/Button/Button';
-import MyImg from '../components/MyImg/MyImg';
+import Button from '../../components/Button/Button';
+import MyImg from '../../components/MyImg/MyImg';
 
 export default function Production() {
   return (

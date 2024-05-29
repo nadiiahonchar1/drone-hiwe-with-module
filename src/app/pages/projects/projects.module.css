@@ -5,7 +5,7 @@
       var(--gradientLightProjects),
       var(--bgColor)
     ),
-    url(../../assets/banner-6.jpg);
+    url(../../../assets/banner-6.jpg);
   background-repeat: no-repeat;
   background-position: center top;
   background-size: cover;
@@ -72,7 +72,7 @@
       var(--gradientLightProjects),
       var(--bgColor)
     ),
-    url(../../assets/emwhee_detail_shot_Photographic_Portrait_photorealistic_An_18-y_ff409613-025d-4d60-b2ff-5d864ee2d497-1.png);
+    url(../../../assets/emwhee_detail_shot_Photographic_Portrait_photorealistic_An_18-y_ff409613-025d-4d60-b2ff-5d864ee2d497-1.png);
   background-repeat: no-repeat;
   background-position: center top;
   background-size: cover;
