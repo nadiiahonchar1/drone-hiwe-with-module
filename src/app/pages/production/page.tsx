@@ -1,11 +1,11 @@
-import droneImg from '../../assets/emwhee_war_drone_with_computer_vision_logo_minimalistic_monoton_cbcbfb68-25f2-41cc-8332-d63165bfccc4.png';
-import repeaterImg from '../../assets/emwhee_minimalistic_logo_of_radio_repeater_with_2_antennas_conn_02658b5a-fe17-451d-970f-e018f6a7e0dc.png';
-import antennaImg from '../../assets/emwhee_coil_radio_antenna_logo_minimalistic_monotone_a28a9040-6117-43c2-bac5-ff3abb3c56fb.png';
-import moduleImg from '../../assets/1drone_assembly_by_tinkerer_fe194485-6561-4cf5-989f-4aff958e1fd8-1.png';
-import saperImg from '../../assets/2_minimalistic_illustration_of_device_for_explosion_initia_3fa34307-1eeb-4e0d-9d28-7d473998f874-1.png';
+import droneImg from '@/assets/emwhee_war_drone_with_computer_vision_logo_minimalistic_monoton_cbcbfb68-25f2-41cc-8332-d63165bfccc4.png';
+import repeaterImg from '@/assets/emwhee_minimalistic_logo_of_radio_repeater_with_2_antennas_conn_02658b5a-fe17-451d-970f-e018f6a7e0dc.png';
+import antennaImg from '@/assets/emwhee_coil_radio_antenna_logo_minimalistic_monotone_a28a9040-6117-43c2-bac5-ff3abb3c56fb.png';
+import moduleImg from '@/assets/1drone_assembly_by_tinkerer_fe194485-6561-4cf5-989f-4aff958e1fd8-1.png';
+import saperImg from '@/assets/2_minimalistic_illustration_of_device_for_explosion_initia_3fa34307-1eeb-4e0d-9d28-7d473998f874-1.png';
 import style from './production.module.css';
-import Button from '../../components/Button/Button';
-import MyImg from '../../components/MyImg/MyImg';
+import Button from '@/app/components/Button/Button';
+import MyImg from '@/app/components/MyImg/MyImg';
 
 export default function Production() {
   return (
