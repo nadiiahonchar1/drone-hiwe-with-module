@@ -9,14 +9,22 @@ interface ThemeToggleProps {
 }
 
 const ThemeToggle: React.FC<ThemeToggleProps> = ({ onChangeTheme }) => {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(
-    localStorage.getItem('darkMode') === 'true'
-  );
+  // const [isDarkMode, setIsDarkMode] = useState<boolean>(
+  //   localStorage.getItem('darkMode') === 'true'
+  // );
+
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
+
+  // if (typeof window !== 'undefined') {
+  //   setIsDarkMode(localStorage.getItem('darkMode') === 'true');
+  // }
 
   const toggleTheme = () => {
     const newTheme = isDarkMode ? lightTheme : darkTheme;
     setIsDarkMode(!isDarkMode);
-    localStorage.setItem('darkMode', String(!isDarkMode));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('darkMode', String(!isDarkMode));
+    }
     onChangeTheme(newTheme);
   };
 

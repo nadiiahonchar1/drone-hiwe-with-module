@@ -10,9 +10,15 @@ interface ThemeProviderProps {
 }
 
 function ThemeProvider({ children }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    localStorage.getItem('darkMode') === 'true' ? darkTheme : lightTheme
-  );
+  // const [theme, setTheme] = useState<Theme>(
+  //   localStorage.getItem('darkMode') === 'true' ? darkTheme : lightTheme
+  // );
+  const [theme, setTheme] = useState<Theme>(darkTheme);
+  // if (typeof window !== 'undefined') {
+  //   setTheme(
+  //     localStorage.getItem('darkMode') === 'true' ? darkTheme : lightTheme
+  //   );
+  // }
 
   useEffect(() => {
     Object.keys(theme).forEach((key) => {
