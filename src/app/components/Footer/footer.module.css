@@ -74,8 +74,43 @@
   opacity: 1;
 }
 
-/* .cartBox {
-  background-color: #0e0f11;
-  padding: 10px;
-  border-radius: 50%;
-} */
+.dronBox {
+  margin-top: 40px;
+  min-width: 40px;
+  border-bottom: 4px solid var(--colorProduct);
+  stroke: green;
+  position: relative;
+}
+
+.drone {
+  position: absolute;
+  flex-shrink: 0;
+  top: -40px;
+  left: 0;
+  transition: transform 1s, top 1s, left 1s;
+}
+
+.drone.animate {
+  animation: drone-animation 8s ease-in-out forwards;
+}
+
+@keyframes drone-animation {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-150px);
+  }
+  50% {
+    transform: translateY(-150px) translateX(-50vw);
+  }
+  62.5% {
+    transform: translateY(-100px) translateX(-50vw);
+  }
+  75% {
+    transform: translateY(-100px) translateX(0);
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+}
