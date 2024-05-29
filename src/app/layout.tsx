@@ -22,13 +22,13 @@ export default function RootLayout({
   return (
     <html lang="uk">
       <body>
-        <main>
-          <ThemeProvider>
-            <Header />
+        <ThemeProvider>
+          <Header />
+          <main>
             <Wrapper>{children}</Wrapper>
-            <Footer />
-          </ThemeProvider>
-        </main>
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
