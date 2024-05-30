@@ -18,7 +18,37 @@ export default function Contact() {
       </section>
       <section className={style.sectionContainer}>
         <Image src={img} alt="Наша команда" className={style.img} />
-        <h2>Подзвоніть Нам</h2>
+        <h2 className={style.addressTitle}>Подзвоніть Нам</h2>
+        <address>
+          <ul>
+            <li className={style.addressContainer}>
+              <p className={style.addressText}>Телефон</p>
+              <a href="tel:+380989719139" className={style.addressLink}>
+                +380 98 971 91 39
+              </a>
+            </li>
+            <li className={style.addressContainer}>
+              <p className={style.addressText}>Email</p>
+              <a
+                href="mailto:sales@drone-hive.tech"
+                className={style.addressLink}
+              >
+                sales@drone-hive.tech
+              </a>
+            </li>
+            <li className={style.addressContainer}>
+              <p className={style.addressText}>Адреса</p>
+              <a
+                href="https://maps.app.goo.gl/JjhJdWkhqvGP5zWF9"
+                target="_blank"
+                className={style.addressLink}
+              >
+                Україна, м.Київ, Київська область, вул. Банкова 1, корп. 2, офіс
+                12.
+              </a>
+            </li>
+          </ul>
+        </address>
       </section>
     </>
   );

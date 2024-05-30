@@ -1,8 +1,7 @@
 'use client';
 
 import React, { ReactNode, useEffect, useState } from 'react';
-// import { useRouter } from 'next/router';
-import { Theme, lightTheme, darkTheme } from './theme';
+import { Theme, darkTheme } from './theme';
 import ThemeToggle from '../components/ThemeToggle/ThemeToggle';
 
 interface ThemeProviderProps {
@@ -10,15 +9,7 @@ interface ThemeProviderProps {
 }
 
 function ThemeProvider({ children }: ThemeProviderProps) {
-  // const [theme, setTheme] = useState<Theme>(
-  //   localStorage.getItem('darkMode') === 'true' ? darkTheme : lightTheme
-  // );
   const [theme, setTheme] = useState<Theme>(darkTheme);
-  // if (typeof window !== 'undefined') {
-  //   setTheme(
-  //     localStorage.getItem('darkMode') === 'true' ? darkTheme : lightTheme
-  //   );
-  // }
 
   useEffect(() => {
     Object.keys(theme).forEach((key) => {

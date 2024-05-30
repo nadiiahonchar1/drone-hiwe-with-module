@@ -62,3 +62,37 @@
   );
   padding: 20px;
 }
+
+.addressTitle {
+  padding: 1.66666667em;
+  color: var(--primaryColor);
+  font-size: 46px;
+  font-weight: 800;
+  letter-spacing: -0.69px;
+  line-height: 53px;
+}
+
+.addressContainer {
+  display: flex;
+}
+
+.addressText {
+  padding: 20px;
+  color: var(--primaryColor);
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.285px;
+  line-height: 32px;
+  font-style: normal;
+  min-width: 140px;
+}
+
+.addressLink {
+  padding: 20px;
+  color: var(--accentText);
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.285px;
+  line-height: 32px;
+  font-style: normal;
+}

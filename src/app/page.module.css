@@ -100,7 +100,8 @@
   position: absolute;
   z-index: 0;
   top: -30px;
-  right: -70%;
+  /* right: -70%; */
+  left: 150px;
 }
 
 .productionTitle {

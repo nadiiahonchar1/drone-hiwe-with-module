@@ -88,6 +88,7 @@
   top: -40px;
   left: 0;
   transition: transform 1s, top 1s, left 1s;
+  cursor: grab;
 }
 
 .drone.animate {
