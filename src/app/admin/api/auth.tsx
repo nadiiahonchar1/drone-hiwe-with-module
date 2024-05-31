@@ -2,8 +2,15 @@
 
 // import firebase from 'firebase/app';
 import { signInWithEmailAndPassword, getAuth, signOut } from 'firebase/auth';
+import React, { useState } from 'react';
 import { app } from '../api/firebase';
 const auth = getAuth(app);
+
+let token = null;
+export const getToken = () => {
+  return token;
+};
+// const [token, setToken] = useState<string>('');
 
 // interface UserWithAccessToken extends firebase.User {
 //   accessToken: string;
@@ -27,8 +34,11 @@ export const loginUser = (email: string, password: string) => {
   return signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      // console.log(user);
+      // console.log('User', user.refreshToken);
+      token = user.refreshToken;
+
       // console.log('Token', getTocken());
+
       return user;
     })
     .catch((error) => {
@@ -43,6 +53,7 @@ export const logOut = () => {
     .then(() => {
       // Sign-out successful.
       // console.log('Token', getTocken());
+      token = null;
     })
     .catch((error) => {
       // An error happened.
