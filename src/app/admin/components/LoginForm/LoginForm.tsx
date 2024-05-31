@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, FormEvent } from 'react';
 import { loginUser, getToken, isLoggedIn } from '../../api/auth';
+import style from './loginForm.module.css';
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -22,7 +23,7 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={style.formContainer}>
       <div>
         <label htmlFor="email">Email:</label>
         <input
