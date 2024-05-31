@@ -10,6 +10,7 @@ const LogOutButton: React.FC = () => {
       console.log('Користувач успішно вийшов');
       console.log('Token', getToken());
       console.log('isLoggedIn', isLoggedIn());
+      alert('Ви вийшли з адмінки :(');
     } catch (error) {
       console.error('Помилка виходу:', error);
     }

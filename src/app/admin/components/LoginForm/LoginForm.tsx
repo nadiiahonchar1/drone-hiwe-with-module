@@ -13,6 +13,9 @@ const LoginForm: React.FC = () => {
       console.log('Користувач зайшов', user);
       console.log('Token', getToken());
       console.log('isLoggedIn', isLoggedIn());
+      setEmail('');
+      setPassword('');
+      alert('Ви в адмінці, почнемо працювати :)');
     } catch (error) {
       console.error('Помилка входу', error);
     }
