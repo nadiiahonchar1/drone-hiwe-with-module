@@ -1,6 +1,6 @@
 'use client';
 import React, { FormEvent } from 'react';
-import { logOut } from '../../api/auth';
+import { logOut, getToken, isLoggedIn } from '../../api/auth';
 
 const LogOutButton: React.FC = () => {
   const handleSubmit = async (e: FormEvent) => {
@@ -8,6 +8,8 @@ const LogOutButton: React.FC = () => {
     try {
       const user = await logOut();
       console.log('Користувач успішно вийшов');
+      console.log('Token', getToken());
+      console.log('isLoggedIn', isLoggedIn());
     } catch (error) {
       console.error('Помилка виходу:', error);
     }

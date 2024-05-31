@@ -2,12 +2,13 @@
 
 // import firebase from 'firebase/app';
 import { signInWithEmailAndPassword, getAuth, signOut } from 'firebase/auth';
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import { app } from '../api/firebase';
 const auth = getAuth(app);
 
-let token = null;
-export const getToken = () => {
+let token: string | null = null;
+
+export const getToken = (): string | null => {
   return token;
 };
 // const [token, setToken] = useState<string>('');

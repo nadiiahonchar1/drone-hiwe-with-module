@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, FormEvent } from 'react';
-import { loginUser } from '../../api/auth';
+import { loginUser, getToken, isLoggedIn } from '../../api/auth';
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -11,6 +11,8 @@ const LoginForm: React.FC = () => {
     try {
       const user = await loginUser(email, password);
       console.log('Користувач зайшов', user);
+      console.log('Token', getToken());
+      console.log('isLoggedIn', isLoggedIn());
     } catch (error) {
       console.error('Помилка входу', error);
     }
