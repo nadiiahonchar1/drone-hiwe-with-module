@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, FormEvent } from 'react';
-import { changePassword, getToken, isLoggedIn } from '../../api/auth';
+import { changePassword } from '../../api/auth';
 import style from '../LoginForm/loginForm.module.css';
 
 const ChangPasswordForm: React.FC = () => {
@@ -31,7 +31,7 @@ const ChangPasswordForm: React.FC = () => {
         </label>
         <input
           type="password"
-          id="password"
+          id="oldPassword"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required

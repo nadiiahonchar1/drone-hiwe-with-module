@@ -1,14 +1,17 @@
 'use client';
 import React, { FormEvent } from 'react';
 import { logOut } from '../../api/auth';
+import { useAuth } from '@/app/store/AuthContext';
 import style from '../LoginForm/loginForm.module.css';
 
 const LogOutButton: React.FC = () => {
+  const { setToken } = useAuth();
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
       const user = await logOut();
       alert('Ви вийшли з адмінки :(');
+      setToken('');
     } catch (error) {
       console.error('Помилка виходу:', error);
     }

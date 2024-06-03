@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './styles/globals.css';
 import ThemeProvider from './hooks/ThemeProvider';
+import { AuthProvider } from './store/AuthContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Wrapper from './components/Wrapper/Wrapper';
@@ -22,13 +23,15 @@ export default function RootLayout({
   return (
     <html lang="uk">
       <body>
-        <ThemeProvider>
-          <Header />
-          <main>
-            <Wrapper>{children}</Wrapper>
-          </main>
-          <Footer />
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider>
+            <Header />
+            <main>
+              <Wrapper>{children}</Wrapper>
+            </main>
+            <Footer />
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );

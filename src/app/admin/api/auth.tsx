@@ -8,24 +8,19 @@ import {
   reauthenticateWithCredential,
   EmailAuthProvider,
 } from 'firebase/auth';
+
+import Cookies from 'js-cookie';
 import { app } from '../api/firebase';
+
 const auth = getAuth(app);
-
-let token: string | null = null;
-
-export const getToken = (): string | null => {
-  return token;
-};
-
-export const isLoggedIn = (): boolean => {
-  return !!auth.currentUser;
-};
 
 export const loginUser = (email: string, password: string) => {
   return signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      token = user.refreshToken;
+      const token = user.refreshToken;
+      Cookies.set('token', token, { expires: 7 });
+
       return user;
     })
     .catch((error) => {
@@ -35,12 +30,15 @@ export const loginUser = (email: string, password: string) => {
       throw error;
     });
 };
+
 export const logOut = () => {
-  signOut(auth)
+  return signOut(auth)
     .then(() => {
-      token = null;
+      Cookies.remove('token');
     })
-    .catch((error) => {});
+    .catch((error) => {
+      console.error('Помилка при виході:', error);
+    });
 };
 
 export const changePassword = (

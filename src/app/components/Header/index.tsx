@@ -1,3 +1,4 @@
+'use client';
 import Link from '../Link';
 import headerNavLinks from '../../data/headerNavLinks';
 import Image from 'next/image';
@@ -8,7 +9,10 @@ import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlin
 // import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
 // import ShoppingBasketTwoToneIcon from '@mui/icons-material/ShoppingBasketTwoTone';
 import style from './header.module.css';
+import { useAuth } from '@/app/store/AuthContext';
 const Header = () => {
+  const { token } = useAuth();
+
   return (
     <header className={style.header}>
       <div className={style.container}>
@@ -28,6 +32,22 @@ const Header = () => {
               <span className={style.spanLink}></span>
             </Link>
           ))}
+          {token && (
+            <ul>
+              <li>
+                <Link href="/admin" className={style.navLink}>
+                  <span>admin</span>
+                  <span className={style.spanLink}></span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/admin/forms" className={style.navLink}>
+                  <span>forms</span>
+                  <span className={style.spanLink}></span>
+                </Link>
+              </li>
+            </ul>
+          )}
         </div>
         <div className={style.cartBox}>
           <Link href="/cart" aria-label="Cart">
