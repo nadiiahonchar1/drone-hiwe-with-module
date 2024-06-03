@@ -5,12 +5,23 @@
   margin: 0;
   padding: 0;
 }
+html {
+  height: 100%;
+}
 
 body {
+  height: 100%;
   background-color: var(--bgColor);
   color: var(--primaryColor);
   font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
   /* font-family: "Inter Tight", sans-serif; */
+}
+
+main {
+  flex: 1;
+  display: flex;
 }
 
 ul {

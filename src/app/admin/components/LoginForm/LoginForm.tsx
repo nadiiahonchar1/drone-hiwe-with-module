@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, FormEvent } from 'react';
-import { loginUser, getToken, isLoggedIn } from '../../api/auth';
+import { loginUser } from '../../api/auth';
 import style from './loginForm.module.css';
 
 const LoginForm: React.FC = () => {
@@ -11,9 +11,6 @@ const LoginForm: React.FC = () => {
     e.preventDefault();
     try {
       const user = await loginUser(email, password);
-      console.log('Користувач зайшов', user);
-      console.log('Token', getToken());
-      console.log('isLoggedIn', isLoggedIn());
       setEmail('');
       setPassword('');
       alert('Ви в адмінці, почнемо працювати :)');
@@ -24,27 +21,38 @@ const LoginForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit} className={style.formContainer}>
+      <p className={style.text}>
+        Щоб зайти в адмінку введіть вашу пошту та пароль
+      </p>
       <div>
-        <label htmlFor="email">Email:</label>
+        <label htmlFor="email" className={style.label}>
+          Пошта:
+        </label>
         <input
           type="email"
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          className={style.input}
         />
       </div>
       <div>
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="password" className={style.label}>
+          Пароль:
+        </label>
         <input
           type="password"
           id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          className={style.input}
         />
       </div>
-      <button type="submit">Login</button>
+      <button type="submit" className={style.button}>
+        Увійти
+      </button>
     </form>
   );
 };

@@ -1,10 +1,9 @@
 'use client';
 import React, { useState, FormEvent } from 'react';
 import { changePassword, getToken, isLoggedIn } from '../../api/auth';
-// import style from './loginForm.module.css';
+import style from '../LoginForm/loginForm.module.css';
 
 const ChangPasswordForm: React.FC = () => {
-  //   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [newPassword, setNewPassword] = useState<string>('');
 
@@ -12,10 +11,6 @@ const ChangPasswordForm: React.FC = () => {
     e.preventDefault();
     try {
       const user = await changePassword(password, newPassword);
-      console.log('Користувач зайшов', user);
-      console.log('Token', getToken());
-      console.log('isLoggedIn', isLoggedIn());
-      //   setEmail('');
       setPassword('');
       setNewPassword('');
       alert('Ви успішно змінили пароль)');
@@ -25,38 +20,40 @@ const ChangPasswordForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {/* <div>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </div> */}
+    <form onSubmit={handleSubmit} className={style.formContainer}>
+      <p className={style.text}>
+        Щоб змінити пароль спочатку зайдіть в адмінку за допомогою форми вище,
+        потім введіть старий та новий паролі
+      </p>
       <div>
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="password" className={style.label}>
+          Старий пароль:
+        </label>
         <input
           type="password"
           id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          className={style.input}
         />
       </div>
       <div>
-        <label htmlFor="newPassword">new Password:</label>
+        <label htmlFor="newPassword" className={style.label}>
+          Новий пароль:
+        </label>
         <input
           type="password"
           id="newPassword"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
           required
+          className={style.input}
         />
       </div>
-      <button type="submit">Change</button>
+      <button type="submit" className={style.button}>
+        Змінити пароль
+      </button>
     </form>
   );
 };
