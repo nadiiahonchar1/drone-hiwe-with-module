@@ -1,8 +1,13 @@
 'use client';
 
-// import firebase from 'firebase/app';
-import { signInWithEmailAndPassword, getAuth, signOut } from 'firebase/auth';
-// import React, { useState } from 'react';
+import {
+  signInWithEmailAndPassword,
+  getAuth,
+  signOut,
+  updatePassword,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
+} from 'firebase/auth';
 import { app } from '../api/firebase';
 const auth = getAuth(app);
 
@@ -11,21 +16,6 @@ let token: string | null = null;
 export const getToken = (): string | null => {
   return token;
 };
-// const [token, setToken] = useState<string>('');
-
-// interface UserWithAccessToken extends firebase.User {
-//   accessToken: string;
-// }
-
-// export const token = auth.currentUser.accessToken || null;
-
-// export const getToken = () => {
-//   if (auth.currentUser) {
-//     const userWithToken = auth.currentUser as UserWithAccessToken;
-//     return userWithToken.accessToken;
-//   }
-//   return null;
-// };
 
 export const isLoggedIn = (): boolean => {
   return !!auth.currentUser;
@@ -35,11 +25,7 @@ export const loginUser = (email: string, password: string) => {
   return signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      // console.log('User', user.refreshToken);
       token = user.refreshToken;
-
-      // console.log('Token', getTocken());
-
       return user;
     })
     .catch((error) => {
@@ -52,11 +38,34 @@ export const loginUser = (email: string, password: string) => {
 export const logOut = () => {
   signOut(auth)
     .then(() => {
-      // Sign-out successful.
-      // console.log('Token', getTocken());
       token = null;
     })
+    .catch((error) => {});
+};
+
+export const changePassword = (
+  currentPassword: string,
+  newPassword: string
+) => {
+  const user = auth.currentUser;
+
+  if (!user || !user.email) {
+    throw new Error('Користувач не авторизований.');
+  }
+
+  const credential = EmailAuthProvider.credential(user.email, currentPassword);
+
+  return reauthenticateWithCredential(user, credential)
+    .then(() => {
+      return updatePassword(user, newPassword);
+    })
+    .then(() => {
+      console.log('Пароль успішно змінено.');
+    })
     .catch((error) => {
-      // An error happened.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.error(`Помилка при зміні паролю (${errorCode}): ${errorMessage}`);
+      throw error;
     });
 };

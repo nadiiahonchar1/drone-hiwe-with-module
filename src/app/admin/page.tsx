@@ -4,6 +4,7 @@ import LoginForm from '../admin/components/LoginForm/LoginForm';
 import Wrapper from '../components/Wrapper/Wrapper';
 import LogOutButton from './components/LogOutButton/LogOutButton';
 import { getToken, isLoggedIn } from './api/auth';
+import ChangPasswordForm from './components/ChangPasswordForm/ChangPasswordForm';
 export default function Admin() {
   useEffect(() => {
     const token = getToken();
@@ -15,6 +16,7 @@ export default function Admin() {
     <>
       <Wrapper>
         <LoginForm />
+        <ChangPasswordForm />
         <LogOutButton />
       </Wrapper>
     </>
