@@ -1,6 +1,9 @@
-import Image, { StaticImageData } from 'next/image';
+'use client';
+import Image from 'next/image';
+
 import style from './contacts.module.css';
 import img from '@/assets/banner-3.jpg';
+import ContactForm from '../components/ContactForm/ContactForm';
 export default function Contact() {
   return (
     <>
@@ -49,6 +52,11 @@ export default function Contact() {
             </li>
           </ul>
         </address>
+      </section>
+      <section className={style.contactSection}>
+        <h3 className={style.addressTitle}>Або Напишіть Чи Шо)</h3>
+        <p className={style.addressText}>Форма для зв’язку</p>
+        <ContactForm />
       </section>
     </>
   );

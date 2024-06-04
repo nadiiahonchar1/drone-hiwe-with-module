@@ -64,7 +64,7 @@
 }
 
 .addressTitle {
-  padding: 1.66666667em;
+  padding: 1.66666667em 0;
   color: var(--primaryColor);
   font-size: 46px;
   font-weight: 800;
@@ -77,7 +77,7 @@
 }
 
 .addressText {
-  padding: 20px;
+  padding: 20px 0;
   color: var(--primaryColor);
   font-size: 19px;
   font-weight: 800;
@@ -95,4 +95,10 @@
   letter-spacing: -0.285px;
   line-height: 32px;
   font-style: normal;
+}
+
+.contactSection {
+  /* padding: 160px 20px; */
+  padding: 20px;
+  text-align: start;
 }
