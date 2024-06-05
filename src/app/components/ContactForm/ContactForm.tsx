@@ -2,6 +2,7 @@
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import style from './contactForm.module.css';
+import { registerUser } from '@/app/admin/api/customer';
 
 type FormValues = {
   name: string;
@@ -15,12 +16,14 @@ const ContactForm: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
-      // await sendFormDataToDB(data);
+      await registerUser(data);
       alert('Форма успішно відправлена!');
+      reset();
     } catch (error) {
       console.error('Помилка при відправці форми', error);
       alert('Сталася помилка при відправці форми.');
