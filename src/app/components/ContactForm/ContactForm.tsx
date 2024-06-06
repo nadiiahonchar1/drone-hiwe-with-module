@@ -34,7 +34,7 @@ const ContactForm: React.FC = () => {
     <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
       <div>
         <label htmlFor="name" className={style.label}>
-          Ім'я
+          Ім&apos;я
         </label>
         <input
           id="name"
