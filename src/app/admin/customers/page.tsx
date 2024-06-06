@@ -17,7 +17,6 @@ export default function Forms() {
     getCustomer()
       .then((data) => {
         setCustomer(data);
-        console.log('Отримані користувачі:', data);
       })
       .catch((error) => {
         console.error('Помилка при отриманні користувачів:', error);
@@ -33,12 +32,18 @@ export default function Forms() {
       )}
       {customer && (
         <ul>
+          <li className={style.custometContainerHeader}>
+            <p className={style.item}>Ім&apos;я</p>
+            <p className={style.item}>Телефон</p>
+            <p className={style.item}>Електронна пошта</p>
+            <p className={style.item}>Повідомлення</p>
+          </li>
           {customer.map((i) => (
             <li key={i.id} className={style.custometContainer}>
-              <p>{i.name}</p>
-              <p>{i.phone}</p>
-              <p>{i.email}</p>
-              <p>{i.message}</p>
+              <p className={style.item}>{i.name}</p>
+              <p className={style.item}>{i.phone}</p>
+              <p className={style.item}>{i.email}</p>
+              <p className={style.item}>{i.message}</p>
             </li>
           ))}
         </ul>

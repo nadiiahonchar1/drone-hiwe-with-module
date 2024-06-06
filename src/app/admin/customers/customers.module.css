@@ -3,10 +3,23 @@
   padding: 20px 0;
 }
 
+.custometContainerHeader {
+  padding: 20px;
+  border: 1px solid var(--colorProduct);
+  background-color: var(--productList);
+  border-radius: 10px;
+  display: flex;
+  margin: 8px 0;
+}
+
 .custometContainer {
   padding: 20px;
   border: 1px solid var(--colorProduct);
   border-radius: 10px;
   display: flex;
-  gap: 40px;
+  gap: 8px;
+}
+
+.item {
+  width: 25%;
 }
