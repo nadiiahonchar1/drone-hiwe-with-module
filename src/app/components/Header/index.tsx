@@ -28,12 +28,8 @@ const Header = () => {
         <div className={style.navLinks}>
           <ul className={style.ulLinks}>
             {headerNavLinks.map((link) => (
-              <li>
-                <Link
-                  key={link.title}
-                  href={link.href}
-                  className={style.navLink}
-                >
+              <li key={link.title}>
+                <Link href={link.href} className={style.navLink}>
                   <span>{link.title}</span>
                   <span className={style.spanLink}></span>
                 </Link>
