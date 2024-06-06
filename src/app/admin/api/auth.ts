@@ -7,14 +7,15 @@ import {
   updatePassword,
   reauthenticateWithCredential,
   EmailAuthProvider,
+  User,
 } from 'firebase/auth';
 
 import Cookies from 'js-cookie';
-import { app } from '../api/firebase';
+import { app } from './firebase';
 
 const auth = getAuth(app);
 
-export const loginUser = (email: string, password: string) => {
+export const loginUser = (email: string, password: string): Promise<User> => {
   return signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
@@ -31,7 +32,7 @@ export const loginUser = (email: string, password: string) => {
     });
 };
 
-export const logOut = () => {
+export const logOut = (): Promise<void> => {
   return signOut(auth)
     .then(() => {
       Cookies.remove('token');
@@ -44,7 +45,7 @@ export const logOut = () => {
 export const changePassword = (
   currentPassword: string,
   newPassword: string
-) => {
+): Promise<void> => {
   const user = auth.currentUser;
 
   if (!user || !user.email) {
