@@ -1,0 +1,12 @@
+.text {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.custometContainer {
+  padding: 20px;
+  border: 1px solid var(--colorProduct);
+  border-radius: 10px;
+  display: flex;
+  gap: 40px;
+}
