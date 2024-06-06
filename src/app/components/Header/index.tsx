@@ -15,7 +15,7 @@ const Header = () => {
 
   return (
     <header className={style.header}>
-      <div className={style.container}>
+      <nav className={style.container}>
         <div className={style.logoContainer}>
           <Link href="/" aria-label="Main page">
             <div className={style.headerLogo}>
@@ -26,23 +26,37 @@ const Header = () => {
           </Link>
         </div>
         <div className={style.navLinks}>
-          {headerNavLinks.map((link) => (
-            <Link key={link.title} href={link.href} className={style.navLink}>
-              <span>{link.title}</span>
-              <span className={style.spanLink}></span>
-            </Link>
-          ))}
+          <ul className={style.ulLinks}>
+            {headerNavLinks.map((link) => (
+              <li>
+                <Link
+                  key={link.title}
+                  href={link.href}
+                  className={style.navLink}
+                >
+                  <span>{link.title}</span>
+                  <span className={style.spanLink}></span>
+                </Link>
+              </li>
+            ))}
+          </ul>
           {token && (
-            <ul>
+            <ul className={style.ulLinks}>
               <li>
                 <Link href="/admin" className={style.navLink}>
-                  <span>admin</span>
+                  <span>Адмінка</span>
                   <span className={style.spanLink}></span>
                 </Link>
               </li>
               <li>
-                <Link href="/admin/forms" className={style.navLink}>
-                  <span>forms</span>
+                <Link href="/admin/customers" className={style.navLink}>
+                  <span>Клієнти</span>
+                  <span className={style.spanLink}></span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/admin/new-products" className={style.navLink}>
+                  <span>Нові продукти</span>
                   <span className={style.spanLink}></span>
                 </Link>
               </li>
@@ -54,7 +68,7 @@ const Header = () => {
             <ShoppingBasketOutlinedIcon sx={{ color: '#fff', fontSize: 40 }} />
           </Link>
         </div>
-      </div>
+      </nav>
     </header>
   );
 };

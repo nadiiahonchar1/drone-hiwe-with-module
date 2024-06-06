@@ -40,7 +40,7 @@ const Footer = () => {
 
   return (
     <footer className={style.footer}>
-      <div className={style.container}>
+      <nav className={style.container}>
         <div className={style.logoContainer}>
           <Link href="/" aria-label="Main page">
             <div className={style.footerLogo}>
@@ -50,14 +50,16 @@ const Footer = () => {
             </div>
           </Link>
         </div>
-        <div className={style.navLinks}>
+        <ul className={style.navLinks}>
           {headerNavLinks.map((link) => (
-            <Link key={link.title} href={link.href} className={style.navLink}>
-              <span>{link.title}</span>
-              <span className={style.spanLink}></span>
-            </Link>
+            <li>
+              <Link key={link.title} href={link.href} className={style.navLink}>
+                <span>{link.title}</span>
+                <span className={style.spanLink}></span>
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
         <div className={style.dronBox}>
           <Image
             src={dron}
@@ -69,7 +71,7 @@ const Footer = () => {
             ref={droneRef}
           />
         </div>
-      </div>
+      </nav>
     </footer>
   );
 };

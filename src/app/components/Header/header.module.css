@@ -26,8 +26,12 @@
 .logoContainer {
   margin-right: 20px;
 }
-
 .navLinks {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ulLinks {
   display: flex;
   align-items: center;
   gap: 1rem;
