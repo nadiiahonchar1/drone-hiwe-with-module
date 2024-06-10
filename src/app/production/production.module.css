@@ -1,5 +1,5 @@
 .section {
-  padding: 40px 0;
+  padding: 40px 20px;
 }
 .productionHead {
   font-size: 76px;
@@ -26,6 +26,9 @@
   gap: 50px;
   align-items: center;
 }
+.descriptionRevert {
+  composes: description;
+}
 
 .aboutProduct {
   color: var(--colorProduct);
@@ -42,4 +45,23 @@
 
 .productionList:not(:last-child) {
   margin-bottom: 40px;
+}
+
+@media screen and (max-width: 880px) {
+  .productionHead {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  .productionTitle {
+    font-size: 46px;
+    margin-bottom: 12px;
+  }
+  .description {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .descriptionRevert {
+    composes: description;
+    flex-direction: column-reverse;
+  }
 }

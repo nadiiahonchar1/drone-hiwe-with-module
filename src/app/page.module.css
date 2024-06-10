@@ -122,6 +122,10 @@
   gap: 50px;
 }
 
+.descriptionRevert {
+  composes: description;
+}
+
 .aboutProduct {
   color: var(--colorProduct);
   font-family: 'Inter Tight', sans-serif;
@@ -231,10 +235,20 @@
     max-width: 100%;
     margin-bottom: 40px;
   }
-  .description {
+  /* .description {
     display: block;
     text-align: center;
     border-bottom: 1px solid var(--colorProduct);
+  } */
+  .description {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid var(--colorProduct);
+  }
+  .descriptionRevert {
+    composes: description;
+    flex-direction: column-reverse;
   }
   .productionTitle {
     font-size: 38px;

@@ -53,7 +53,7 @@ export default function Production() {
         <li className={style.productionList}>
           <article>
             <h2 className={style.productionTitle}>Ретранслятори</h2>
-            <div className={style.description}>
+            <div className={style.descriptionRevert}>
               <div className={style.aboutProduct}>
                 <p>
                   Випускаємо модулі ретрансляторів та радіо-репітерів
@@ -102,7 +102,7 @@ export default function Production() {
         <li className={style.productionList}>
           <article>
             <h2 className={style.productionTitle}>Модулі Для БПЛА</h2>
-            <div className={style.description}>
+            <div className={style.descriptionRevert}>
               <div className={style.aboutProduct}>
                 <p>
                   Зможемо повністю закомплектувати ваше замовлення компонентами

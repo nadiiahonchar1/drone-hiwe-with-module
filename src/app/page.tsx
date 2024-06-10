@@ -79,7 +79,7 @@ export default function Home() {
         </div>
       </section>
       <section className={style.sectionContainer}>
-        <div className={style.description}>
+        <div className={style.descriptionRevert}>
           <div>
             <h2 className={style.productionTitle}>
               ГОТОВІ РОЗРОБИТИ ТА ВИРОБИТИ РІШЕННЯ ПІД КОНКРЕТНУ ЗАДАЧУ
