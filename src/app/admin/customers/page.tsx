@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { getCustomer } from '../api/customer';
 import style from './customers.module.css';
+import Wrapper from '@/app/components/Wrapper/Wrapper';
 
 interface Customer {
   id?: string;
@@ -23,31 +24,33 @@ export default function Forms() {
       });
   }, []);
   return (
-    <>
-      {!customer && (
-        <p className={style.text}>
-          Тут ви зможете побачити інформацію по всіх користувачах, що заповнили
-          форму на сайті. Щойно вони це зроблять :)
-        </p>
-      )}
-      {customer && (
-        <ul>
-          <li className={style.custometContainerHeader}>
-            <p className={style.item}>Ім&apos;я</p>
-            <p className={style.item}>Телефон</p>
-            <p className={style.item}>Електронна пошта</p>
-            <p className={style.item}>Повідомлення</p>
-          </li>
-          {customer.map((i) => (
-            <li key={i.id} className={style.custometContainer}>
-              <p className={style.item}>{i.name}</p>
-              <p className={style.item}>{i.phone}</p>
-              <p className={style.item}>{i.email}</p>
-              <p className={style.item}>{i.message}</p>
+    <Wrapper>
+      <section className={style.container}>
+        {!customer && (
+          <p className={style.text}>
+            Тут ви зможете побачити інформацію по всіх користувачах, що
+            заповнили форму на сайті. Щойно вони це зроблять :)
+          </p>
+        )}
+        {customer && (
+          <ul>
+            <li className={style.custometContainerHeader}>
+              <p className={style.item}>Ім&apos;я</p>
+              <p className={style.item}>Телефон</p>
+              <p className={style.item}>Електронна пошта</p>
+              <p className={style.item}>Повідомлення</p>
             </li>
-          ))}
-        </ul>
-      )}
-    </>
+            {customer.map((i) => (
+              <li key={i.id} className={style.custometContainer}>
+                <p className={style.item}>{i.name}</p>
+                <p className={style.item}>{i.phone}</p>
+                <p className={style.item}>{i.email}</p>
+                <p className={style.item}>{i.message}</p>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+    </Wrapper>
   );
 }
