@@ -5,7 +5,7 @@ import MyImg from './components/MyImg/MyImg';
 import style from './page.module.css';
 import team from '../assets/emwhee_logo_minimalistic_monotone_team_of_engineers_and_softwar_685efe77-84c7-43a1-bd9b-6d94cf643fcb-400x400.png';
 import soldiers from '../assets/emwhee_soldiers_drones_and_robots_at_battle_in_steppes_of_Ukrai_52d7435b-fbbf-484f-841f-a86087451f35-400x400.png';
-import bg from '../assets/hero-bg3.svg';
+// import bg from '../assets/hero-bg3.svg';
 import droneEngineer from '../assets/emwhee_fpv_drone_assembly_by_engineer_4bb4fd62-b8e7-42af-a528-56fe348a5bcc-1-600x600.png';
 import quadrocopter from '../assets/emwhee_assembly_of_fpv_war_quardocopter_by_engineer_as_oil_pain_32f65bf5-3221-46ab-86ff-68eb3aed0b5f-600x600.png';
 
@@ -36,7 +36,7 @@ export default function Home() {
             />
           </div>
           <div className={style.imgGradient}>
-            <Image src={bg} alt="Не важливо" className={style.bg} width={700} />
+            {/* <Image src={bg} alt="Не важливо" className={style.bg} width={700} /> */}
             <div className={style.team}>
               <MyImg
                 imgSrc={team}

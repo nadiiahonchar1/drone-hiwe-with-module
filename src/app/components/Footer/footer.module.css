@@ -1,7 +1,9 @@
 .footer {
   background-color: var(--productList);
-  padding: 1rem 6rem;
+  padding: 1rem 2rem;
   border-top: 4px double var(--colorProduct);
+  position: relative; /* додано для відносного позиціювання */
+  z-index: 10; /* збільшує пріоритет відображення */
 }
 
 .container {
@@ -56,6 +58,7 @@
 .cartIcon {
   margin-left: auto;
 }
+
 .spanLink {
   position: absolute;
   bottom: 0;
@@ -113,5 +116,70 @@
   }
   100% {
     transform: translateY(0) translateX(0);
+  }
+}
+.navLinksMobile {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .navLinks {
+    display: none;
+  }
+
+  .header {
+    padding: 1rem 1rem;
+  }
+
+  .ulLinksMobile {
+    display: none;
+  }
+
+  .navLinksMobile {
+    display: flex;
+    align-items: center;
+  }
+
+  .menuIcon {
+    cursor: pointer;
+    transition: transform 0.5s ease;
+  }
+
+  .rotateOpen {
+    transform: rotate(0deg);
+  }
+
+  .rotateClose {
+    transform: rotate(360deg);
+  }
+
+  .ulLinksMobile {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 112px;
+    left: 0;
+    right: 0;
+    background-color: var(--productList);
+    /* border-top: 4px double var(--colorProduct); */
+    transform: translateY(100%);
+    transition: transform 0.5s ease;
+  }
+
+  .menuOpenFooter {
+    transform: translateY(0);
+  }
+
+  .menuCloseFooter {
+    transform: translateY(100%);
+  }
+
+  .navLinksMobile li {
+    margin-bottom: 16px;
+  }
+
+  .navLinksMobile ul {
+    padding: 20px;
+    z-index: 100;
   }
 }

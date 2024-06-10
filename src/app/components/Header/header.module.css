@@ -1,6 +1,6 @@
 .header {
   background-color: var(--productList);
-  padding: 1rem 6rem;
+  padding: 1rem 2rem;
   border-bottom: 4px double var(--colorProduct);
 }
 
@@ -26,9 +26,14 @@
 .logoContainer {
   margin-right: 20px;
 }
+
 .navLinks {
   display: flex;
   flex-wrap: wrap;
+}
+
+.navLinksMobile {
+  display: none;
 }
 
 .ulLinks {
@@ -38,23 +43,11 @@
   line-height: 1.25rem;
 }
 
-@media (min-width: 640px) {
-  .navLinks {
-    gap: 1.5rem;
-  }
-}
-
 .navLink {
   position: relative;
   font-size: 1rem;
   font-weight: 500;
   color: var(--primaryColor);
-}
-
-@media (min-width: 640px) {
-  .navLink {
-    display: block;
-  }
 }
 
 .cartIcon {
@@ -78,8 +71,69 @@
   opacity: 1;
 }
 
-/* .cartBox {
-  background-color: #0e0f11;
-  padding: 10px;
-  border-radius: 50%;
+/* .logo {
+  width: 312px;
+  height: 72px;
 } */
+
+@media screen and (max-width: 768px) {
+  .navLinks {
+    display: none;
+  }
+  .header {
+    padding: 1rem 1rem;
+  }
+  /* .logo {
+    width: 208px;
+    height: 48px;
+  } */
+  .ulLinksMobile {
+    display: none;
+  }
+  .navLinksMobile {
+    display: flex;
+    align-items: center;
+  }
+
+  .menuIcon {
+    cursor: pointer;
+    transition: transform 0.5s ease;
+  }
+
+  .rotateOpen {
+    transform: rotate(0deg);
+  }
+
+  .rotateClose {
+    transform: rotate(360deg);
+  }
+
+  .ulLinksMobile {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 112px;
+    left: 0;
+    right: 0;
+    background-color: var(--productList);
+    /* border-top: 4px double var(--colorProduct); */
+    transition: transform 0.5s ease;
+  }
+
+  .menuOpen {
+    transform: translateY(0);
+  }
+
+  .menuClose {
+    transform: translateY(-100%);
+  }
+
+  .navLinksMobile li {
+    margin-bottom: 16px;
+  }
+
+  .navLinksMobile ul {
+    padding: 20px;
+    z-index: 100;
+  }
+}

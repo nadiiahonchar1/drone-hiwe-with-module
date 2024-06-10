@@ -96,13 +96,17 @@
   bottom: 40px;
   right: -100px;
 }
-.bg {
+/* .bg {
   position: absolute;
   z-index: 0;
   top: -30px;
-  /* right: -70%; */
   left: 150px;
 }
+@media (max-width: 768px) {
+  .bg {
+    display: none;
+  }
+} */
 
 .productionTitle {
   font-size: 46px;
