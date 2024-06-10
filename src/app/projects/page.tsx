@@ -8,7 +8,7 @@ export default function Project() {
   return (
     <>
       <section className={style.heroSection}>
-        <div>
+        <div className={style.typeProjectTitle}>
           <h1 className={style.title}>Проекти</h1>
           <p className={style.text}>
             Наші проекти можна розділити на 3 групи: продуктові, виробничі та

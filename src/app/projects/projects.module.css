@@ -160,3 +160,30 @@
   composes: stage;
   background-color: #c98d8d;
 }
+
+@media screen and (max-width: 880px) {
+  .heroSection {
+    display: block;
+  }
+  .title {
+    font-size: 38px;
+    text-align: center;
+  }
+  .typeProjectTitle {
+    background-color: var(--productList);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 8px;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+  .projectSectionTitle {
+    font-size: 38px;
+    margin-top: 12px;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+  }
+  .aboutProjects {
+    display: block;
+  }
+}
