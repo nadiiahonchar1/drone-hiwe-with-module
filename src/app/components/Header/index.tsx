@@ -21,10 +21,10 @@ const Header = () => {
   return (
     <header className={style.header}>
       <nav className={style.container}>
-        <div className={style.logoContainer}>
+        <div>
           <Link href="/" aria-label="Main page">
             <div className={style.headerLogo}>
-              <div className={style.containerLogo}>
+              <div className={style.logoContainer}>
                 <Image
                   src={Logo}
                   alt="Logo icon"

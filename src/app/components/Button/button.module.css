@@ -29,3 +29,8 @@
   composes: baseButton from "./base_button.css";
   background-color: blue;
 } */
+@media screen and (max-width: 880px) {
+  .button {
+    width: 100%;
+  }
+}

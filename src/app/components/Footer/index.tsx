@@ -48,11 +48,16 @@ const Footer = () => {
   return (
     <footer className={style.footer}>
       <nav className={style.container}>
-        <div className={style.logoContainer}>
+        <div>
           <Link href="/" aria-label="Main page">
             <div className={style.footerLogo}>
-              <div className={style.containerLogo}>
-                <Image src={Logo} alt="Logo icon" priority={true} />
+              <div className={style.logoContainer}>
+                <Image
+                  src={Logo}
+                  alt="Logo icon"
+                  priority={true}
+                  className={style.logo}
+                />
               </div>
             </div>
           </Link>

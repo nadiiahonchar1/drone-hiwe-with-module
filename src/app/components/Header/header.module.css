@@ -1,6 +1,6 @@
 .header {
   background-color: var(--productList);
-  padding: 1rem 2rem;
+  padding: 20px;
   border-bottom: 4px double var(--colorProduct);
 }
 
@@ -17,10 +17,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.containerLogo {
-  margin-right: 0.75rem;
 }
 
 .logoContainer {
@@ -71,12 +67,12 @@
   opacity: 1;
 }
 
-/* .logo {
-  width: 312px;
-  height: 72px;
-} */
+.logo {
+  width: 300px;
+  height: 69px;
+}
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 880px) {
   .navLinks {
     display: none;
   }
