@@ -53,7 +53,13 @@ const ContactForm: React.FC = () => {
           className={style.input}
           placeholder="+380XX XXX XXXX*"
           data-empty-notice="Ми не зможемо з вами оперативно зв'язатись без номеру телефону"
-          {...register('phone', { required: "Номер телефону є обов'язковим" })}
+          {...register('phone', {
+            required: "Номер телефону є обов'язковим",
+            pattern: {
+              value: /^\+380\d{9}$/,
+              message: 'Неправильний формат номера телефону',
+            },
+          })}
         />
         {errors.phone && (
           <span className={style.error}>
@@ -73,6 +79,10 @@ const ContactForm: React.FC = () => {
           data-empty-notice="Ми не зможемо з вами зв'язатись без електронної пошти"
           {...register('email', {
             required: "Електронна пошта є обов'язковою",
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              message: 'Неправильний формат електронної пошти',
+            },
           })}
         />
         {errors.email && (

@@ -4,7 +4,7 @@ import { getCustomer } from '../api/customer';
 import style from './customers.module.css';
 import Wrapper from '@/app/components/Wrapper/Wrapper';
 
-interface Customer {
+interface User {
   id?: string;
   name: string;
   phone: string;
@@ -12,27 +12,44 @@ interface Customer {
   message: string;
 }
 
-export default function Forms() {
-  const [customer, setCustomer] = useState<Customer[]>([]);
+interface Customer {
+  id: string;
+  name: string;
+  phone: string;
+  email: string;
+  message: string;
+}
+
+const Forms: React.FC = () => {
+  const [customers, setCustomers] = useState<Customer[]>([]);
+
   useEffect(() => {
     getCustomer()
-      .then((data) => {
-        setCustomer(data);
+      .then((data: User[]) => {
+        // Перетворюємо User до Customer
+        const customersData = data.map((user) => ({
+          id: user.id || '', // Встановлюємо пустий рядок якщо id undefined
+          name: user.name,
+          phone: user.phone,
+          email: user.email,
+          message: user.message,
+        }));
+        setCustomers(customersData);
       })
       .catch((error) => {
         console.error('Помилка при отриманні користувачів:', error);
       });
   }, []);
+
   return (
     <Wrapper>
       <section className={style.container}>
-        {!customer && (
+        {customers.length === 0 ? (
           <p className={style.text}>
             Тут ви зможете побачити інформацію по всіх користувачах, що
             заповнили форму на сайті. Щойно вони це зроблять :)
           </p>
-        )}
-        {customer && (
+        ) : (
           <ul>
             <li className={style.custometContainerHeader}>
               <p className={style.item}>Ім&apos;я</p>
@@ -40,12 +57,16 @@ export default function Forms() {
               <p className={style.item}>Електронна пошта</p>
               <p className={style.item}>Повідомлення</p>
             </li>
-            {customer.map((i) => (
-              <li key={i.id} className={style.custometContainer}>
-                <p className={style.item}>{i.name}</p>
-                <p className={style.item}>{i.phone}</p>
-                <p className={style.item}>{i.email}</p>
-                <p className={style.item}>{i.message}</p>
+            {[...customers].reverse().map((customer) => (
+              <li key={customer.id} className={style.custometContainer}>
+                <p className={style.item}>{customer.name}</p>
+                <a href={`tel:${customer.phone}`} className={style.item}>
+                  {customer.phone}
+                </a>
+                <a href={`mailto:${customer.email}`} className={style.item}>
+                  {customer.email}
+                </a>
+                <p className={style.item}>{customer.message}</p>
               </li>
             ))}
           </ul>
@@ -53,4 +74,6 @@ export default function Forms() {
       </section>
     </Wrapper>
   );
-}
+};
+
+export default Forms;
