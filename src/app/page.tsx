@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Button from './components/Button/Button';
 import MyImg from './components/MyImg/MyImg';
 // import Wrapper from './components/Wrapper/Wrapper';

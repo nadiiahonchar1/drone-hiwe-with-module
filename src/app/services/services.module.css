@@ -1,0 +1,217 @@
+.heroSection {
+  background-image: linear-gradient(
+      90deg,
+      var(--bgColor),
+      var(--gradientLightContact),
+      var(--bgColor)
+    ),
+    url(../../assets/banner-9.jpg);
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  padding: 160px 20px;
+  text-align: start;
+}
+
+.heroText {
+  font-size: 62px;
+  font-weight: 800;
+  letter-spacing: -0.93px;
+  line-height: 67px;
+  text-transform: capitalize;
+  color: var(--primaryColor);
+  margin-bottom: 40px;
+}
+
+.heroCall {
+  font-size: 20px;
+  color: var(--primaryColor);
+  font-weight: 400;
+  letter-spacing: 0.285px;
+  line-height: 31px;
+}
+
+.line {
+  width: 100%;
+  margin: 70px 0;
+  height: 1px;
+  color: var(--accentText);
+  border-bottom: 5px dotted var(--accentTextInvert);
+  position: relative;
+}
+.circle {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 4px solid var(--accentTextInvert);
+  background-color: var(--accentText);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.icon {
+  padding: 10px;
+  width: 55px;
+  height: 55px;
+}
+
+.sectionContainer {
+  background-image: linear-gradient(
+      90deg,
+      var(--bgColor),
+      var(--gradientLightContact),
+      var(--bgColor)
+    ),
+    url(../../assets/download.svg);
+  /* background-repeat: no-repeat; */
+  /* background-position: center top; */
+  /* background-size: cover; */
+  padding: 20px;
+}
+
+.productTitle {
+  color: var(--accentText);
+  font-size: 62px;
+  font-weight: 800;
+  letter-spacing: -0.93px;
+  line-height: 67px;
+  text-transform: capitalize;
+  text-align: center;
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 40px;
+}
+
+.productTitle:hover,
+.productTitle:active,
+.productTitle:focus {
+  color: var(--accentTextInvert);
+}
+
+.flexContainerWrapp {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.productList {
+  flex-basis: calc((100% - 40px) / 3);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: var(--productList);
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.productArticle {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-bottom: 80px;
+}
+
+.productListTitle {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.54px;
+  line-height: 43.2px;
+  margin-bottom: 20px;
+}
+.aboutProductList {
+  color: var(--colorProduct);
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.285px;
+  line-height: 24px;
+  text-transform: uppercase;
+  margin-bottom: auto;
+}
+.buttonContainer {
+  width: 100%;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform: translate(100%);
+  opacity: 0;
+}
+.productList:hover .buttonContainer {
+  transform: translate(0);
+  opacity: 1;
+}
+
+.list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 20px;
+}
+.listArticle {
+  text-align: center;
+}
+.listTitle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  color: white;
+  background-color: var(--productList);
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.54px;
+  line-height: 43.2px;
+  color: var(--primaryColor);
+}
+
+.listItem {
+  position: relative;
+  /* background-color: #f9f9f9; */
+  padding: 20px;
+  /* border: 1px solid #ddd;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+  background-color: var(--productList);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+.listButton {
+  position: absolute;
+  bottom: 20px;
+  right: -100%;
+  transition: right 0.3s ease;
+}
+.listItem:hover .listButton {
+  right: 20%;
+}
+.img {
+  width: 100%;
+  height: auto;
+}
+@media screen and (max-width: 880px) {
+  .productList {
+    flex-basis: 100%;
+  }
+  .buttonContainer {
+    width: 350px;
+  }
+  .list {
+    grid-template-columns: 1fr;
+  }
+}

@@ -39,6 +39,11 @@
   line-height: 1.25rem;
 }
 
+.ulLinksPrivat {
+  composes: ulLinks;
+  margin-left: 1rem;
+}
+
 .navLink {
   position: relative;
   font-size: 1rem;

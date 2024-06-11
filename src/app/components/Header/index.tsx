@@ -47,7 +47,7 @@ const Header = () => {
             ))}
           </ul>
           {token && (
-            <ul className={style.ulLinks}>
+            <ul className={style.ulLinksPrivat}>
               <li>
                 <Link href="/admin" className={style.navLink}>
                   <span>Адмінка</span>

@@ -4,9 +4,10 @@ import Image from 'next/image';
 import style from './contacts.module.css';
 import img from '@/assets/banner-3.jpg';
 import ContactForm from '../components/ContactForm/ContactForm';
+import Wrapper from '../components/Wrapper/Wrapper';
 export default function Contact() {
   return (
-    <>
+    <Wrapper>
       <section className={style.heroSection}>
         <h1 className={style.heroTitle}>Наші контакти )</h1>
         <p className={style.heroText}>
@@ -58,6 +59,6 @@ export default function Contact() {
         <p className={style.addressText}>Форма для зв’язку</p>
         <ContactForm />
       </section>
-    </>
+    </Wrapper>
   );
 }
