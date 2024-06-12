@@ -56,7 +56,7 @@ const ProductForm: React.FC = () => {
       case 'БПЛА':
         setSubCategories(['10 Дюймів', '7 Дюймів']);
         break;
-      case "Ретранслятори та станції зв'язку":
+      case 'Ретранслятори та станції':
         setSubCategories(['Антени', 'Ретранслятори']);
         break;
       default:
@@ -98,7 +98,7 @@ const ProductForm: React.FC = () => {
           <option value="БПЛА">БПЛА</option>
           <option value="Модулі для БПЛА">Модулі для БПЛА</option>
           <option value="Пристрій саперний">Пристрій саперний</option>
-          <option value="Ретранслятори та станції зв'язку">
+          <option value="Ретранслятори та станції">
             Ретранслятори та станції зв'язку
           </option>
         </select>
