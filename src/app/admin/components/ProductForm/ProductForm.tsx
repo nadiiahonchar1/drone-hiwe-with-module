@@ -72,7 +72,7 @@ const ProductForm: React.FC = () => {
         <label>Назва товару</label>
         <input
           {...register('productName', {
-            required: 'Назва товару є обов’язковою',
+            required: 'Введіть товар',
           })}
         />
         {errors.productName && <p>{errors.productName.message}</p>}
@@ -81,7 +81,7 @@ const ProductForm: React.FC = () => {
         <label>Опис товару</label>
         <textarea
           {...register('productDescription', {
-            required: 'Опис товару є обов’язковим',
+            required: 'Введіть опис',
           })}
         />
         {errors.productDescription && (
@@ -91,7 +91,7 @@ const ProductForm: React.FC = () => {
       <div>
         <label>Категорія</label>
         <select
-          {...register('category', { required: 'Категорія є обов’язковою' })}
+          {...register('category', { required: 'Виберіть категорію' })}
           onChange={handleCategoryChange}
         >
           <option value="">Виберіть категорію</option>
@@ -157,7 +157,7 @@ const ProductForm: React.FC = () => {
               <label>Назва варіації</label>
               <input
                 {...register(`variations.${index}.variationName` as const, {
-                  required: 'Назва варіації є обов’язковою',
+                  required: 'Виберіть варіацію',
                 })}
               />
               {errors.variations?.[index]?.variationName && (
@@ -166,7 +166,7 @@ const ProductForm: React.FC = () => {
               <label>Наявність</label>
               <select
                 {...register(`variations.${index}.variationAvailability`, {
-                  required: 'Наявність є обов’язковою',
+                  required: 'Виберіть наявність',
                 })}
               >
                 <option value="available">Є в наявності</option>
