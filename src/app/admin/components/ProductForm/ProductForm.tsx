@@ -53,10 +53,10 @@ const ProductForm: React.FC = () => {
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const category = e.target.value;
     switch (category) {
-      case 'БПЛА':
+      case 'drone':
         setSubCategories(['10 Дюймів', '7 Дюймів']);
         break;
-      case 'Ретранслятори та станції':
+      case 'antenna-relay-stations':
         setSubCategories(['Антени', 'Ретранслятори']);
         break;
       default:
@@ -95,11 +95,11 @@ const ProductForm: React.FC = () => {
           onChange={handleCategoryChange}
         >
           <option value="">Виберіть категорію</option>
-          <option value="БПЛА">БПЛА</option>
-          <option value="Модулі для БПЛА">Модулі для БПЛА</option>
-          <option value="Пристрій саперний">Пристрій саперний</option>
-          <option value="Ретранслятори та станції">
-            Ретранслятори та станції зв'язку
+          <option value="drone">БПЛА</option>
+          <option value="drone-modules">Модулі для БПЛА</option>
+          <option value="sapper-devices">Пристрій саперний</option>
+          <option value="antenna-relay-stations">
+            Ретранслятори та станції
           </option>
         </select>
         {errors.category && <p>{errors.category.message}</p>}
