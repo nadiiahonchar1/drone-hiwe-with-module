@@ -41,7 +41,7 @@ const ProductForm: React.FC = () => {
     },
   });
 
-  const { fields, append } = useFieldArray<Variation>({
+  const { fields, append } = useFieldArray({
     control,
     name: 'variations',
   });
@@ -161,7 +161,9 @@ const ProductForm: React.FC = () => {
                 })}
               />
               {errors.variations?.[index]?.variationName && (
-                <p>{errors.variations[index]?.variationName?.message}</p>
+                <p>
+                  {(errors.variations as any)?.[index]?.variationName?.message}
+                </p>
               )}
               <label>Наявність</label>
               <select
@@ -175,7 +177,10 @@ const ProductForm: React.FC = () => {
               </select>
               {errors.variations?.[index]?.variationAvailability && (
                 <p>
-                  {errors.variations[index]?.variationAvailability?.message}
+                  {
+                    (errors.variations as any)?.[index]?.variationAvailability
+                      ?.message
+                  }
                 </p>
               )}
             </div>
