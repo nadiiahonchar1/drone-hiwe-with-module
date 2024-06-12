@@ -125,100 +125,110 @@ export default function Services() {
         <div className={style.sectionContainer}>
           <h2 className={style.productTitle}>Виробничі сервіси</h2>
           <ul className={style.list}>
-            <li className={style.listItem}>
-              <article className={style.listArticle}>
-                <h3 className={style.listTitle}>3D Друк</h3>
-                <Image src={printer} alt="3D Друк" className={style.img} />
-              </article>
-              <div className={style.listButton}>
-                <Button
-                  buttonText="Зв'язатися з нами"
-                  redirectPath="/contact"
-                />
-              </div>
-            </li>
-            <li className={style.listItem}>
-              <article className={style.listArticle}>
-                <h3 className={style.listTitle}>3D Сканування</h3>
-                <Image src={scaner} alt="3D Сканування" className={style.img} />
-              </article>
-              <div className={style.listButton}>
-                <Button
-                  buttonText="Зв'язатися з нами"
-                  redirectPath="/contact"
-                />
-              </div>
-            </li>
-            <li className={style.listItem}>
-              <article className={style.listArticle}>
-                <h3 className={style.listTitle}>
-                  Виготовлення деталей та форм з силікону та поліуретану.
-                </h3>
-                <Image
-                  src={epoxy}
-                  alt="Виготовлення деталей та форм з силікону та поліуретану."
-                  className={style.img}
-                />
-              </article>
-              <div className={style.listButton}>
-                <Button
-                  buttonText="Зв'язатися з нами"
-                  redirectPath="/contact"
-                />
-              </div>
-            </li>
-            <li className={style.listItem}>
-              <article className={style.listArticle}>
-                <h3 className={style.listTitle}>
-                  Виробництво композитних деталейя
-                </h3>
-                <Image
-                  src={carbo}
-                  alt="Виробництво композитних деталей"
-                  className={style.img}
-                />
-              </article>
-              <div className={style.listButton}>
-                <Button
-                  buttonText="Зв'язатися з нами"
-                  redirectPath="/contact"
-                />
-              </div>
-            </li>
-            <li className={style.listItem}>
-              <article className={style.listArticle}>
-                <h3 className={style.listTitle}>Метало-обробка</h3>
-                <Image
-                  src={metal}
-                  alt="Метало-обробкак"
-                  className={style.img}
-                />
-              </article>
-              <div className={style.listButton}>
-                <Button
-                  buttonText="Зв'язатися з нами"
-                  redirectPath="/contact"
-                />
-              </div>
-            </li>
-            <li className={style.listItem}>
-              <article className={style.listArticle}>
-                <h3 className={style.listTitle}>
-                  Виробництво електроніки та електронних плат
-                </h3>
-                <Image
-                  src={pcb}
-                  alt="Виробництво електроніки та електронних плат"
-                  className={style.img}
-                />
-              </article>
-              <div className={style.listButton}>
-                <Button
-                  buttonText="Зв'язатися з нами"
-                  redirectPath="/contact"
-                />
-              </div>
-            </li>
+            <div className={style.cardContainer}>
+              <li className={style.listItem}>
+                <article className={style.listArticle}>
+                  <h3 className={style.listTitle}>3D Друк</h3>
+                  <Image src={printer} alt="3D Друк" className={style.img} />
+                </article>
+                <div className={style.buttonContainer}>
+                  <Button
+                    buttonText="Зв'язатися з нами"
+                    redirectPath="/contact"
+                  />
+                </div>
+              </li>
+              <li className={style.listItem}>
+                <article className={style.listArticle}>
+                  <h3 className={style.listTitle}>3D Сканування</h3>
+                  <Image
+                    src={scaner}
+                    alt="3D Сканування"
+                    className={style.img}
+                  />
+                </article>
+                <div className={style.buttonContainer}>
+                  <Button
+                    buttonText="Зв'язатися з нами"
+                    redirectPath="/contact"
+                  />
+                </div>
+              </li>
+            </div>
+            <div className={style.cardContainer}>
+              <li className={style.listItem}>
+                <article className={style.listArticle}>
+                  <h3 className={style.listTitle}>
+                    Виготовлення деталей та форм з силікону та поліуретану.
+                  </h3>
+                  <Image
+                    src={epoxy}
+                    alt="Виготовлення деталей та форм з силікону та поліуретану."
+                    className={style.img}
+                  />
+                </article>
+                <div className={style.buttonContainer}>
+                  <Button
+                    buttonText="Зв'язатися з нами"
+                    redirectPath="/contact"
+                  />
+                </div>
+              </li>
+              <li className={style.listItem}>
+                <article className={style.listArticle}>
+                  <h3 className={style.listTitle}>
+                    Виробництво композитних деталейя
+                  </h3>
+                  <Image
+                    src={carbo}
+                    alt="Виробництво композитних деталей"
+                    className={style.img}
+                  />
+                </article>
+                <div className={style.buttonContainer}>
+                  <Button
+                    buttonText="Зв'язатися з нами"
+                    redirectPath="/contact"
+                  />
+                </div>
+              </li>
+            </div>
+            <div className={style.cardContainer}>
+              <li className={style.listItem}>
+                <article className={style.listArticle}>
+                  <h3 className={style.listTitle}>Метало-обробка</h3>
+                  <Image
+                    src={metal}
+                    alt="Метало-обробкак"
+                    className={style.img}
+                  />
+                </article>
+                <div className={style.buttonContainer}>
+                  <Button
+                    buttonText="Зв'язатися з нами"
+                    redirectPath="/contact"
+                  />
+                </div>
+              </li>
+              <li className={style.listItem}>
+                <article className={style.listArticle}>
+                  <h3 className={style.listTitle}>
+                    Виробництво електроніки та електронних плат
+                  </h3>
+                  <Image
+                    src={pcb}
+                    alt="Виробництво електроніки та електронних плат"
+                    className={style.img}
+                  />
+                </article>
+                <div className={style.buttonContainer}>
+                  <Button
+                    buttonText="Зв'язатися з нами"
+                    redirectPath="/contact"
+                  />
+                </div>
+              </li>
+            </div>
           </ul>
         </div>
       </section>

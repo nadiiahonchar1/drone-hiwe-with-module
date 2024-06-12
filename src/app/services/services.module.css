@@ -145,12 +145,13 @@
   transform: translate(100%);
   opacity: 0;
 }
-.productList:hover .buttonContainer {
+.productList:hover .buttonContainer,
+.listItem:hover .buttonContainer {
   transform: translate(0);
   opacity: 1;
 }
 
-.list {
+/* .list {
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -180,10 +181,7 @@
 
 .listItem {
   position: relative;
-  /* background-color: #f9f9f9; */
   padding: 20px;
-  /* border: 1px solid #ddd;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
   background-color: var(--productList);
   border-radius: 10px;
   display: flex;
@@ -203,7 +201,69 @@
 .img {
   width: 100%;
   height: auto;
+} */
+
+.cardContainer {
+  display: flex;
+  gap: 20px; /* Відступ між блоками */
+  justify-content: space-between;
 }
+
+.listItem {
+  display: flex;
+  flex-direction: column;
+  /* flex: 1; */
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  background-color: var(--productList);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.listArticle {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 96%;
+  height: 100%;
+}
+
+.listTitle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white; /* Для контрасту з зображенням */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Тінь для тексту, щоб був краще видно */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Заповнення контейнера, зберігаючи пропорції */
+  max-height: 300px; /* Обмеження максимальної висоти */
+}
+
+.listButton {
+  margin-top: 10px;
+}
+
 @media screen and (max-width: 880px) {
   .productList {
     flex-basis: 100%;
@@ -211,7 +271,13 @@
   .buttonContainer {
     width: 350px;
   }
-  .list {
+  /* .list {
     grid-template-columns: 1fr;
+  } */
+  .cardContainer {
+    display: block;
+  }
+  .listItem {
+    flex-basis: 100%;
   }
 }
