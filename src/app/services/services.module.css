@@ -39,6 +39,7 @@
   border-bottom: 5px dotted var(--accentTextInvert);
   position: relative;
 }
+
 .circle {
   width: 76px;
   height: 76px;
@@ -66,9 +67,6 @@
       var(--bgColor)
     ),
     url(../../assets/download.svg);
-  /* background-repeat: no-repeat; */
-  /* background-position: center top; */
-  /* background-size: cover; */
   padding: 20px;
 }
 
@@ -123,6 +121,7 @@
   line-height: 43.2px;
   margin-bottom: 20px;
 }
+
 .aboutProductList {
   color: var(--colorProduct);
   font-family: 'Inter', sans-serif;
@@ -133,6 +132,7 @@
   text-transform: uppercase;
   margin-bottom: auto;
 }
+
 .buttonContainer {
   width: 100%;
   padding-left: 20px;
@@ -145,67 +145,16 @@
   transform: translate(100%);
   opacity: 0;
 }
+
 .productList:hover .buttonContainer,
 .listItem:hover .buttonContainer {
   transform: translate(0);
   opacity: 1;
 }
 
-/* .list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 20px;
-}
-.listArticle {
-  text-align: center;
-}
-.listTitle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin: 0;
-  color: white;
-  background-color: var(--productList);
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 36px;
-  font-weight: 800;
-  letter-spacing: -0.54px;
-  line-height: 43.2px;
-  color: var(--primaryColor);
-}
-
-.listItem {
-  position: relative;
-  padding: 20px;
-  background-color: var(--productList);
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-}
-.listButton {
-  position: absolute;
-  bottom: 20px;
-  right: -100%;
-  transition: right 0.3s ease;
-}
-.listItem:hover .listButton {
-  right: 20%;
-}
-.img {
-  width: 100%;
-  height: auto;
-} */
-
 .cardContainer {
   display: flex;
-  gap: 20px; /* Відступ між блоками */
+  gap: 20px;
   justify-content: space-between;
 }
 
@@ -242,13 +191,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white; /* Для контрасту з зображенням */
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.5
-  ); /* Тінь для тексту, щоб був краще видно */
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 10px;
   border-radius: 5px;
 }
@@ -256,8 +200,8 @@
 .img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Заповнення контейнера, зберігаючи пропорції */
-  max-height: 300px; /* Обмеження максимальної висоти */
+  object-fit: cover;
+  max-height: 300px;
 }
 
 .listButton {
@@ -268,15 +212,15 @@
   .productList {
     flex-basis: 100%;
   }
+
   .buttonContainer {
     width: 350px;
   }
-  /* .list {
-    grid-template-columns: 1fr;
-  } */
+
   .cardContainer {
     display: block;
   }
+
   .listItem {
     flex-basis: 100%;
   }
