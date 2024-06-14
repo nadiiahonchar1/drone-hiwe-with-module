@@ -11,6 +11,8 @@ interface FormData {
   productType: string;
   price: number | null;
   availability: string;
+  productImage: FileList | null;
+  galleryImages: { image: FileList | null }[];
   variations: Variation[];
 }
 
@@ -21,6 +23,12 @@ interface Variation {
 
 const ProductForm: React.FC = () => {
   const [subCategories, setSubCategories] = useState<string[]>([]);
+  const [productImagePreview, setProductImagePreview] = useState<string | null>(
+    null
+  );
+  const [galleryImagePreviews, setGalleryImagePreviews] = useState<string[]>(
+    []
+  );
 
   const {
     register,
@@ -37,11 +45,18 @@ const ProductForm: React.FC = () => {
       productType: 'simple',
       price: null,
       availability: 'available',
+      productImage: null,
+      galleryImages: [{ image: null }],
       variations: [],
     },
   });
 
-  const { fields, append } = useFieldArray({
+  const { fields: galleryFields, append: appendGalleryImage } = useFieldArray({
+    control,
+    name: 'galleryImages',
+  });
+
+  const { fields: variationFields, append: appendVariation } = useFieldArray({
     control,
     name: 'variations',
   });
@@ -64,6 +79,25 @@ const ProductForm: React.FC = () => {
     }
   };
 
+  const handleProductImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setProductImagePreview(URL.createObjectURL(file));
+    }
+  };
+
+  const handleGalleryImageChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const newPreviews = [...galleryImagePreviews];
+      newPreviews[index] = URL.createObjectURL(file);
+      setGalleryImagePreviews(newPreviews);
+    }
+  };
+
   const watchProductType = watch('productType', 'simple');
 
   return (
@@ -77,6 +111,54 @@ const ProductForm: React.FC = () => {
         />
         {errors.productName && <p>{errors.productName.message}</p>}
       </div>
+
+      <div>
+        <label>Зображення товару</label>
+        <input
+          type="file"
+          {...register('productImage', {
+            required: 'Завантажте зображення товару',
+          })}
+          onChange={handleProductImageChange}
+        />
+        {errors.productImage && <p>{errors.productImage.message}</p>}
+        {productImagePreview && (
+          <img
+            src={productImagePreview}
+            alt="Product Preview"
+            style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+          />
+        )}
+      </div>
+
+      <div>
+        <label>Галерея товару</label>
+        {galleryFields.map((field, index) => (
+          <div key={field.id}>
+            <input
+              type="file"
+              {...register(`galleryImages.${index}.image`, {
+                required: false,
+              })}
+              onChange={(e) => handleGalleryImageChange(e, index)}
+            />
+            {galleryImagePreviews[index] && (
+              <img
+                src={galleryImagePreviews[index]}
+                alt={`Gallery Preview ${index}`}
+                style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+              />
+            )}
+            <button
+              type="button"
+              onClick={() => appendGalleryImage({ image: null })}
+            >
+              Додати зображення
+            </button>
+          </div>
+        ))}
+      </div>
+
       <div>
         <label>Опис товару</label>
         <textarea
@@ -143,7 +225,7 @@ const ProductForm: React.FC = () => {
             <button
               type="button"
               onClick={() =>
-                append({
+                appendVariation({
                   variationName: '',
                   variationAvailability: 'available',
                 })
@@ -152,7 +234,7 @@ const ProductForm: React.FC = () => {
               Додати варіацію
             </button>
           </div>
-          {fields.map((field, index) => (
+          {variationFields.map((field, index) => (
             <div key={field.id}>
               <label>Назва варіації</label>
               <input
