@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useForm, useFieldArray, SubmitHandler } from 'react-hook-form';
+import style from './productForm.module.css';
 
 interface FormData {
   productName: string;
@@ -101,41 +102,48 @@ const ProductForm: React.FC = () => {
   const watchProductType = watch('productType', 'simple');
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label>Назва товару</label>
+    <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
+      <div className={style.inputContainer}>
+        <label className={style.label}>Назва товару</label>
         <input
+          className={style.input}
           {...register('productName', {
             required: 'Введіть товар',
           })}
         />
-        {errors.productName && <p>{errors.productName.message}</p>}
+        {errors.productName && (
+          <p className={style.error}>{errors.productName.message}</p>
+        )}
       </div>
 
-      <div>
-        <label>Зображення товару</label>
+      <div className={style.inputContainer}>
+        <label className={style.label}>Зображення товару</label>
         <input
+          className={style.input}
           type="file"
           {...register('productImage', {
             required: 'Завантажте зображення товару',
           })}
           onChange={handleProductImageChange}
         />
-        {errors.productImage && <p>{errors.productImage.message}</p>}
+        {errors.productImage && (
+          <p className={style.error}>{errors.productImage.message}</p>
+        )}
         {productImagePreview && (
           <img
             src={productImagePreview}
             alt="Product Preview"
-            style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+            className={style.img}
           />
         )}
       </div>
 
-      <div>
-        <label>Галерея товару</label>
+      <div className={style.inputContainer}>
+        <label className={style.label}>Галерея товару</label>
         {galleryFields.map((field, index) => (
-          <div key={field.id}>
+          <div key={field.id} className={style.galeryInputContainer}>
             <input
+              className={style.input}
               type="file"
               {...register(`galleryImages.${index}.image`, {
                 required: false,
@@ -146,32 +154,34 @@ const ProductForm: React.FC = () => {
               <img
                 src={galleryImagePreviews[index]}
                 alt={`Gallery Preview ${index}`}
-                style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+                className={style.img}
               />
             )}
             <button
+              className={style.button}
               type="button"
               onClick={() => appendGalleryImage({ image: null })}
             >
-              Додати зображення
+              Додати ще зображення
             </button>
           </div>
         ))}
       </div>
 
-      <div>
-        <label>Опис товару</label>
+      <div className={style.inputContainer}>
+        <label className={style.label}>Опис товару</label>
         <textarea
+          className={style.input}
           {...register('productDescription', {
             required: 'Введіть опис',
           })}
         />
         {errors.productDescription && (
-          <p>{errors.productDescription.message}</p>
+          <p className={style.error}>{errors.productDescription.message}</p>
         )}
       </div>
-      <div>
-        <label>Категорія</label>
+      <div className={style.inputContainer}>
+        <label className={style.label}>Категорія</label>
         <select
           {...register('category', { required: 'Виберіть категорію' })}
           onChange={handleCategoryChange}
@@ -184,11 +194,13 @@ const ProductForm: React.FC = () => {
             Ретранслятори та станції
           </option>
         </select>
-        {errors.category && <p>{errors.category.message}</p>}
+        {errors.category && (
+          <p className={style.error}>{errors.category.message}</p>
+        )}
       </div>
       {subCategories.length > 0 && (
         <div>
-          <label>Підкатегорія</label>
+          <label className={style.label}>Підкатегорія</label>
           <select {...register('subCategory')}>
             <option value="">Виберіть підкатегорію</option>
             {subCategories.map((subCategory) => (
@@ -199,20 +211,32 @@ const ProductForm: React.FC = () => {
           </select>
         </div>
       )}
-      <div>
-        <label>Тип товару</label>
+      <div className={style.inputContainer}>
+        <label className={style.label}>Тип товару</label>
         <select {...register('productType')}>
           <option value="simple">Звичайний товар</option>
           <option value="variable">Варіативний товар</option>
         </select>
-        {errors.productType && <p>{errors.productType.message}</p>}
+        {errors.productType && (
+          <p className={style.error}>{errors.productType.message}</p>
+        )}
       </div>
       {watchProductType === 'simple' ? (
         <div>
-          <label>Ціна</label>
-          <input type="number" {...register('price')} />
-          {errors.price && <p>{errors.price.message}</p>}
-          <label>Наявність</label>
+          <div className={style.inputContainer}>
+            <label className={style.label}>Ціна</label>
+            <input
+              className={style.input}
+              type="number"
+              {...register('price')}
+            />
+            {errors.price && (
+              <p className={style.error}>{errors.price.message}</p>
+            )}
+          </div>
+
+          <div className={style.inputContainer}></div>
+          <label className={style.label}>Наявність</label>
           <select {...register('availability')}>
             <option value="available">Є в наявності</option>
             <option value="preorder">Доступно за замовленням</option>
@@ -223,6 +247,7 @@ const ProductForm: React.FC = () => {
         <>
           <div>
             <button
+              className={style.button}
               type="button"
               onClick={() =>
                 appendVariation({
@@ -236,18 +261,19 @@ const ProductForm: React.FC = () => {
           </div>
           {variationFields.map((field, index) => (
             <div key={field.id}>
-              <label>Назва варіації</label>
+              <label className={style.label}>Назва варіації</label>
               <input
+                className={style.input}
                 {...register(`variations.${index}.variationName` as const, {
                   required: 'Виберіть варіацію',
                 })}
               />
               {errors.variations?.[index]?.variationName && (
-                <p>
+                <p className={style.error}>
                   {(errors.variations as any)?.[index]?.variationName?.message}
                 </p>
               )}
-              <label>Наявність</label>
+              <label className={style.label}>Наявність</label>
               <select
                 {...register(`variations.${index}.variationAvailability`, {
                   required: 'Виберіть наявність',
@@ -258,7 +284,7 @@ const ProductForm: React.FC = () => {
                 <option value="outofstock">Нема в наявності</option>
               </select>
               {errors.variations?.[index]?.variationAvailability && (
-                <p>
+                <p className={style.error}>
                   {
                     (errors.variations as any)?.[index]?.variationAvailability
                       ?.message
@@ -269,7 +295,9 @@ const ProductForm: React.FC = () => {
           ))}
         </>
       )}
-      <button type="submit">Завантажити товар</button>
+      <button className={style.button} type="submit">
+        Завантажити товар
+      </button>
     </form>
   );
 };

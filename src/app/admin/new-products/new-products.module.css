@@ -1,0 +1,9 @@
+.text {
+  padding: 1.66666667em 0;
+  color: var(--primaryColor);
+  font-size: 46px;
+  font-weight: 800;
+  letter-spacing: -0.69px;
+  line-height: 53px;
+  text-align: center;
+}
