@@ -157,15 +157,15 @@ const ProductForm: React.FC = () => {
                 className={style.img}
               />
             )}
-            <button
-              className={style.button}
-              type="button"
-              onClick={() => appendGalleryImage({ image: null })}
-            >
-              Додати ще зображення
-            </button>
           </div>
         ))}
+        <button
+          className={style.button}
+          type="button"
+          onClick={() => appendGalleryImage({ image: null })}
+        >
+          Додати ще зображення
+        </button>
       </div>
 
       <div className={style.inputContainer}>
