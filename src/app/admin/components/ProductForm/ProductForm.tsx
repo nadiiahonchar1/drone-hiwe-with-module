@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import { useForm, useFieldArray, SubmitHandler } from 'react-hook-form';
+import ProductNameInput from './ProductNameInput';
+import ProductImageInput from './ProductImageInput';
 import style from './productForm.module.css';
 
 interface FormData {
@@ -12,6 +14,7 @@ interface FormData {
   productType: string;
   price: number | null;
   availability: string;
+  sku: string;
   productImage: FileList | null;
   galleryImages: { image: FileList | null }[];
   variations: Variation[];
@@ -20,6 +23,8 @@ interface FormData {
 interface Variation {
   variationName: string;
   variationAvailability: string;
+  variationPrice: number;
+  variationSKU: string;
 }
 
 const ProductForm: React.FC = () => {
@@ -30,6 +35,8 @@ const ProductForm: React.FC = () => {
   const [galleryImagePreviews, setGalleryImagePreviews] = useState<string[]>(
     []
   );
+  const [numOfVariations, setNumOfVariations] = useState(0);
+  const [variationNames, setVariationNames] = useState<string[]>([]);
 
   const {
     register,
@@ -46,6 +53,7 @@ const ProductForm: React.FC = () => {
       productType: 'simple',
       price: null,
       availability: 'available',
+      sku: '',
       productImage: null,
       galleryImages: [{ image: null }],
       variations: [],
@@ -103,40 +111,17 @@ const ProductForm: React.FC = () => {
 
   return (
     <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
-      <div className={style.inputContainer}>
-        <label className={style.label}>Назва товару</label>
-        <input
-          className={style.input}
-          {...register('productName', {
-            required: 'Введіть товар',
-          })}
-        />
-        {errors.productName && (
-          <p className={style.error}>{errors.productName.message}</p>
-        )}
-      </div>
+      <ProductNameInput register={register} errors={errors} />
 
-      <div className={style.inputContainer}>
-        <label className={style.label}>Зображення товару</label>
-        <input
-          className={style.input}
-          type="file"
-          {...register('productImage', {
-            required: 'Завантажте зображення товару',
-          })}
-          onChange={handleProductImageChange}
-        />
-        {errors.productImage && (
-          <p className={style.error}>{errors.productImage.message}</p>
-        )}
-        {productImagePreview && (
-          <img
-            src={productImagePreview}
-            alt="Product Preview"
-            className={style.img}
-          />
-        )}
-      </div>
+      <ProductImageInput
+        register={register('productImage', {
+          required: 'Завантажте зображення товару',
+        })}
+        errors={errors.productImage}
+        onChange={handleProductImageChange}
+        previewUrl={productImagePreview}
+        label="Зображення товару"
+      />
 
       <div className={style.inputContainer}>
         <label className={style.label}>Галерея товару</label>
@@ -171,6 +156,7 @@ const ProductForm: React.FC = () => {
       <div className={style.inputContainer}>
         <label className={style.label}>Опис товару</label>
         <textarea
+          spellCheck="true"
           className={style.input}
           {...register('productDescription', {
             required: 'Введіть опис',
@@ -235,62 +221,163 @@ const ProductForm: React.FC = () => {
             )}
           </div>
 
-          <div className={style.inputContainer}></div>
-          <label className={style.label}>Наявність</label>
-          <select {...register('availability')}>
-            <option value="available">Є в наявності</option>
-            <option value="preorder">Доступно за замовленням</option>
-            <option value="outofstock">Нема в наявності</option>
-          </select>
+          <div className={style.inputContainer}>
+            <label className={style.label}>Артикул</label>
+            <input
+              className={style.input}
+              type="text"
+              {...register('sku', {
+                required: 'Введіть артикул',
+              })}
+            />
+            {errors.sku && <p className={style.error}>{errors.sku.message}</p>}
+          </div>
+
+          <div className={style.inputContainer}>
+            <label className={style.label}>Наявність</label>
+            <select {...register('availability')}>
+              <option value="available">Є в наявності</option>
+              <option value="preorder">Доступно за замовленням</option>
+              <option value="outofstock">Нема в наявності</option>
+            </select>
+          </div>
         </div>
       ) : (
         <>
           <div>
+            <label className={style.label}>Кількість параметрів варіацій</label>
+            <input
+              type="number"
+              className={style.input}
+              value={numOfVariations}
+              onChange={(e) => setNumOfVariations(parseInt(e.target.value))}
+              min={0}
+            />
             <button
               className={style.button}
               type="button"
-              onClick={() =>
-                appendVariation({
-                  variationName: '',
-                  variationAvailability: 'available',
-                })
-              }
+              onClick={() => {
+                const newNames = Array(numOfVariations).fill('');
+                setVariationNames(newNames);
+              }}
             >
-              Додати варіацію
+              Підтвердити
             </button>
           </div>
-          {variationFields.map((field, index) => (
-            <div key={field.id}>
-              <label className={style.label}>Назва варіації</label>
-              <input
-                className={style.input}
-                {...register(`variations.${index}.variationName` as const, {
-                  required: 'Виберіть варіацію',
-                })}
-              />
-              {errors.variations?.[index]?.variationName && (
-                <p className={style.error}>
-                  {(errors.variations as any)?.[index]?.variationName?.message}
-                </p>
-              )}
-              <label className={style.label}>Наявність</label>
-              <select
-                {...register(`variations.${index}.variationAvailability`, {
-                  required: 'Виберіть наявність',
-                })}
-              >
-                <option value="available">Є в наявності</option>
-                <option value="preorder">Доступно за замовленням</option>
-                <option value="outofstock">Нема в наявності</option>
-              </select>
-              {errors.variations?.[index]?.variationAvailability && (
-                <p className={style.error}>
-                  {
-                    (errors.variations as any)?.[index]?.variationAvailability
-                      ?.message
+
+          {variationNames.length > 0 && (
+            <>
+              {variationNames.map((name, index) => (
+                <div key={index} className={style.inputContainer}>
+                  <label className={style.label}>
+                    Назва варіації {index + 1}
+                  </label>
+                  <input
+                    type="text"
+                    className={style.input}
+                    value={variationNames[index]}
+                    onChange={(e) => {
+                      const newNames = [...variationNames];
+                      newNames[index] = e.target.value;
+                      setVariationNames(newNames);
+                    }}
+                  />
+                </div>
+              ))}
+              <div>
+                <button
+                  className={style.button}
+                  type="button"
+                  onClick={() =>
+                    appendVariation({
+                      variationName: '',
+                      variationAvailability: 'available',
+                      variationPrice: 0,
+                      variationSKU: '',
+                    })
                   }
-                </p>
-              )}
+                >
+                  Додати варіацію
+                </button>
+              </div>
+            </>
+          )}
+
+          {variationFields.map((field, index) => (
+            <div key={field.id} className={style.variationContainer}>
+              {variationNames.map((name, varIndex) => (
+                <div key={varIndex} className={style.inputContainer}>
+                  <label className={style.label}>{name}</label>
+                  <input
+                    className={style.input}
+                    {...register(`variations.${index}.variationName` as const, {
+                      required: 'Введіть варіацію',
+                    })}
+                  />
+                  {errors.variations?.[index]?.variationName && (
+                    <p className={style.error}>
+                      {
+                        (errors.variations as any)?.[index]?.variationName
+                          ?.message
+                      }
+                    </p>
+                  )}
+                </div>
+              ))}
+              <div className={style.inputContainer}>
+                <label className={style.label}>Ціна</label>
+                <input
+                  type="number"
+                  className={style.input}
+                  {...register(`variations.${index}.variationPrice`, {
+                    required: 'Введіть ціну',
+                  })}
+                />
+                {errors.variations?.[index]?.variationPrice && (
+                  <p className={style.error}>
+                    {
+                      (errors.variations as any)?.[index]?.variationPrice
+                        ?.message
+                    }
+                  </p>
+                )}
+              </div>
+              <div className={style.inputContainer}>
+                <label className={style.label}>Артикул</label>
+                <input
+                  type="text"
+                  className={style.input}
+                  {...register(`variations.${index}.variationSKU`, {
+                    required: 'Введіть артикул',
+                  })}
+                />
+                {errors.variations?.[index]?.variationSKU && (
+                  <p className={style.error}>
+                    {(errors.variations as any)?.[index]?.variationSKU?.message}
+                  </p>
+                )}
+              </div>
+              <div className={style.inputContainer}>
+                <label className={style.label}>Наявність</label>
+                <select
+                  className={style.input}
+                  {...register(`variations.${index}.variationAvailability`, {
+                    required: 'Виберіть наявність',
+                  })}
+                >
+                  <option value="available">Є в наявності</option>
+                  <option value="preorder">Доступно за замовленням</option>
+                  <option value="outofstock">Нема в наявності</option>
+                </select>
+                {errors.variations?.[index]?.variationAvailability && (
+                  <p className={style.error}>
+                    {
+                      (errors.variations as any)?.[index]?.variationAvailability
+                        ?.message
+                    }
+                  </p>
+                )}
+              </div>
             </div>
           ))}
         </>
