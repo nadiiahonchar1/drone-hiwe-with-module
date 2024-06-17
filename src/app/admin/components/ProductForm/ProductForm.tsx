@@ -126,23 +126,14 @@ const ProductForm: React.FC = () => {
       <div className={style.inputContainer}>
         <label className={style.label}>Галерея товару</label>
         {galleryFields.map((field, index) => (
-          <div key={field.id} className={style.galeryInputContainer}>
-            <input
-              className={style.input}
-              type="file"
-              {...register(`galleryImages.${index}.image`, {
-                required: false,
-              })}
-              onChange={(e) => handleGalleryImageChange(e, index)}
-            />
-            {galleryImagePreviews[index] && (
-              <img
-                src={galleryImagePreviews[index]}
-                alt={`Gallery Preview ${index}`}
-                className={style.img}
-              />
-            )}
-          </div>
+          <ProductImageInput
+            key={field.id}
+            register={register(`galleryImages.${index}.image`)}
+            errors={errors.galleryImages?.[index]?.image}
+            onChange={(e) => handleGalleryImageChange(e, index)}
+            previewUrl={galleryImagePreviews[index]}
+            label={`Зображення галереї товару ${index + 1}`}
+          />
         ))}
         <button
           className={style.button}

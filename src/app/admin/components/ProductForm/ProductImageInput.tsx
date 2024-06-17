@@ -49,7 +49,7 @@ import { UseFormRegisterReturn, FieldError } from 'react-hook-form';
 import style from './productForm.module.css';
 
 interface ProductImageInputProps {
-  register: UseFormRegisterReturn<'productImage'>;
+  register: UseFormRegisterReturn<string>; // Зміна типу на загальний для будь-якого імені поля
   errors?: FieldError;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   previewUrl: string | null;
