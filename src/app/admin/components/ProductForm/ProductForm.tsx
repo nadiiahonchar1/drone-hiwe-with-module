@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { useForm, useFieldArray, SubmitHandler } from 'react-hook-form';
 import ProductNameInput from './ProductNameInput';
 import ProductImageInput from './ProductImageInput';
+import ProductDescriptionInput from './ProductDescriptionInput';
+import CategorySelect from './CategorySelect';
 import style from './productForm.module.css';
 
 interface FormData {
@@ -44,6 +46,7 @@ const ProductForm: React.FC = () => {
     handleSubmit,
     watch,
     formState: { errors },
+    reset,
   } = useForm<FormData>({
     defaultValues: {
       productName: '',
@@ -72,6 +75,7 @@ const ProductForm: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
     console.log(data);
+    reset();
   };
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -105,6 +109,13 @@ const ProductForm: React.FC = () => {
       newPreviews[index] = URL.createObjectURL(file);
       setGalleryImagePreviews(newPreviews);
     }
+  };
+
+  const getErrorMessage = (error: any) => {
+    if (error) {
+      return typeof error === 'string' ? error : error.message;
+    }
+    return null;
   };
 
   const watchProductType = watch('productType', 'simple');
@@ -144,50 +155,21 @@ const ProductForm: React.FC = () => {
         </button>
       </div>
 
-      <div className={style.inputContainer}>
-        <label className={style.label}>Опис товару</label>
-        <textarea
-          spellCheck="true"
-          className={style.input}
-          {...register('productDescription', {
-            required: 'Введіть опис',
-          })}
-        />
-        {errors.productDescription && (
-          <p className={style.error}>{errors.productDescription.message}</p>
-        )}
-      </div>
-      <div className={style.inputContainer}>
-        <label className={style.label}>Категорія</label>
-        <select
-          {...register('category', { required: 'Виберіть категорію' })}
-          onChange={handleCategoryChange}
-        >
-          <option value="">Виберіть категорію</option>
-          <option value="drone">БПЛА</option>
-          <option value="drone-modules">Модулі для БПЛА</option>
-          <option value="sapper-devices">Пристрій саперний</option>
-          <option value="antenna-relay-stations">
-            Ретранслятори та станції
-          </option>
-        </select>
-        {errors.category && (
-          <p className={style.error}>{errors.category.message}</p>
-        )}
-      </div>
-      {subCategories.length > 0 && (
-        <div>
-          <label className={style.label}>Підкатегорія</label>
-          <select {...register('subCategory')}>
-            <option value="">Виберіть підкатегорію</option>
-            {subCategories.map((subCategory) => (
-              <option key={subCategory} value={subCategory}>
-                {subCategory}
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
+      <ProductDescriptionInput
+        label="Опис товару"
+        register={register('productDescription', {
+          required: 'Введіть опис',
+        })}
+        errors={errors.productDescription}
+      />
+
+      <CategorySelect
+        register={register}
+        errors={errors}
+        subCategories={subCategories}
+        handleCategoryChange={handleCategoryChange}
+      />
+
       <div className={style.inputContainer}>
         <label className={style.label}>Тип товару</label>
         <select {...register('productType')}>
@@ -195,7 +177,7 @@ const ProductForm: React.FC = () => {
           <option value="variable">Варіативний товар</option>
         </select>
         {errors.productType && (
-          <p className={style.error}>{errors.productType.message}</p>
+          <p className={style.error}>{getErrorMessage(errors.productType)}</p>
         )}
       </div>
       {watchProductType === 'simple' ? (
@@ -208,41 +190,42 @@ const ProductForm: React.FC = () => {
               {...register('price')}
             />
             {errors.price && (
-              <p className={style.error}>{errors.price.message}</p>
+              <p className={style.error}>{getErrorMessage(errors.price)}</p>
             )}
           </div>
-
-          <div className={style.inputContainer}>
-            <label className={style.label}>Артикул</label>
-            <input
-              className={style.input}
-              type="text"
-              {...register('sku', {
-                required: 'Введіть артикул',
-              })}
-            />
-            {errors.sku && <p className={style.error}>{errors.sku.message}</p>}
-          </div>
-
           <div className={style.inputContainer}>
             <label className={style.label}>Наявність</label>
-            <select {...register('availability')}>
+            <select
+              className={style.input}
+              {...register('availability', { required: 'Виберіть наявність' })}
+            >
               <option value="available">Є в наявності</option>
               <option value="preorder">Доступно за замовленням</option>
               <option value="outofstock">Нема в наявності</option>
             </select>
+            {errors.availability && (
+              <p className={style.error}>
+                {getErrorMessage(errors.availability)}
+              </p>
+            )}
+          </div>
+          <div className={style.inputContainer}>
+            <label className={style.label}>Артикул</label>
+            <input className={style.input} type="text" {...register('sku')} />
+            {errors.sku && (
+              <p className={style.error}>{getErrorMessage(errors.sku)}</p>
+            )}
           </div>
         </div>
       ) : (
         <>
-          <div>
-            <label className={style.label}>Кількість параметрів варіацій</label>
+          <div className={style.inputContainer}>
+            <label className={style.label}>Кількість варіацій</label>
             <input
               type="number"
               className={style.input}
               value={numOfVariations}
               onChange={(e) => setNumOfVariations(parseInt(e.target.value))}
-              min={0}
             />
             <button
               className={style.button}
@@ -301,16 +284,15 @@ const ProductForm: React.FC = () => {
                   <label className={style.label}>{name}</label>
                   <input
                     className={style.input}
-                    {...register(`variations.${index}.variationName` as const, {
+                    {...register(`variations.${index}.variationName`, {
                       required: 'Введіть варіацію',
                     })}
                   />
                   {errors.variations?.[index]?.variationName && (
                     <p className={style.error}>
-                      {
-                        (errors.variations as any)?.[index]?.variationName
-                          ?.message
-                      }
+                      {getErrorMessage(
+                        errors.variations?.[index]?.variationName
+                      )}
                     </p>
                   )}
                 </div>
@@ -326,10 +308,9 @@ const ProductForm: React.FC = () => {
                 />
                 {errors.variations?.[index]?.variationPrice && (
                   <p className={style.error}>
-                    {
-                      (errors.variations as any)?.[index]?.variationPrice
-                        ?.message
-                    }
+                    {getErrorMessage(
+                      errors.variations?.[index]?.variationPrice
+                    )}
                   </p>
                 )}
               </div>
@@ -344,7 +325,7 @@ const ProductForm: React.FC = () => {
                 />
                 {errors.variations?.[index]?.variationSKU && (
                   <p className={style.error}>
-                    {(errors.variations as any)?.[index]?.variationSKU?.message}
+                    {getErrorMessage(errors.variations?.[index]?.variationSKU)}
                   </p>
                 )}
               </div>
@@ -362,10 +343,9 @@ const ProductForm: React.FC = () => {
                 </select>
                 {errors.variations?.[index]?.variationAvailability && (
                   <p className={style.error}>
-                    {
-                      (errors.variations as any)?.[index]?.variationAvailability
-                        ?.message
-                    }
+                    {getErrorMessage(
+                      errors.variations?.[index]?.variationAvailability
+                    )}
                   </p>
                 )}
               </div>
