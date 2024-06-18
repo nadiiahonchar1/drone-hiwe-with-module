@@ -1,11 +1,17 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useForm, useFieldArray, SubmitHandler } from 'react-hook-form';
+import {
+  useForm,
+  useFieldArray,
+  SubmitHandler,
+  FieldErrors,
+} from 'react-hook-form';
 import ProductNameInput from './ProductNameInput';
 import ProductImageInput from './ProductImageInput';
 import ProductDescriptionInput from './ProductDescriptionInput';
 import CategorySelect from './CategorySelect';
+import SimpleProduct from './SimpleProduct';
 import style from './productForm.module.css';
 
 interface FormData {
@@ -181,42 +187,11 @@ const ProductForm: React.FC = () => {
         )}
       </div>
       {watchProductType === 'simple' ? (
-        <div>
-          <div className={style.inputContainer}>
-            <label className={style.label}>Ціна</label>
-            <input
-              className={style.input}
-              type="number"
-              {...register('price')}
-            />
-            {errors.price && (
-              <p className={style.error}>{getErrorMessage(errors.price)}</p>
-            )}
-          </div>
-          <div className={style.inputContainer}>
-            <label className={style.label}>Наявність</label>
-            <select
-              className={style.input}
-              {...register('availability', { required: 'Виберіть наявність' })}
-            >
-              <option value="available">Є в наявності</option>
-              <option value="preorder">Доступно за замовленням</option>
-              <option value="outofstock">Нема в наявності</option>
-            </select>
-            {errors.availability && (
-              <p className={style.error}>
-                {getErrorMessage(errors.availability)}
-              </p>
-            )}
-          </div>
-          <div className={style.inputContainer}>
-            <label className={style.label}>Артикул</label>
-            <input className={style.input} type="text" {...register('sku')} />
-            {errors.sku && (
-              <p className={style.error}>{getErrorMessage(errors.sku)}</p>
-            )}
-          </div>
-        </div>
+        <SimpleProduct
+          register={register}
+          errors={errors as FieldErrors<FormData>}
+          getErrorMessage={getErrorMessage}
+        />
       ) : (
         <>
           <div className={style.inputContainer}>
