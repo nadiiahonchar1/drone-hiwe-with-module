@@ -4,8 +4,8 @@ import React from 'react';
 import style from './productForm.module.css';
 
 interface SimpleProductProps {
-  register: any; // Тип для register залежить від бібліотеки, яку ви використовуєте
-  errors: any; // Аналогічно для errors
+  register: any;
+  errors: any;
   getErrorMessage: (error: any) => string | null;
 }
 
@@ -38,9 +38,11 @@ const SimpleProduct: React.FC<SimpleProductProps> = ({
       <div className={style.inputContainer}>
         <label className={style.label}>Наявність</label>
         <select {...register('availability' as const)}>
-          <option value="available">Є в наявності</option>
-          <option value="preorder">Доступно за замовленням</option>
-          <option value="outofstock">Нема в наявності</option>
+          <option value="Є в наявності">Є в наявності</option>
+          <option value="Доступно за замовленням">
+            Доступно за замовленням
+          </option>
+          <option value="Нема в наявності">Нема в наявності</option>
         </select>
       </div>
     </>

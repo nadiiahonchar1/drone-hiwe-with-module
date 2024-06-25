@@ -12,6 +12,7 @@ import ProductImageInput from './ProductImageInput';
 import ProductDescriptionInput from './ProductDescriptionInput';
 import CategorySelect from './CategorySelect';
 import SimpleProduct from './SimpleProduct';
+import VariationInput from './VariationInput';
 import style from './productForm.module.css';
 
 interface FormData {
@@ -25,14 +26,7 @@ interface FormData {
   sku: string;
   productImage: FileList | null;
   galleryImages: { image: FileList | null }[];
-  variations: Variation[];
-}
-
-interface Variation {
-  variationName: string;
-  variationAvailability: string;
-  variationPrice: number;
-  variationSKU: string;
+  variations: any;
 }
 
 const ProductForm: React.FC = () => {
@@ -44,7 +38,9 @@ const ProductForm: React.FC = () => {
     []
   );
   const [numOfVariations, setNumOfVariations] = useState(0);
+  const [variationData, setVariationData] = useState<Array<any>>([]);
   const [variationNames, setVariationNames] = useState<string[]>([]);
+  const [isNameVariations, setIsNameVariation] = useState(false);
 
   const {
     register,
@@ -72,11 +68,6 @@ const ProductForm: React.FC = () => {
   const { fields: galleryFields, append: appendGalleryImage } = useFieldArray({
     control,
     name: 'galleryImages',
-  });
-
-  const { fields: variationFields, append: appendVariation } = useFieldArray({
-    control,
-    name: 'variations',
   });
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
@@ -186,6 +177,7 @@ const ProductForm: React.FC = () => {
           <p className={style.error}>{getErrorMessage(errors.productType)}</p>
         )}
       </div>
+
       {watchProductType === 'simple' ? (
         <SimpleProduct
           register={register}
@@ -195,36 +187,28 @@ const ProductForm: React.FC = () => {
       ) : (
         <>
           <div className={style.inputContainer}>
-            <label className={style.label}>Кількість варіацій</label>
+            <label className={style.label}>
+              Кількість нестандартних інпутів
+            </label>
             <input
               type="number"
               className={style.input}
               value={numOfVariations}
               onChange={(e) => setNumOfVariations(parseInt(e.target.value))}
             />
-            <button
-              className={style.button}
-              type="button"
-              onClick={() => {
-                const newNames = Array(numOfVariations).fill('');
-                setVariationNames(newNames);
-              }}
-            >
-              Підтвердити
-            </button>
           </div>
 
-          {variationNames.length > 0 && (
+          {numOfVariations > 0 && (
             <>
-              {variationNames.map((name, index) => (
+              {Array.from({ length: numOfVariations }).map((_, index) => (
                 <div key={index} className={style.inputContainer}>
                   <label className={style.label}>
-                    Назва варіації {index + 1}
+                    Назва інпутів {index + 1}
                   </label>
                   <input
                     type="text"
                     className={style.input}
-                    value={variationNames[index]}
+                    value={variationNames[index] || ''}
                     onChange={(e) => {
                       const newNames = [...variationNames];
                       newNames[index] = e.target.value;
@@ -233,99 +217,32 @@ const ProductForm: React.FC = () => {
                   />
                 </div>
               ))}
+              <button type="button" onClick={() => setIsNameVariation(true)}>
+                Підтвердити назви
+              </button>
               <div>
-                <button
-                  className={style.button}
-                  type="button"
-                  onClick={() =>
-                    appendVariation({
-                      variationName: '',
-                      variationAvailability: 'available',
-                      variationPrice: 0,
-                      variationSKU: '',
-                    })
-                  }
-                >
-                  Додати варіацію
-                </button>
+                {isNameVariations && (
+                  <VariationInput
+                    namesList={variationNames}
+                    register={register}
+                    errors={errors}
+                    onChange={(updatedVariation) => {
+                      setVariationData((prevData) => {
+                        const newData = [...prevData];
+                        const index = variationNames.indexOf(
+                          updatedVariation.variationName
+                        );
+                        if (index !== -1) {
+                          newData[index] = updatedVariation;
+                        }
+                        return newData;
+                      });
+                    }}
+                  />
+                )}
               </div>
             </>
           )}
-
-          {variationFields.map((field, index) => (
-            <div key={field.id} className={style.variationContainer}>
-              {variationNames.map((name, varIndex) => (
-                <div key={varIndex} className={style.inputContainer}>
-                  <label className={style.label}>{name}</label>
-                  <input
-                    className={style.input}
-                    {...register(`variations.${index}.variationName`, {
-                      required: 'Введіть варіацію',
-                    })}
-                  />
-                  {errors.variations?.[index]?.variationName && (
-                    <p className={style.error}>
-                      {getErrorMessage(
-                        errors.variations?.[index]?.variationName
-                      )}
-                    </p>
-                  )}
-                </div>
-              ))}
-              <div className={style.inputContainer}>
-                <label className={style.label}>Ціна</label>
-                <input
-                  type="number"
-                  className={style.input}
-                  {...register(`variations.${index}.variationPrice`, {
-                    required: 'Введіть ціну',
-                  })}
-                />
-                {errors.variations?.[index]?.variationPrice && (
-                  <p className={style.error}>
-                    {getErrorMessage(
-                      errors.variations?.[index]?.variationPrice
-                    )}
-                  </p>
-                )}
-              </div>
-              <div className={style.inputContainer}>
-                <label className={style.label}>Артикул</label>
-                <input
-                  type="text"
-                  className={style.input}
-                  {...register(`variations.${index}.variationSKU`, {
-                    required: 'Введіть артикул',
-                  })}
-                />
-                {errors.variations?.[index]?.variationSKU && (
-                  <p className={style.error}>
-                    {getErrorMessage(errors.variations?.[index]?.variationSKU)}
-                  </p>
-                )}
-              </div>
-              <div className={style.inputContainer}>
-                <label className={style.label}>Наявність</label>
-                <select
-                  className={style.input}
-                  {...register(`variations.${index}.variationAvailability`, {
-                    required: 'Виберіть наявність',
-                  })}
-                >
-                  <option value="available">Є в наявності</option>
-                  <option value="preorder">Доступно за замовленням</option>
-                  <option value="outofstock">Нема в наявності</option>
-                </select>
-                {errors.variations?.[index]?.variationAvailability && (
-                  <p className={style.error}>
-                    {getErrorMessage(
-                      errors.variations?.[index]?.variationAvailability
-                    )}
-                  </p>
-                )}
-              </div>
-            </div>
-          ))}
         </>
       )}
       <button className={style.button} type="submit">
