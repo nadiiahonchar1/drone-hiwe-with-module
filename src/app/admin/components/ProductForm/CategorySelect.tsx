@@ -26,7 +26,7 @@ interface Variation {
 }
 
 interface CategorySelectProps {
-  register: UseFormRegister<FormData>;
+  register: any;
   errors: FieldErrors<FormData>;
   subCategories: string[];
   handleCategoryChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;

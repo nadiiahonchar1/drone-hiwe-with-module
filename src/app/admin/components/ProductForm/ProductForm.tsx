@@ -26,7 +26,7 @@ interface FormData {
   sku: string;
   productImage: FileList | null;
   galleryImages: { image: FileList | null }[];
-  variations: any;
+  variations: { [key: string]: any }[];
 }
 
 const ProductForm: React.FC = () => {
@@ -38,9 +38,9 @@ const ProductForm: React.FC = () => {
     []
   );
   const [numOfVariations, setNumOfVariations] = useState(0);
-  const [variationData, setVariationData] = useState<Array<any>>([]);
   const [variationNames, setVariationNames] = useState<string[]>([]);
   const [isNameVariations, setIsNameVariation] = useState(false);
+  const [countArticle, setCountArticle] = useState<number>(0);
 
   const {
     register,
@@ -116,6 +116,10 @@ const ProductForm: React.FC = () => {
   };
 
   const watchProductType = watch('productType', 'simple');
+
+  const addVariation = () => {
+    setCountArticle(countArticle + 1);
+  };
 
   return (
     <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
@@ -222,23 +226,20 @@ const ProductForm: React.FC = () => {
               </button>
               <div>
                 {isNameVariations && (
-                  <VariationInput
-                    namesList={variationNames}
-                    register={register}
-                    errors={errors}
-                    onChange={(updatedVariation) => {
-                      setVariationData((prevData) => {
-                        const newData = [...prevData];
-                        const index = variationNames.indexOf(
-                          updatedVariation.variationName
-                        );
-                        if (index !== -1) {
-                          newData[index] = updatedVariation;
-                        }
-                        return newData;
-                      });
-                    }}
-                  />
+                  <>
+                    {Array.from(Array(countArticle), (e, i) => (
+                      <VariationInput
+                        key={i}
+                        index={i}
+                        namesList={variationNames}
+                        register={register}
+                        errors={errors as FieldErrors<FormData>}
+                      />
+                    ))}
+                    <button type="button" onClick={addVariation}>
+                      Додати варіацію товару
+                    </button>
+                  </>
                 )}
               </div>
             </>

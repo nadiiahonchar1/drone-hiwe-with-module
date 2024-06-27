@@ -4,46 +4,33 @@ import React, { useState } from 'react';
 import { UseFormRegister, FieldErrors, FieldError } from 'react-hook-form';
 import SimpleProduct from './SimpleProduct';
 
-interface FormData {
-  productName: string;
-  productDescription: string;
-  category: string;
-  subCategory: string;
-  productType: string;
-  price: number | null;
-  availability: string;
-  sku: string;
-  productImage: FileList | null;
-  galleryImages: { image: FileList | null }[];
-  variations: any;
-}
+// interface FormData {
+//   productName: string;
+//   productDescription: string;
+//   category: string;
+//   subCategory: string;
+//   productType: string;
+//   price: number | null;
+//   availability: string;
+//   sku: string;
+//   productImage: FileList | null;
+//   galleryImages: { image: FileList | null }[];
+//   variations: { [key: string]: any }[];
+// }
 
 interface VariationInputProps {
+  index: number;
   namesList: string[];
-  register: UseFormRegister<FormData>;
-  errors: FieldErrors<FormData>;
-  onChange: (updatedVariation: Record<string, any>) => void;
+  register: any;
+  errors: any;
 }
 
 const VariationInput: React.FC<VariationInputProps> = ({
+  index,
   namesList,
   register,
   errors,
-  onChange,
 }) => {
-  const [variation, setVariation] = useState<Record<string, any>>(
-    namesList.reduce((acc, name) => ({ ...acc, [name]: '' }), {})
-  );
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
-    const updatedVariation = { ...variation, [name]: value };
-    setVariation(updatedVariation);
-    onChange(updatedVariation);
-  };
-
   const getErrorMessage = (error: FieldError | undefined) => {
     return error ? error.message || 'Error' : null;
   };
@@ -53,32 +40,22 @@ const VariationInput: React.FC<VariationInputProps> = ({
       {namesList.map((name) => (
         <div key={name}>
           <label>{name}</label>
-          {/* <input
-            type="text"
-            {...register(`variations.${name}` as const)}
-            name={name}
-            onChange={handleChange}
-          /> */}
           <input
             type="text"
-            {...register(`variations.${name}` as const, {
+            {...register(`variations[${index}].${name}` as const, {
               required: 'Введіть значення',
             })}
           />
-          {errors.variations?.[name as keyof typeof errors.variations] && (
+          {errors.variations?.[index]?.[name] && (
             <p>
-              {getErrorMessage(
-                errors.variations[
-                  name as keyof typeof errors.variations
-                ] as FieldError
-              )}
+              {getErrorMessage(errors.variations[index][name] as FieldError)}
             </p>
           )}
         </div>
       ))}
       <SimpleProduct
         register={(fieldName: any) =>
-          register(`variations.${fieldName}` as const)
+          register(`variations[${index}].${fieldName}` as const)
         }
         errors={errors}
         getErrorMessage={getErrorMessage}
