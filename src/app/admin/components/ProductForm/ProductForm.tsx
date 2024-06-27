@@ -73,6 +73,8 @@ const ProductForm: React.FC = () => {
   const onSubmit: SubmitHandler<FormData> = (data) => {
     console.log(data);
     reset();
+    setProductImagePreview(null);
+    setGalleryImagePreviews([]);
   };
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
