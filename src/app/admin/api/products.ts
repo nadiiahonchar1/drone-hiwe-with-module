@@ -1,5 +1,4 @@
 'use client'
-// import Cookies from 'js-cookie';
 
 const url =
   'https://drone-hive-d6daa-default-rtdb.europe-west1.firebasedatabase.app/products.json';
@@ -33,11 +32,6 @@ export const getProducts = () => {
 }
     
 export const addProduct = (product: any) => {
-  // const token = Cookies.get('token');
-
-  // if (!token) {
-  //   throw new Error('Користувач не авторизований.');
-  // }
 
   return fetch(url, {
     method: 'POST',
@@ -52,10 +46,10 @@ export const addProduct = (product: any) => {
       }
       return response.json();
     })
-    .then((data) => {
-      console.log('Дані успішно відправлені:', data);
-      return data;
-    })
+    // .then((data) => {
+    //   console.log('Дані успішно відправлені:', data);
+    //   return data;
+    // })
     .catch((error) => {
       console.error('Помилка при отриманні даних користувачів:', error);
       throw error;

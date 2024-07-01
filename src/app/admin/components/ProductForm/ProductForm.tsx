@@ -76,7 +76,7 @@ const ProductForm: React.FC = () => {
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
       addProduct(data);
-      console.log(data);
+      // console.log(data);
     } catch (error) {
       console.error(error);
     } finally {
