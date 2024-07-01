@@ -16,10 +16,12 @@ const SimpleProduct: React.FC<SimpleProductProps> = ({
 }) => {
   return (
     <>
-      <div>
-        <label>Ціна</label>
-        <input type="number" {...register('price')} />
-        {errors.price && <p>{getErrorMessage(errors.price)}</p>}
+      <div className={style.inputContainer}>
+        <label className={style.label}>Ціна</label>
+        <input className={style.input} type="number" {...register('price')} />
+        {errors.price && (
+          <p className={style.error}>{getErrorMessage(errors.price)}</p>
+        )}
       </div>
       <div className={style.inputContainer}>
         <label className={style.label}>Артикул</label>

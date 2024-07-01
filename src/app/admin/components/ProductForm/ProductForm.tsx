@@ -208,9 +208,7 @@ const ProductForm: React.FC = () => {
             <>
               {Array.from({ length: numOfVariations }).map((_, index) => (
                 <div key={index} className={style.inputContainer}>
-                  <label className={style.label}>
-                    Назва інпутів {index + 1}
-                  </label>
+                  <label className={style.label}>Назва поля {index + 1}</label>
                   <input
                     type="text"
                     className={style.input}
@@ -223,22 +221,33 @@ const ProductForm: React.FC = () => {
                   />
                 </div>
               ))}
-              <button type="button" onClick={() => setIsNameVariation(true)}>
-                Підтвердити назви
+              <button
+                className={style.button}
+                type="button"
+                onClick={() => setIsNameVariation(true)}
+              >
+                Підтвердити назви полів
               </button>
-              <div>
+              <div className={style.blokContainer}>
                 {isNameVariations && (
                   <>
                     {Array.from(Array(countArticle), (e, i) => (
-                      <VariationInput
-                        key={i}
-                        index={i}
-                        namesList={variationNames}
-                        register={register}
-                        errors={errors as FieldErrors<FormData>}
-                      />
+                      <>
+                        <VariationInput
+                          key={i}
+                          index={i}
+                          namesList={variationNames}
+                          register={register}
+                          errors={errors as FieldErrors<FormData>}
+                        />
+                        <div className={style.divider}></div>
+                      </>
                     ))}
-                    <button type="button" onClick={addVariation}>
+                    <button
+                      className={style.button}
+                      type="button"
+                      onClick={addVariation}
+                    >
                       Додати варіацію товару
                     </button>
                   </>

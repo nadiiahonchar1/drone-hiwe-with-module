@@ -59,3 +59,16 @@
   width: 100%;
   flex-wrap: wrap;
 }
+
+.blokContainer {
+  padding: 8px;
+  border: 1px solid var(--colorProduct);
+  border-radius: 10px;
+}
+
+.divider {
+  width: 100%;
+  height: 2px;
+  border-bottom: 1px solid var(--colorProduct);
+  margin-bottom: 16px;
+}

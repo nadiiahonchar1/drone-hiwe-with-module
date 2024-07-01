@@ -3,20 +3,7 @@
 import React, { useState } from 'react';
 import { UseFormRegister, FieldErrors, FieldError } from 'react-hook-form';
 import SimpleProduct from './SimpleProduct';
-
-// interface FormData {
-//   productName: string;
-//   productDescription: string;
-//   category: string;
-//   subCategory: string;
-//   productType: string;
-//   price: number | null;
-//   availability: string;
-//   sku: string;
-//   productImage: FileList | null;
-//   galleryImages: { image: FileList | null }[];
-//   variations: { [key: string]: any }[];
-// }
+import style from './productForm.module.css';
 
 interface VariationInputProps {
   index: number;
@@ -38,16 +25,17 @@ const VariationInput: React.FC<VariationInputProps> = ({
   return (
     <div>
       {namesList.map((name) => (
-        <div key={name}>
-          <label>{name}</label>
+        <div className={style.inputContainer} key={name}>
+          <label className={style.label}>{name}</label>
           <input
+            className={style.input}
             type="text"
             {...register(`variations[${index}].${name}` as const, {
               required: 'Введіть значення',
             })}
           />
           {errors.variations?.[index]?.[name] && (
-            <p>
+            <p className={style.error}>
               {getErrorMessage(errors.variations[index][name] as FieldError)}
             </p>
           )}
