@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { UseFormRegister, FieldErrors, FieldError } from 'react-hook-form';
+import React from 'react';
+import { FieldError } from 'react-hook-form';
 import SimpleProduct from './SimpleProduct';
 import style from './productForm.module.css';
 

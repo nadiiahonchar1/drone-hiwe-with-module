@@ -13,10 +13,12 @@ import ProductDescriptionInput from './ProductDescriptionInput';
 import CategorySelect from './CategorySelect';
 import SimpleProduct from './SimpleProduct';
 import VariationInput from './VariationInput';
+import { addProduct } from '../../api/products';
 import style from './productForm.module.css';
 
 interface FormData {
   productName: string;
+  shortDescription: string;
   productDescription: string;
   category: string;
   subCategory: string;
@@ -52,6 +54,7 @@ const ProductForm: React.FC = () => {
   } = useForm<FormData>({
     defaultValues: {
       productName: '',
+      shortDescription: '',
       productDescription: '',
       category: '',
       subCategory: '',
@@ -70,11 +73,17 @@ const ProductForm: React.FC = () => {
     name: 'galleryImages',
   });
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
-    reset();
-    setProductImagePreview(null);
-    setGalleryImagePreviews([]);
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    try {
+      addProduct(data);
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      reset();
+      setProductImagePreview(null);
+      setGalleryImagePreviews([]);
+    }
   };
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -157,6 +166,14 @@ const ProductForm: React.FC = () => {
           Додати ще зображення
         </button>
       </div>
+
+      <ProductDescriptionInput
+        label="Короткий опис товару"
+        register={register('shortDescription', {
+          required: 'Введіть опис',
+        })}
+        errors={errors.shortDescription}
+      />
 
       <ProductDescriptionInput
         label="Опис товару"
