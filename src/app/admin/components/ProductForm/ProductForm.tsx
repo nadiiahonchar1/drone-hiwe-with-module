@@ -27,7 +27,9 @@ interface FormData {
   availability: string;
   sku: string;
   productImage: FileList | null;
+  productImageUrl: string | null;
   galleryImages: { image: FileList | null }[];
+  galleryImageUrls: { image: string | null }[];
   variations: { [key: string]: any }[];
 }
 
@@ -43,6 +45,8 @@ const ProductForm: React.FC = () => {
   const [variationNames, setVariationNames] = useState<string[]>([]);
   const [isNameVariations, setIsNameVariation] = useState(false);
   const [countArticle, setCountArticle] = useState<number>(0);
+  const [imgFile, setImgFile] = useState<File | null>(null);
+  const [imgFileGallery, setImgFileGallery] = useState<File[]>([]);
 
   const {
     register,
@@ -65,6 +69,8 @@ const ProductForm: React.FC = () => {
       productImage: null,
       galleryImages: [{ image: null }],
       variations: [],
+      productImageUrl: null,
+      galleryImageUrls: [{ image: null }],
     },
   });
 
@@ -75,11 +81,46 @@ const ProductForm: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
-      addProduct(data);
-      // console.log(data);
+      // const formData = new FormData();
+
+      // data.productImage = imgFile;
+      // data.galleryImages = imgFileGallery;
+
+      // formData.append('variations', JSON.stringify(data.variations));
+      // await addProduct(data);
+      console.log('i am here');
+      if (imgFile) {
+        console.log('i am here imgFile');
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          data.productImageUrl = reader.result as string;
+        };
+        reader.readAsDataURL(imgFile);
+      }
+
+      const galleryImagePromises = imgFileGallery.map((file: File) => {
+        return new Promise<string>((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            resolve(reader.result as string);
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      });
+
+      const galleryImages = await Promise.all(galleryImagePromises);
+      data.galleryImageUrls = galleryImages.map((image) => ({
+        image,
+      }));
+
+      console.log('data', data);
+      console.log('nowe i am here');
+      await addProduct(data);
     } catch (error) {
       console.error(error);
     } finally {
+      alert('Продукт успішно завантажено');
       reset();
       setProductImagePreview(null);
       setGalleryImagePreviews([]);
@@ -101,7 +142,8 @@ const ProductForm: React.FC = () => {
   };
 
   const handleProductImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+    const file: File | null = e.target.files?.[0] ?? null;
+    setImgFile(file);
     if (file) {
       setProductImagePreview(URL.createObjectURL(file));
     }
@@ -111,8 +153,11 @@ const ProductForm: React.FC = () => {
     e: React.ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
-    const file = e.target.files?.[0];
+    const file: File | null = e.target.files?.[0] ?? null;
+    const currentFiles = imgFileGallery ? [...imgFileGallery] : [];
     if (file) {
+      currentFiles[index] = file;
+      setImgFileGallery(currentFiles);
       const newPreviews = [...galleryImagePreviews];
       newPreviews[index] = URL.createObjectURL(file);
       setGalleryImagePreviews(newPreviews);
