@@ -47,12 +47,14 @@
   margin-bottom: 20px;
   resize: vertical;
 }
+
 .galeryInputContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 .blokContainer {

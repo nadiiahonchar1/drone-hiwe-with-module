@@ -81,16 +81,7 @@ const ProductForm: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
-      // const formData = new FormData();
-
-      // data.productImage = imgFile;
-      // data.galleryImages = imgFileGallery;
-
-      // formData.append('variations', JSON.stringify(data.variations));
-      // await addProduct(data);
-      console.log('i am here');
       if (imgFile) {
-        console.log('i am here imgFile');
         const reader = new FileReader();
         reader.onloadend = () => {
           data.productImageUrl = reader.result as string;
@@ -113,9 +104,6 @@ const ProductForm: React.FC = () => {
       data.galleryImageUrls = galleryImages.map((image) => ({
         image,
       }));
-
-      console.log('data', data);
-      console.log('nowe i am here');
       await addProduct(data);
     } catch (error) {
       console.error(error);
@@ -191,7 +179,7 @@ const ProductForm: React.FC = () => {
         label="Зображення товару"
       />
 
-      <div className={style.inputContainer}>
+      <div className={style.galeryInputContainer}>
         <label className={style.label}>Галерея товару</label>
         {galleryFields.map((field, index) => (
           <ProductImageInput
