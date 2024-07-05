@@ -1,5 +1,7 @@
 import { collection, doc, setDoc, addDoc, getDocs } from 'firebase/firestore';
 import { db } from './firebase';
+import Cookies from 'js-cookie';
+
 
 interface User {
   id?: string;
@@ -19,13 +21,19 @@ export const registerCustomer = async (formData: User): Promise<any> => {
  }
 };
 
-
+const token = Cookies.get('token');
 export const getCustomer = async (): Promise<User[]> => {
+  if (!token) {
+    throw new Error('Користувач не авторизований');
+  }
+
   const querySnapshot = await getDocs(collection(db, 'customers'));
   const users: User[] = [];
+
   querySnapshot.forEach((doc) => {
-    const data = doc.data() as User; 
+    const data = doc.data() as User;
     users.push({ ...data, id: doc.id });
   });
+
   return users;
 };
