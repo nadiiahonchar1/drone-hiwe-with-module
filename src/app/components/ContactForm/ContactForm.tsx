@@ -2,7 +2,8 @@
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import style from './contactForm.module.css';
-import { registerCustomer } from '@/app/admin/api/customer';
+// import { registerCustomer } from '@/app/admin/api/customer';
+import { registerCustomer } from '@/app/admin/api/customerDB';
 
 type FormValues = {
   name: string;

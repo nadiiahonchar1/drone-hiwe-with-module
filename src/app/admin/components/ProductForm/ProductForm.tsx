@@ -15,23 +15,24 @@ import SimpleProduct from './SimpleProduct';
 import VariationInput from './VariationInput';
 import { addProduct } from '../../api/products';
 import style from './productForm.module.css';
+import FormData from './interfaces';
 
-interface FormData {
-  productName: string;
-  shortDescription: string;
-  productDescription: string;
-  category: string;
-  subCategory: string;
-  productType: string;
-  price: number | null;
-  availability: string;
-  sku: string;
-  productImage: FileList | null;
-  productImageUrl: string | null;
-  galleryImages: { image: FileList | null }[];
-  galleryImageUrls: { image: string | null }[];
-  variations: { [key: string]: any }[];
-}
+// interface FormData {
+//   productName: string;
+//   shortDescription: string;
+//   productDescription: string;
+//   category: string;
+//   subCategory: string;
+//   productType: string;
+//   price: number | null;
+//   availability: string;
+//   sku: string;
+//   productImage: FileList | null;
+//   productImageUrl: string | null;
+//   galleryImages: { image: FileList | null }[];
+//   galleryImageUrls: { image: string | null }[];
+//   variations: { [key: string]: any }[];
+// }
 
 const ProductForm: React.FC = () => {
   const [subCategories, setSubCategories] = useState<string[]>([]);

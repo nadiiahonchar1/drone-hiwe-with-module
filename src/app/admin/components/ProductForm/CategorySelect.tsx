@@ -57,6 +57,7 @@ const CategorySelect: React.FC<CategorySelectProps> = ({
         <option value="drone-modules">Модулі для БПЛА</option>
         <option value="sapper-devices">Пристрій саперний</option>
         <option value="antenna-relay-stations">Ретранслятори та станції</option>
+        <option value="detector">Детектори</option>
       </select>
       {errors.category && (
         <p className={style.error}>{getErrorMessage(errors.category)}</p>

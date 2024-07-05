@@ -1,4 +1,6 @@
 'use client';
+import Cookies from 'js-cookie';
+
 interface User {
   id?: string;
   name: string;
@@ -6,6 +8,7 @@ interface User {
   email: string;
   message: string;
 }
+const token = Cookies.get('token');
 
 export const registerCustomer = (formData: User): Promise<any> => {
   const url =
@@ -34,7 +37,12 @@ export const getCustomer = (): Promise<User[]> => {
   const url =
     'https://drone-hive-d6daa-default-rtdb.europe-west1.firebasedatabase.app/customers.json';
 
-  return fetch(url, {
+  // const user = auth.currentUser;
+  if (!token) {
+    return Promise.reject(new Error('Користувач не авторизований.'));
+  }
+
+  return fetch(`${url}?auth=${token}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

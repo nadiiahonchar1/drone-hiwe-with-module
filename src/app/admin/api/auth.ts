@@ -15,21 +15,30 @@ import { app } from './firebase';
 
 const auth = getAuth(app);
 
-export const loginUser = (email: string, password: string): Promise<User> => {
-  return signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      const token = user.refreshToken;
-      Cookies.set('token', token, { expires: 7 });
+export const loginUser = async (
+  email: string,
+  password: string
+): Promise<User> => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCredential.user;
 
-      return user;
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.error(`Помилка (${errorCode}): ${errorMessage}`);
-      throw error;
-    });
+    if (auth.currentUser) {
+      const token = await auth.currentUser.getIdToken();
+      Cookies.set('token', token, { expires: 7 });
+    }
+
+    return user;
+  } catch (error) {
+    const errorCode = (error as any).code;
+    const errorMessage = (error as any).message;
+    console.error(`Помилка (${errorCode}): ${errorMessage}`);
+    throw error;
+  }
 };
 
 export const logOut = (): Promise<void> => {

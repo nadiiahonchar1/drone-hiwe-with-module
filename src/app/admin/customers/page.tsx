@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { getCustomer } from '../api/customer';
+// import { getCustomer } from '../api/customer';
+import { getCustomer } from '../api/customerDB';
 import style from './customers.module.css';
 import Wrapper from '@/app/components/Wrapper/Wrapper';
 

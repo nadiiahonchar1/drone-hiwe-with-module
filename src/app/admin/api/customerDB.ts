@@ -1,0 +1,31 @@
+import { collection, doc, setDoc, addDoc, getDocs } from 'firebase/firestore';
+import { db } from './firebase';
+
+interface User {
+  id?: string;
+  name: string;
+  phone: string;
+  email: string;
+  message: string;
+}
+
+
+export const registerCustomer = async (formData: User): Promise<any> => {
+ try {
+   const docRef = await addDoc(collection(db, 'customers'), formData);
+ } catch (e) {
+     console.error('Помилка при відправці даних форми реєстрації:', e);
+     throw e;
+ }
+};
+
+
+export const getCustomer = async (): Promise<User[]> => {
+  const querySnapshot = await getDocs(collection(db, 'customers'));
+  const users: User[] = [];
+  querySnapshot.forEach((doc) => {
+    const data = doc.data() as User; 
+    users.push({ ...data, id: doc.id });
+  });
+  return users;
+};

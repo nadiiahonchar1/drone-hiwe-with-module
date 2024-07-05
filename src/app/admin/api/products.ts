@@ -1,4 +1,16 @@
 'use client'
+import { database } from "./firebase";
+import {
+  ref,
+  query,
+  orderByChild,
+  equalTo,
+  get,
+} from 'firebase/database';
+import Cookies from 'js-cookie';
+import FormData from "../components/ProductForm/interfaces";
+
+const token = Cookies.get('token');
 
 const url =
   'https://drone-hive-d6daa-default-rtdb.europe-west1.firebasedatabase.app/products.json';
@@ -30,10 +42,37 @@ export const getProducts = () => {
         throw error;
       });        
 }
+
+export const getProductsByCategory = async (category: string): Promise<FormData[]> => {
+ 
+  try {
+    console.log('in getProguct')
+    const productsRef = ref(database, 'products');
+    console.log('productsRef', productsRef);
+    const categoryQuery = query(
+      productsRef,
+      orderByChild('category'),
+      equalTo(category)
+    );
+    console.log('categoryQuery', productsRef);
+    const snapshot = await get(categoryQuery);
+
+    const products: FormData[] = [];
+    if (snapshot.exists()) {
+      snapshot.forEach((childSnapshot) => {
+        products.push({ id: childSnapshot.key, ...childSnapshot.val() });
+      });
+    }
+    return products;
+  } catch (error) {
+    console.error('Помилка при отриманні даних продуктів:', error);
+    throw error;
+  }
+};
     
 export const addProduct = (product: any) => {
 
-  return fetch(url, {
+  return fetch(`${url}?auth=${token}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -46,10 +85,6 @@ export const addProduct = (product: any) => {
       }
       return response.json();
     })
-    // .then((data) => {
-    //   console.log('Дані успішно відправлені:', data);
-    //   return data;
-    // })
     .catch((error) => {
       console.error('Помилка при отриманні даних користувачів:', error);
       throw error;
