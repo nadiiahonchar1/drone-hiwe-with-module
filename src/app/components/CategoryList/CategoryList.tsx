@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { getProductsByCategory } from '@/app/admin/api/products';
+// import { getProductsByCategory } from '@/app/admin/api/products';
+import { getProductsByCategory } from '@/app/admin/api/productsDB';
 
 interface CategoryListProps {
   category: string;

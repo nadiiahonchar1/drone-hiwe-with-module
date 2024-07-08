@@ -1,4 +1,5 @@
-import { collection, doc, setDoc, addDoc, getDocs } from 'firebase/firestore';
+'use client'
+import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { db } from './firebase';
 import Cookies from 'js-cookie';
 
@@ -14,7 +15,7 @@ interface User {
 
 export const registerCustomer = async (formData: User): Promise<any> => {
  try {
-   const docRef = await addDoc(collection(db, 'customers'), formData);
+   await addDoc(collection(db, 'customers'), formData);
  } catch (e) {
      console.error('Помилка при відправці даних форми реєстрації:', e);
      throw e;

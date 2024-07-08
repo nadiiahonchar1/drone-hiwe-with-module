@@ -13,7 +13,8 @@ import ProductDescriptionInput from './ProductDescriptionInput';
 import CategorySelect from './CategorySelect';
 import SimpleProduct from './SimpleProduct';
 import VariationInput from './VariationInput';
-import { addProduct } from '../../api/products';
+// import { addProduct } from '../../api/products';
+import { addProduct } from '../../api/productsDB';
 import style from './productForm.module.css';
 import FormData from './interfaces';
 
@@ -105,6 +106,8 @@ const ProductForm: React.FC = () => {
       data.galleryImageUrls = galleryImages.map((image) => ({
         image,
       }));
+      delete data.productImage;
+      delete data.galleryImages;
       await addProduct(data);
     } catch (error) {
       console.error(error);

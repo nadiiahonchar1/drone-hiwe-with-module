@@ -9,7 +9,7 @@ export default function Shop() {
         <h1 className={style.heroText}>Магазин</h1>
       </section>
       <section>
-        <CategoryList category="sapper-devices" />
+        <CategoryList category="antenna-relay-stations" />
       </section>
     </Wrapper>
   );

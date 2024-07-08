@@ -1,4 +1,5 @@
 export default interface FormData {
+  id?: string;
   productName: string;
   shortDescription: string;
   productDescription: string;
@@ -8,9 +9,9 @@ export default interface FormData {
   price: number | null;
   availability: string;
   sku: string;
-  productImage: FileList | null;
+  productImage?: FileList | null;
   productImageUrl: string | null;
-  galleryImages: { image: FileList | null }[];
+  galleryImages?: { image: FileList | null }[];
   galleryImageUrls: { image: string | null }[];
   variations: { [key: string]: any }[];
 }
