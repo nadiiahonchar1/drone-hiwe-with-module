@@ -39,7 +39,8 @@ const CategoryList: React.FC<CategoryListProps> = ({
     <div>
       {products.map((product) => (
         <div key={product.id}>
-          {product.productName} - {product.price}
+          <img src={product.productImageUrl} alt={product.productName} />
+          <p>{product.productName}</p>
         </div>
       ))}
     </div>

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import CategoryList from '../CategoryList/CategoryList';
 import SelectProduct from '../selectProduct/selectProduct';
+import style from './product.module.css';
 
 const Product = () => {
   const [category, setCategory] = useState<string>('');
@@ -12,7 +13,7 @@ const Product = () => {
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedCategory = e.target.value;
     setCategory(selectedCategory);
-    setSelectedSubCategory(''); // Reset the subcategory when the category changes
+    setSelectedSubCategory('');
 
     switch (selectedCategory) {
       case 'drone':
@@ -33,8 +34,8 @@ const Product = () => {
 
   return (
     <>
-      <section>
-        <h2>Виберіть категорію товару</h2>
+      <section className={style.container}>
+        <h2 className={style.selectTitle}>Виберіть категорію товару</h2>
         <SelectProduct
           handleCategoryChange={handleCategoryChange}
           handleSubCategoryChange={handleSubCategoryChange}

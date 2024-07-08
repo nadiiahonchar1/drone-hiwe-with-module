@@ -16,19 +16,24 @@ const SelectProduct: React.FC<SelectProductProps> = ({
 }) => {
   return (
     <div className={style.inputContainer}>
-      <label className={style.label}>Категорія</label>
-      <select onChange={handleCategoryChange}>
-        {categories.map((category) => (
-          <option key={category.value} value={category.value}>
-            {category.label}
-          </option>
-        ))}
-      </select>
+      <div className={style.inputField}>
+        <label className={style.selectLabel}>Категорія</label>
+        <select className={style.inputSelect} onChange={handleCategoryChange}>
+          {categories.map((category) => (
+            <option key={category.value} value={category.value}>
+              {category.label}
+            </option>
+          ))}
+        </select>
+      </div>
 
       {subCategories.length > 0 && (
-        <>
-          <label className={style.label}>Підкатегорія</label>
-          <select onChange={handleSubCategoryChange}>
+        <div className={style.inputField}>
+          <label className={style.selectLabel}>Підкатегорія</label>
+          <select
+            className={style.inputSelect}
+            onChange={handleSubCategoryChange}
+          >
             <option value="">Виберіть підкатегорію</option>
             {subCategories.map((subCategory) => (
               <option key={subCategory} value={subCategory}>
@@ -36,7 +41,7 @@ const SelectProduct: React.FC<SelectProductProps> = ({
               </option>
             ))}
           </select>
-        </>
+        </div>
       )}
     </div>
   );

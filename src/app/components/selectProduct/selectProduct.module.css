@@ -1,0 +1,28 @@
+.selectLabel {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.54px;
+  line-height: 43.2px;
+  text-transform: uppercase;
+  color: var(--primaryColor);
+  text-align: center;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+.inputContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+  resize: vertical;
+}
+.inputSelect {
+  border-radius: 10px;
+  padding: 4px;
+}
+
+@media screen and (max-width: 880px) {
+  .inputContainer {
+    flex-wrap: wrap;
+  }
+}
