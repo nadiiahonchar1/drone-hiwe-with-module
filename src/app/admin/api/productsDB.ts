@@ -62,3 +62,29 @@ export const getProductsByCategory = async (
     throw e;
   }
 };
+
+export const getProductsBySubCategory = async (
+  subCategory: string
+): Promise<FormData[]> => {
+  try {
+    const q = query(
+      collection(db, 'products'),
+      where('subCategory', '==', subCategory)
+    );
+    const querySnapshot = await getDocs(q);
+    const myData: FormData[] = [];
+
+    querySnapshot.forEach((doc) => {
+      const data = doc.data() as FormData;
+      myData.push({ ...data, id: doc.id });
+    });
+
+    return myData;
+  } catch (e) {
+    console.error(
+      `Помилка при отриманні продуктів за підкатегорією ${subCategory}:`,
+      e
+    );
+    throw e;
+  }
+};

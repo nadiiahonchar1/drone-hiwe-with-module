@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 // import { getProductsByCategory } from '@/app/admin/api/products';
 import { getProductsByCategory } from '@/app/admin/api/productsDB';
+import { getProductsBySubCategory } from '@/app/admin/api/productsDB';
 
 interface CategoryListProps {
   category: string;
@@ -13,7 +14,8 @@ const CategoryList: React.FC<CategoryListProps> = ({ category }) => {
     const fetchProducts = async () => {
       try {
         console.log('I am here products');
-        const products = await getProductsByCategory(category);
+        // const products = await getProductsByCategory(category);
+        const products = await getProductsBySubCategory(category);
         console.log('Products fetched:', products);
         setProducts(products);
       } catch (error) {
