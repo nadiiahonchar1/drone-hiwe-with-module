@@ -29,6 +29,7 @@ export const getProducts = async (): Promise<FormData[]> => {
       const data = doc.data() as FormData;
       myData.push({ ...data, id: doc.id });
     });
+    // console.log('getProducts myData', myData);
 
     return myData;
   } catch (e) {
@@ -52,6 +53,7 @@ export const getProductsByCategory = async (
       const data = doc.data() as FormData;
       myData.push({ ...data, id: doc.id });
     });
+    // console.log('getProductsByCategory myData', myData);
 
     return myData;
   } catch (e) {
@@ -78,6 +80,7 @@ export const getProductsBySubCategory = async (
       const data = doc.data() as FormData;
       myData.push({ ...data, id: doc.id });
     });
+    // console.log('getProductsBySubCategory myData', myData);
 
     return myData;
   } catch (e) {

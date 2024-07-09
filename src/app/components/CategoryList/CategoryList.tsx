@@ -16,24 +16,40 @@ const CategoryList: React.FC<CategoryListProps> = ({
   subCategory,
 }) => {
   const [products, setProducts] = useState<any[]>([]);
+  const [isFirstRender, setIsFirstRender] = useState(true);
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    if (isFirstRender) {
+      setIsFirstRender(false);
+      return;
+    }
+
+    const fetchProductsByCategory = async () => {
       try {
-        let fetchedProducts;
-        if (subCategory) {
-          fetchedProducts = await getProductsBySubCategory(subCategory);
-        } else {
-          fetchedProducts = await getProductsByCategory(category);
-        }
+        const fetchedProducts = await getProductsByCategory(category);
         setProducts(fetchedProducts);
       } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error('Error fetching products by category:', error);
       }
     };
 
-    fetchProducts();
-  }, [category, subCategory]);
+    fetchProductsByCategory();
+  }, [category]);
+
+  useEffect(() => {
+    const fetchProductsBySubCategory = async () => {
+      if (!subCategory) return;
+
+      try {
+        const fetchedProducts = await getProductsBySubCategory(subCategory);
+        setProducts(fetchedProducts);
+      } catch (error) {
+        console.error('Error fetching products by subcategory:', error);
+      }
+    };
+
+    fetchProductsBySubCategory();
+  }, [subCategory]);
 
   return (
     <div>
