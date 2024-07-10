@@ -22,8 +22,8 @@ export const registerCustomer = async (formData: User): Promise<any> => {
  }
 };
 
-const token = Cookies.get('token');
 export const getCustomer = async (): Promise<User[]> => {
+  const token = Cookies.get('token');
   if (!token) {
     throw new Error('Користувач не авторизований');
   }

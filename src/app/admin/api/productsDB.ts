@@ -15,6 +15,7 @@ console.log('formData', formData);
   try {
     await addDoc(collection(db, 'products'), formData);
   } catch (e) {
+    alert('Ой! Схоже ви розлогінились :(');
     console.error('Помилка при відправці даних форми реєстрації:', e);
     throw e;
   }

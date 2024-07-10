@@ -38,6 +38,8 @@ const ProductForm: React.FC = () => {
     register,
     control,
     handleSubmit,
+    setValue,
+    getValues,
     watch,
     formState: { errors },
     reset,
@@ -180,6 +182,16 @@ const ProductForm: React.FC = () => {
     setCountArticle(countArticle + 1);
   };
 
+  // ========================
+  const removeVariation = (index: number) => {
+    // const currentVariations = watch('variations') as any[];
+    const currentVariations = getValues('variations');
+    currentVariations.splice(index, 1);
+    setValue('variations', currentVariations);
+    setCountArticle(countArticle - 1);
+  };
+  // ========================
+
   return (
     <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
       <ProductNameInput register={register} errors={errors} />
@@ -305,16 +317,22 @@ const ProductForm: React.FC = () => {
                 {isNameVariations && (
                   <>
                     {Array.from(Array(countArticle), (e, i) => (
-                      <>
+                      <div key={i}>
                         <VariationInput
-                          key={i}
                           index={i}
                           namesList={variationNames}
                           register={register}
                           errors={errors as FieldErrors<FormData>}
                         />
+                        <button
+                          className={style.button}
+                          type="button"
+                          onClick={() => removeVariation(i)}
+                        >
+                          Видалити
+                        </button>
                         <div className={style.divider}></div>
-                      </>
+                      </div>
                     ))}
                     <button
                       className={style.button}
