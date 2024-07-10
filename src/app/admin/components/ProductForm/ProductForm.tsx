@@ -18,6 +18,8 @@ import { addProduct } from '../../api/productsDB';
 import style from './productForm.module.css';
 import FormData from './interfaces';
 
+const MAX_SIZE = 1 * 1024 * 1024; // 1 МБ
+
 const ProductForm: React.FC = () => {
   const [subCategories, setSubCategories] = useState<string[]>([]);
   const [productImagePreview, setProductImagePreview] = useState<string | null>(
@@ -64,6 +66,53 @@ const ProductForm: React.FC = () => {
     name: 'galleryImages',
   });
 
+  // const onSubmit: SubmitHandler<FormData> = async (data) => {
+  //   try {
+  //     if (imgFile) {
+  //       const reader = new FileReader();
+  //       reader.onloadend = () => {
+  //         data.productImageUrl = reader.result as string;
+  //       };
+  //       reader.readAsDataURL(imgFile);
+  //     }
+
+  //     const galleryImagePromises = imgFileGallery.map((file: File) => {
+  //       return new Promise<string>((resolve, reject) => {
+  //         const reader = new FileReader();
+  //         reader.onloadend = () => {
+  //           resolve(reader.result as string);
+  //         };
+  //         reader.onerror = reject;
+  //         reader.readAsDataURL(file);
+  //       });
+  //     });
+
+  //     const galleryImages = await Promise.all(galleryImagePromises);
+  //     data.galleryImageUrls = galleryImages.map((image) => ({
+  //       image,
+  //     }));
+  //     delete data.productImage;
+  //     delete data.galleryImages;
+
+  //     const dataBlob = new Blob([JSON.stringify(data)], {
+  //       type: 'application/json',
+  //     });
+  //     if (dataBlob.size > MAX_SIZE) {
+  //       alert('Зменште кількість даних. Максимальний розмір - 1 МБ.');
+  //       return;
+  //     }
+
+  //     await addProduct(data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   } finally {
+  //     alert('Продукт успішно завантажено');
+  //     reset();
+  //     setProductImagePreview(null);
+  //     setGalleryImagePreviews([]);
+  //   }
+  // };
+
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
       if (imgFile) {
@@ -91,14 +140,22 @@ const ProductForm: React.FC = () => {
       }));
       delete data.productImage;
       delete data.galleryImages;
+
+      const dataBlob = new Blob([JSON.stringify(data)], {
+        type: 'application/json',
+      });
+      if (dataBlob.size > MAX_SIZE) {
+        alert('Зменште кількість даних. Максимальний розмір - 1 МБ.');
+        return;
+      }
+
       await addProduct(data);
-    } catch (error) {
-      console.error(error);
-    } finally {
       alert('Продукт успішно завантажено');
       reset();
       setProductImagePreview(null);
       setGalleryImagePreviews([]);
+    } catch (error) {
+      console.error(error);
     }
   };
 
