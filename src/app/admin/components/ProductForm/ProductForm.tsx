@@ -112,11 +112,9 @@ const ProductForm: React.FC = () => {
       reset();
       setProductImagePreview(null);
       setGalleryImagePreviews([]);
-      // ===================
       setSubCategories([]);
       setNumOfVariations(0);
       setVariationNames([]);
-      // ===================
     } catch (error) {
       console.error(error);
     }
@@ -182,15 +180,12 @@ const ProductForm: React.FC = () => {
     setCountArticle(countArticle + 1);
   };
 
-  // ========================
   const removeVariation = (index: number) => {
-    // const currentVariations = watch('variations') as any[];
     const currentVariations = getValues('variations');
     currentVariations.splice(index, 1);
     setValue('variations', currentVariations);
     setCountArticle(countArticle - 1);
   };
-  // ========================
 
   return (
     <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
@@ -208,32 +203,34 @@ const ProductForm: React.FC = () => {
 
       <div className={style.galeryInputContainer}>
         <label className={style.label}>Галерея товару</label>
-        {galleryFields.map((field, index) => (
-          <div key={field.id} className={style.galleryItem}>
-            <ProductImageInput
-              register={register(`galleryImages.${index}.image`)}
-              errors={errors.galleryImages?.[index]?.image}
-              onChange={(e) => handleGalleryImageChange(e, index)}
-              previewUrl={galleryImagePreviews[index]}
-              label={`Зображення галереї товару ${index + 1}`}
-            />
-            <button
-              type="button"
-              className={style.removeButton}
-              onClick={() => handleRemoveGalleryImage(index)}
-            >
-              Видалити
-            </button>
-          </div>
-        ))}
-        <button
-          className={style.button}
-          type="button"
-          onClick={() => appendGalleryImage({ image: null })}
-        >
-          Додати ще зображення
-        </button>
+        <div>
+          {galleryFields.map((field, index) => (
+            <div key={field.id} className={style.galleryItem}>
+              <ProductImageInput
+                register={register(`galleryImages.${index}.image`)}
+                errors={errors.galleryImages?.[index]?.image}
+                onChange={(e) => handleGalleryImageChange(e, index)}
+                previewUrl={galleryImagePreviews[index]}
+                label={`Зображення галереї товару ${index + 1}`}
+              />
+              <button
+                type="button"
+                className={style.buttonDell}
+                onClick={() => handleRemoveGalleryImage(index)}
+              >
+                Видалити
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
+      <button
+        className={style.button}
+        type="button"
+        onClick={() => appendGalleryImage({ image: null })}
+      >
+        Додати ще зображення
+      </button>
 
       <ProductDescriptionInput
         label="Короткий опис товару"

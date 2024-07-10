@@ -27,6 +27,16 @@
   margin-top: 10px;
   cursor: pointer;
 }
+.buttonDell {
+  display: block;
+  padding: 8px;
+  border-radius: 10px;
+  width: 240px;
+  margin: auto;
+  margin-top: 10px;
+  /* transform: rotate(-90deg); */
+  cursor: pointer;
+}
 
 .error {
   color: rgb(224, 40, 79);
@@ -51,10 +61,16 @@
 .galeryInputContainer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   width: 100%;
   flex-wrap: wrap;
   margin-bottom: 20px;
+}
+
+.galleryItem {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .blokContainer {
