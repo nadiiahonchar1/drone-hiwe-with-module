@@ -13,7 +13,6 @@ import ProductDescriptionInput from './ProductDescriptionInput';
 import CategorySelect from './CategorySelect';
 import SimpleProduct from './SimpleProduct';
 import VariationInput from './VariationInput';
-// import { addProduct } from '../../api/products';
 import { addProduct } from '../../api/productsDB';
 import style from './productForm.module.css';
 import FormData from './interfaces';
@@ -111,6 +110,11 @@ const ProductForm: React.FC = () => {
       reset();
       setProductImagePreview(null);
       setGalleryImagePreviews([]);
+      // ===================
+      setSubCategories([]);
+      setNumOfVariations(0);
+      setVariationNames([]);
+      // ===================
     } catch (error) {
       console.error(error);
     }
