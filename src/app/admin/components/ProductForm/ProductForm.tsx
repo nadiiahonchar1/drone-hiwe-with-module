@@ -61,57 +61,14 @@ const ProductForm: React.FC = () => {
     },
   });
 
-  const { fields: galleryFields, append: appendGalleryImage } = useFieldArray({
+  const {
+    fields: galleryFields,
+    append: appendGalleryImage,
+    remove: removeGalleryImage,
+  } = useFieldArray({
     control,
     name: 'galleryImages',
   });
-
-  // const onSubmit: SubmitHandler<FormData> = async (data) => {
-  //   try {
-  //     if (imgFile) {
-  //       const reader = new FileReader();
-  //       reader.onloadend = () => {
-  //         data.productImageUrl = reader.result as string;
-  //       };
-  //       reader.readAsDataURL(imgFile);
-  //     }
-
-  //     const galleryImagePromises = imgFileGallery.map((file: File) => {
-  //       return new Promise<string>((resolve, reject) => {
-  //         const reader = new FileReader();
-  //         reader.onloadend = () => {
-  //           resolve(reader.result as string);
-  //         };
-  //         reader.onerror = reject;
-  //         reader.readAsDataURL(file);
-  //       });
-  //     });
-
-  //     const galleryImages = await Promise.all(galleryImagePromises);
-  //     data.galleryImageUrls = galleryImages.map((image) => ({
-  //       image,
-  //     }));
-  //     delete data.productImage;
-  //     delete data.galleryImages;
-
-  //     const dataBlob = new Blob([JSON.stringify(data)], {
-  //       type: 'application/json',
-  //     });
-  //     if (dataBlob.size > MAX_SIZE) {
-  //       alert('Зменште кількість даних. Максимальний розмір - 1 МБ.');
-  //       return;
-  //     }
-
-  //     await addProduct(data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   } finally {
-  //     alert('Продукт успішно завантажено');
-  //     reset();
-  //     setProductImagePreview(null);
-  //     setGalleryImagePreviews([]);
-  //   }
-  // };
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
@@ -196,6 +153,16 @@ const ProductForm: React.FC = () => {
     }
   };
 
+  const handleRemoveGalleryImage = (index: number) => {
+    const currentFiles = [...imgFileGallery];
+    currentFiles.splice(index, 1);
+    setImgFileGallery(currentFiles);
+    const newPreviews = [...galleryImagePreviews];
+    newPreviews.splice(index, 1);
+    setGalleryImagePreviews(newPreviews);
+    removeGalleryImage(index);
+  };
+
   const getErrorMessage = (error: any) => {
     if (error) {
       return typeof error === 'string' ? error : error.message;
@@ -226,14 +193,22 @@ const ProductForm: React.FC = () => {
       <div className={style.galeryInputContainer}>
         <label className={style.label}>Галерея товару</label>
         {galleryFields.map((field, index) => (
-          <ProductImageInput
-            key={field.id}
-            register={register(`galleryImages.${index}.image`)}
-            errors={errors.galleryImages?.[index]?.image}
-            onChange={(e) => handleGalleryImageChange(e, index)}
-            previewUrl={galleryImagePreviews[index]}
-            label={`Зображення галереї товару ${index + 1}`}
-          />
+          <div key={field.id} className={style.galleryItem}>
+            <ProductImageInput
+              register={register(`galleryImages.${index}.image`)}
+              errors={errors.galleryImages?.[index]?.image}
+              onChange={(e) => handleGalleryImageChange(e, index)}
+              previewUrl={galleryImagePreviews[index]}
+              label={`Зображення галереї товару ${index + 1}`}
+            />
+            <button
+              type="button"
+              className={style.removeButton}
+              onClick={() => handleRemoveGalleryImage(index)}
+            >
+              Видалити
+            </button>
+          </div>
         ))}
         <button
           className={style.button}

@@ -11,7 +11,7 @@ export const addProduct = async (formData: FormData): Promise<any> => {
   if (!token) {
     throw new Error('Користувач не авторизований');
   }
-
+console.log('formData', formData);
   try {
     await addDoc(collection(db, 'products'), formData);
   } catch (e) {
