@@ -6,6 +6,8 @@ import {
   getProductsBySubCategory,
 } from '@/app/admin/api/productsDB';
 
+import style from './categoryList.module.css';
+
 interface CategoryListProps {
   category: string;
   subCategory?: string;
@@ -52,14 +54,18 @@ const CategoryList: React.FC<CategoryListProps> = ({
   }, [subCategory]);
 
   return (
-    <div>
+    <ul className={style.list}>
       {products.map((product) => (
-        <div key={product.id}>
-          <img src={product.productImageUrl} alt={product.productName} />
-          <p>{product.productName}</p>
-        </div>
+        <li className={style.item} key={product.id}>
+          <img
+            className={style.img}
+            src={product.productImageUrl}
+            alt={product.productName}
+          />
+          <p className={style.text}>{product.productName}</p>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 

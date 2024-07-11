@@ -13,6 +13,7 @@ export const addProduct = async (formData: FormData): Promise<any> => {
   }
   try {
     await addDoc(collection(db, 'products'), formData);
+    // console.log('formData', formData);
   } catch (e) {
     alert('Ой! Схоже ви розлогінились :(');
     console.error('Помилка при відправці даних форми реєстрації:', e);

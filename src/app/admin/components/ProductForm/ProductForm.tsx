@@ -57,8 +57,8 @@ const ProductForm: React.FC = () => {
       productImage: null,
       galleryImages: [{ image: null }],
       variations: [],
-      productImageUrl: null,
-      galleryImageUrls: [{ image: null }],
+      productImageUrl: '',
+      galleryImageUrls: [{ image: '' }],
     },
   });
 
@@ -115,6 +115,10 @@ const ProductForm: React.FC = () => {
       setSubCategories([]);
       setNumOfVariations(0);
       setVariationNames([]);
+      // setValue('productImageUrl', '');
+      setValue('galleryImageUrls', [{ image: '' }]);
+      // setImgFile(null);
+      // setImgFileGallery([]);
     } catch (error) {
       console.error(error);
     }

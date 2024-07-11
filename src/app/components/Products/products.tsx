@@ -42,7 +42,7 @@ const Product = () => {
           subCategories={subCategories}
         />
       </section>
-      <section>
+      <section className={style.container}>
         <CategoryList category={category} subCategory={selectedSubCategory} />
       </section>
     </>
