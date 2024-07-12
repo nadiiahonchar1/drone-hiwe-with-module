@@ -47,14 +47,17 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
+  width: 90%;
 
-  color: #fff;
+  color: var(--primaryColor);
+  text-shadow: 1px 1px 2px var(--accentTextInvert);
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 800;
   letter-spacing: 0.285px;
   line-height: 31px;
   font-family: 'Inter Tight', sans-serif;
   text-align: center;
+  text-transform: uppercase;
 }
 
 @media screen and (max-width: 990px) {
