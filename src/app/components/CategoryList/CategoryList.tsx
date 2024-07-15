@@ -7,6 +7,7 @@ import {
 } from '@/app/admin/api/productsDB';
 
 import style from './categoryList.module.css';
+import CustomLink from '../Link';
 
 interface CategoryListProps {
   category: string;
@@ -53,16 +54,28 @@ const CategoryList: React.FC<CategoryListProps> = ({
     fetchProductsBySubCategory();
   }, [subCategory]);
 
+  const formatProductNameForURL = (productName: string) => {
+    return productName
+      .replace(/\s+/g, '-')
+      .replace(/[^\wа-яА-ЯіІїЇєЄґҐ-]+/g, '');
+  };
+
   return (
     <ul className={style.list}>
       {products.map((product) => (
         <li className={style.item} key={product.id}>
-          <img
-            className={style.img}
-            src={product.productImageUrl}
-            alt={product.productName}
-          />
-          <p className={style.text}>{product.productName}</p>
+          <CustomLink
+            href={`/shop/${formatProductNameForURL(product.productName)}__${
+              product.id
+            }`}
+          >
+            <img
+              className={style.img}
+              src={product.productImageUrl}
+              alt={product.productName}
+            />
+            <p className={style.text}>{product.productName}</p>
+          </CustomLink>
         </li>
       ))}
     </ul>

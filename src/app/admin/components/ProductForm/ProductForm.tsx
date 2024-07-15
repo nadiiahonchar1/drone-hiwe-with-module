@@ -15,7 +15,7 @@ import SimpleProduct from './SimpleProduct';
 import VariationInput from './VariationInput';
 import { addProduct } from '../../api/productsDB';
 import style from './productForm.module.css';
-import FormData from './interfaces';
+import FormData from '@/app/helpers/typings';
 
 const MAX_SIZE = 1 * 1024 * 1024; // 1 МБ
 
