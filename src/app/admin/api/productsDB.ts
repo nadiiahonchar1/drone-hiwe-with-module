@@ -1,9 +1,17 @@
 'use client';
 
-import { collection, addDoc, getDocs, query, where } from 'firebase/firestore';
+import {
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
+  doc,
+  getDoc,
+} from 'firebase/firestore';
 import { db } from './firebase';
 import Cookies from 'js-cookie';
-import FormData from '../components/ProductForm/interfaces';
+import FormData from '@/app/helpers/typings';
 
 export const addProduct = async (formData: FormData): Promise<any> => {
   const token = Cookies.get('token');
@@ -89,6 +97,26 @@ export const getProductsBySubCategory = async (
       `Помилка при отриманні продуктів за підкатегорією ${subCategory}:`,
       e
     );
+    throw e;
+  }
+};
+
+export const getProductByID = async (
+  productId: string
+): Promise<FormData | undefined> => {
+  try {
+    const docRef = doc(collection(db, 'products'), productId);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const data = docSnap.data() as FormData;
+      return { ...data, id: docSnap.id };
+    } else {
+      console.error(`Продукт з ID ${productId} не знайдений`);
+      return undefined;
+    }
+  } catch (e) {
+    console.error(`Помилка при отриманні продукту за ID ${productId}:`, e);
     throw e;
   }
 };
