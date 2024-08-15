@@ -224,11 +224,7 @@
     max-width: 100%;
     margin-bottom: 40px;
   }
-  /* .description {
-    display: block;
-    text-align: center;
-    border-bottom: 1px solid var(--colorProduct);
-  } */
+
   .description {
     flex-wrap: wrap;
     justify-content: center;

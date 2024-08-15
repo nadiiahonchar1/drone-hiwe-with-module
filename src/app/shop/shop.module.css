@@ -61,10 +61,6 @@
   color: var(--accentTextInvert);
 }
 
-/* .priceWrapper {
-  margin-bottom: 40px;
-} */
-
 .price {
   color: var(--accentTextInvert);
   font-size: 18px;
@@ -101,4 +97,22 @@
   letter-spacing: 0.285px;
   font-weight: 700;
   font-size: 36px;
+}
+
+@media screen and (max-width: 880px) {
+  .productWrapper {
+    display: block;
+  }
+
+  .title {
+    font-size: 36px;
+  }
+
+  .shortDescription {
+    font-size: 14px;
+  }
+
+  .shortDescription h3 {
+    font-size: 24px;
+  }
 }
