@@ -35,7 +35,6 @@ export default function Home() {
             />
           </div>
           <div className={style.imgGradient}>
-            {/* <Image src={bg} alt="Не важливо" className={style.bg} width={700} /> */}
             <div className={style.team}>
               <MyImg
                 imgSrc={team}
