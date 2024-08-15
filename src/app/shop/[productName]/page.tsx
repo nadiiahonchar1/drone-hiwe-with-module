@@ -18,7 +18,6 @@ export default function ProductItem(props: {
       try {
         const fetchedProducts = await getProductByID(ID);
         setProduct(fetchedProducts);
-        console.log(fetchedProducts);
       } catch (error) {
         console.error('Error fetching products by ID:', error);
       }

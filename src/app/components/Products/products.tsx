@@ -29,7 +29,6 @@ const Product = () => {
 
   const handleSubCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedSubCategory(e.target.value);
-    console.log('SelectedSubCategory', e.target.value);
   };
 
   return (
