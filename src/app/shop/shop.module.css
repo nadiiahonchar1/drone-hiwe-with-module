@@ -61,8 +61,9 @@
   color: var(--accentTextInvert);
 }
 
-.price {
-  color: var(--accentTextInvert);
+.price,
+.description {
+  color: var(--accentText);
   font-size: 18px;
   font-weight: 400;
   letter-spacing: 0.285px;
@@ -80,11 +81,12 @@
   line-height: 31px;
 }
 
-.shortDescription {
+.shortDescription,
+.productDescription {
   padding: 20px 0;
   color: var(--colorProduct);
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.285px;
   line-height: 24px;
   margin-bottom: 40px;
@@ -99,6 +101,32 @@
   font-size: 36px;
 }
 
+.descriptionArticle {
+  display: flex;
+  padding: 0 20px;
+}
+
+.description {
+  position: relative;
+}
+
+.description::after {
+  content: '';
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: calc(100% + 20px);
+  height: 1px;
+  background-color: var(--colorProduct);
+}
+
+.productDescription {
+  border: 1px solid var(--colorProduct);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+
 @media screen and (max-width: 880px) {
   .productWrapper {
     display: block;
@@ -108,7 +136,8 @@
     font-size: 36px;
   }
 
-  .shortDescription {
+  .shortDescription,
+  .productDescription {
     font-size: 14px;
   }
 

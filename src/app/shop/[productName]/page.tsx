@@ -50,19 +50,12 @@ export default function ProductItem(props: {
                   className={style.shortDescription}
                   dangerouslySetInnerHTML={{ __html: product.shortDescription }}
                 />
-                {/* <div>
-                <p>Опис</p>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: product.productDescription,
-                  }}
-                />
-              </div> */}
               </div>
             </div>
-            <div>
-              <p>Опис</p>
+            <div className={style.descriptionArticle}>
+              <p className={style.description}>Опис</p>
               <div
+                className={style.productDescription}
                 dangerouslySetInnerHTML={{
                   __html: product.productDescription,
                 }}
