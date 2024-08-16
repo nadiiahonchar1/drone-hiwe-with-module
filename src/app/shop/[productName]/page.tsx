@@ -55,6 +55,13 @@ export default function ProductItem(props: {
                   className={style.shortDescription}
                   dangerouslySetInnerHTML={{ __html: product.shortDescription }}
                 />
+                <div>
+                  <p className={style.sku}>Артикул: {product.sku}</p>
+                  <p className={style.sku}>
+                    Категорія:{' '}
+                    <span className={style.skuCat}>{product.category}</span>
+                  </p>
+                </div>
               </div>
             </div>
             <div className={style.descriptionArticle}>

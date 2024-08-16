@@ -35,6 +35,7 @@
 
 .descriptionWrapper {
   flex-basis: calc(((100% - 20px) / 3) * 2);
+  margin-bottom: 20px;
 }
 
 .img {
@@ -62,7 +63,8 @@
 }
 
 .price,
-.description {
+.description,
+.skuCat {
   color: var(--accentText);
   font-size: 18px;
   font-weight: 400;
@@ -70,6 +72,10 @@
   line-height: 31px;
   margin-right: 20px;
   display: inline;
+}
+
+.description {
+  font-size: 28px;
 }
 
 .availability {
@@ -82,14 +88,20 @@
 }
 
 .shortDescription,
-.productDescription {
+.productDescription,
+.sku {
   padding: 20px 0;
   color: var(--colorProduct);
   font-size: 18px;
   font-weight: 400;
   letter-spacing: 0.285px;
   line-height: 24px;
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
+  width: 100%;
+}
+
+.sku {
+  padding: 4px 0;
 }
 
 .shortDescription h3,

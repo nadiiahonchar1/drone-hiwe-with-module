@@ -207,6 +207,27 @@
   opacity: 1;
 }
 
+.errorPage {
+  text-align: center;
+  padding: 40px;
+}
+
+.errorPage h2 {
+  margin-bottom: 20px;
+}
+
+.errorPage button {
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.errorPage button:hover,
+.errorPage button:focus,
+.errorPage button:active {
+  background-color: #dee4ea;
+}
+
 @media screen and (max-width: 880px) {
   .imgGradient {
     display: none;
