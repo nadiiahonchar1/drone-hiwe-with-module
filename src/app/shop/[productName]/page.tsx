@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Wrapper from '@/app/components/Wrapper/Wrapper';
 import { getProductByID } from '@/app/admin/api/productsDB';
 import style from '../shop.module.css';
@@ -33,7 +34,12 @@ export default function ProductItem(props: {
           <>
             <div className={style.productWrapper}>
               <div className={style.imgWrapper}>
-                <img
+                {/* <img
+                  className={style.img}
+                  src={product.productImageUrl}
+                  alt={product.productName}
+                /> */}
+                <Image
                   className={style.img}
                   src={product.productImageUrl}
                   alt={product.productName}

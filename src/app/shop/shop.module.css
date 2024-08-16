@@ -5,7 +5,7 @@
       var(--gradientLightContact),
       var(--bgColor)
     ),
-    url(../../assets/banner-11.jpg);
+    url(../../assets/banner-11.webp);
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: cover;
@@ -92,7 +92,8 @@
   margin-bottom: 40px;
 }
 
-.shortDescription h3 {
+.shortDescription h3,
+.productDescription h3 {
   padding: 20px 0;
   color: var(--primaryColor);
   line-height: 36px;

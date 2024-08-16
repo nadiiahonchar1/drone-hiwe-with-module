@@ -1,6 +1,5 @@
-'use client';
-
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
 import {
   getProductsByCategory,
   getProductsBySubCategory,
@@ -19,11 +18,11 @@ const CategoryList: React.FC<CategoryListProps> = ({
   subCategory,
 }) => {
   const [products, setProducts] = useState<any[]>([]);
-  const [isFirstRender, setIsFirstRender] = useState(true);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
-    if (isFirstRender) {
-      setIsFirstRender(false);
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
       return;
     }
 
@@ -61,24 +60,35 @@ const CategoryList: React.FC<CategoryListProps> = ({
   };
 
   return (
-    <ul className={style.list}>
-      {products.map((product) => (
-        <li className={style.item} key={product.id}>
-          <CustomLink
-            href={`/shop/${formatProductNameForURL(product.productName)}__${
-              product.id
-            }`}
-          >
-            <img
-              className={style.img}
-              src={product.productImageUrl}
-              alt={product.productName}
-            />
-            <p className={style.text}>{product.productName}</p>
-          </CustomLink>
-        </li>
-      ))}
-    </ul>
+    <>
+      {products.length === 0 ? (
+        <p>На жаль тут поки пусто :(</p>
+      ) : (
+        <ul className={style.list}>
+          {products.map((product) => (
+            <li className={style.item} key={product.id}>
+              <CustomLink
+                href={`/shop/${formatProductNameForURL(product.productName)}__${
+                  product.id
+                }`}
+              >
+                {/* <img
+                  className={style.img}
+                  src={product.productImageUrl}
+                  alt={product.productName}
+                /> */}
+                <Image
+                  className={style.img}
+                  src={product.productImageUrl}
+                  alt={product.productName}
+                />
+                <p className={style.text}>{product.productName}</p>
+              </CustomLink>
+            </li>
+          ))}
+        </ul>
+      )}
+    </>
   );
 };
 
