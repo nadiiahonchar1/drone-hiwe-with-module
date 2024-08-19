@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Inter_Tight } from 'next/font/google';
 import './styles/globals.css';
 import ThemeProvider from './hooks/ThemeProvider';
 import { AuthProvider } from './store/AuthContext';
@@ -15,13 +16,18 @@ export const metadata: Metadata = {
     'Створюємо продукти виключно по запитам військових, щоб як можна більше збільшити ефективність використання наших систем',
 };
 
+const interTight = Inter_Tight({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['400', '500', '700', '800'],
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="uk">
+    <html lang="uk" className={interTight.className}>
       <body>
         <AuthProvider>
           <ThemeProvider>

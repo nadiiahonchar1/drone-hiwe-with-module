@@ -1,6 +1,6 @@
 @import url('./normalize.css');
-@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap'); */
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +13,7 @@ body {
   height: 100%;
   background-color: var(--bgColor);
   color: var(--primaryColor);
-  font-family: 'Inter', sans-serif;
+  /* font-family: 'Inter', sans-serif; */
   display: flex;
   flex-direction: column;
   /* font-family: "Inter Tight", sans-serif; */
