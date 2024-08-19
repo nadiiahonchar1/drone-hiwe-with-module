@@ -1,5 +1,4 @@
 .form {
-  /* width: 100%; */
   padding: 40px;
   border-radius: 10px;
   background-color: var(--productList);
@@ -32,7 +31,6 @@
 }
 
 .button {
-  /* font-family: 'Inter Tight', Arial, Helvetica; */
   font-size: 16px;
   font-weight: 500;
   letter-spacing: 0.24px;

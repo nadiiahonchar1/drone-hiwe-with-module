@@ -1,6 +1,8 @@
 'use client';
+
 import React, { useState, FormEvent } from 'react';
-import { loginUser } from '../../api/auth';
+
+import { loginUser } from '@/app/admin/api/auth';
 import { useAuth } from '@/app/store/AuthContext';
 import style from './loginForm.module.css';
 

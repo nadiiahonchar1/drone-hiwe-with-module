@@ -7,17 +7,18 @@ import {
   SubmitHandler,
   FieldErrors,
 } from 'react-hook-form';
+
 import ProductNameInput from './ProductNameInput';
 import ProductImageInput from './ProductImageInput';
 import ProductDescriptionInput from './ProductDescriptionInput';
 import CategorySelect from './CategorySelect';
 import SimpleProduct from './SimpleProduct';
 import VariationInput from './VariationInput';
-import { addProduct } from '../../api/productsDB';
-import style from './productForm.module.css';
+import { addProduct } from '@/app/admin/api/productsDB';
 import FormData from '@/app/helpers/typings';
+import style from './productForm.module.css';
 
-const MAX_SIZE = 1 * 1024 * 1024; // 1 МБ
+const MAX_SIZE = 1 * 1024 * 1024;
 
 const ProductForm: React.FC = () => {
   const [subCategories, setSubCategories] = useState<string[]>([]);
@@ -115,10 +116,7 @@ const ProductForm: React.FC = () => {
       setSubCategories([]);
       setNumOfVariations(0);
       setVariationNames([]);
-      // setValue('productImageUrl', '');
       setValue('galleryImageUrls', [{ image: '' }]);
-      // setImgFile(null);
-      // setImgFileGallery([]);
     } catch (error) {
       console.error(error);
     }

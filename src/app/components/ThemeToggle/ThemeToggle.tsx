@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Theme, lightTheme, darkTheme } from '../../hooks/theme';
+
+import { Theme, lightTheme, darkTheme } from '@/app/hooks/theme';
 import style from './ThemeToggle.module.css';
 
 interface ThemeToggleProps {

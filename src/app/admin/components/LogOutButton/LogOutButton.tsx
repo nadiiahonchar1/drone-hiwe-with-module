@@ -1,6 +1,8 @@
 'use client';
+
 import React, { FormEvent } from 'react';
-import { logOut } from '../../api/auth';
+
+import { logOut } from '@/app/admin/api/auth';
 import { useAuth } from '@/app/store/AuthContext';
 import style from '../LoginForm/loginForm.module.css';
 

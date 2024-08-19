@@ -1,14 +1,16 @@
 'use client';
-import Link from '../Link';
-import headerNavLinks from '../../data/headerNavLinks';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Image from 'next/image';
-import Logo from '@/assets/Logo.png';
-import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
-import style from './header.module.css';
-import { useAuth } from '@/app/store/AuthContext';
-import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
+
 import { useState } from 'react';
+import Image from 'next/image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
+import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
+
+import Link from '../Link';
+import headerNavLinks from '@/app/data/headerNavLinks';
+import Logo from '@/assets/Logo.png';
+import { useAuth } from '@/app/store/AuthContext';
+import style from './header.module.css';
 
 const Header = () => {
   const { token } = useAuth();

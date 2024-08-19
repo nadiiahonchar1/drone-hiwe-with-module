@@ -149,7 +149,6 @@
     left: 0;
     right: 0;
     background-color: var(--productList);
-    /* border-top: 4px double var(--colorProduct); */
     transform: translateY(100%);
     transition: transform 0.5s ease;
   }

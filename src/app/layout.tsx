@@ -1,13 +1,15 @@
 import type { Metadata } from 'next';
 import { Inter_Tight } from 'next/font/google';
-import './styles/globals.css';
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
 import ThemeProvider from './hooks/ThemeProvider';
 import { AuthProvider } from './store/AuthContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Wrapper from './components/Wrapper/Wrapper';
-import { config } from '@fortawesome/fontawesome-svg-core';
-import '@fortawesome/fontawesome-svg-core/styles.css';
+import './styles/globals.css';
+
 config.autoAddCss = false;
 
 export const metadata: Metadata = {

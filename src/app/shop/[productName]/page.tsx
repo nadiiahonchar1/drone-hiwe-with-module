@@ -1,6 +1,8 @@
 'use client';
+
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+
 import Wrapper from '@/app/components/Wrapper/Wrapper';
 import { getProductByID } from '@/app/admin/api/productsDB';
 import { categories } from '@/app/data/categories';
@@ -40,16 +42,16 @@ export default function ProductItem(props: {
           <>
             <div className={style.productWrapper}>
               <div className={style.imgWrapper}>
-                <img
-                  className={style.img}
-                  src={product.productImageUrl}
-                  alt={product.productName}
-                />
-                {/* <Image
+                {/* <img
                   className={style.img}
                   src={product.productImageUrl}
                   alt={product.productName}
                 /> */}
+                <Image
+                  className={style.img}
+                  src={product.productImageUrl}
+                  alt={product.productName}
+                />
               </div>
               <div className={style.descriptionWrapper}>
                 <h1 className={style.title}>{product.productName} </h1>

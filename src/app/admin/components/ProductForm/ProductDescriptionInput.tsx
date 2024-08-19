@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { UseFormRegisterReturn, FieldError } from 'react-hook-form';
+
 import style from './productForm.module.css';
 
 interface ProductDescriptionInputProps {

@@ -1,5 +1,4 @@
 .button {
-  /* font-family: 'Inter Tight', Arial, Helvetica; */
   font-size: 16px;
   font-weight: 500;
   letter-spacing: 0.24px;
@@ -20,15 +19,6 @@
   transform: scale(1.02);
 }
 
-/* .baseButton {
-  border: 2px solid darkgray;
-  background-color: gray;
-}
-
-.submitButton {
-  composes: baseButton from "./base_button.css";
-  background-color: blue;
-} */
 @media screen and (max-width: 880px) {
   .button {
     width: 100%;

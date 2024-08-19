@@ -1,9 +1,10 @@
 'use client';
+
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import style from './contactForm.module.css';
-// import { registerCustomer } from '@/app/admin/api/customer';
+
 import { registerCustomer } from '@/app/admin/api/customerDB';
+import style from './contactForm.module.css';
 
 type FormValues = {
   name: string;

@@ -1,6 +1,8 @@
 'use client';
+
 import React, { useState, FormEvent } from 'react';
-import { changePassword } from '../../api/auth';
+
+import { changePassword } from '@/app/admin/api/auth';
 import style from '../LoginForm/loginForm.module.css';
 
 const ChangPasswordForm: React.FC = () => {

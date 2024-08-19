@@ -9,8 +9,8 @@ import {
   EmailAuthProvider,
   User,
 } from 'firebase/auth';
-
 import Cookies from 'js-cookie';
+
 import { app } from './firebase';
 
 const auth = getAuth(app);

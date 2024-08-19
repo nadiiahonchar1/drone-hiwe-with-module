@@ -1,6 +1,4 @@
 .img {
-  /* width: 264px;
-  height: 264px; */
   mask-image: url('../../../assets/mask-3.svg');
   -webkit-mask-image: url('../../../assets/mask-3.svg');
   mask-size: contain;

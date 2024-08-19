@@ -1,10 +1,12 @@
 'use client';
+
 import { useEffect, useRef, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from '../Link';
-import headerNavLinks from '../../data/headerNavLinks';
-import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 import Image from 'next/image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
+
+import Link from '../Link';
+import headerNavLinks from '@/app/data/headerNavLinks';
 import Logo from '@/assets/Logo.png';
 import dron from '@/assets/drone_6316693.png';
 import style from './footer.module.css';

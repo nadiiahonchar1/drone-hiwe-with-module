@@ -1,7 +1,9 @@
 'use client';
+
 import React from 'react';
-import style from './selectProduct.module.css';
+
 import { categories } from '@/app/data/categories';
+import style from './selectProduct.module.css';
 
 interface SelectProductProps {
   handleCategoryChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;

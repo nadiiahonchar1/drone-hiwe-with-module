@@ -1,8 +1,9 @@
-import style from './projects.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShuttleSpace } from '@fortawesome/free-solid-svg-icons';
 import { faCode } from '@fortawesome/free-solid-svg-icons';
 import { faIndustry } from '@fortawesome/free-solid-svg-icons';
+
+import style from './projects.module.css';
 
 export default function Project() {
   return (

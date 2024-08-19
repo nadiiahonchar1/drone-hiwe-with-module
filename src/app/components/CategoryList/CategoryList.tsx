@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
+
 import {
   getProductsByCategory,
   getProductsBySubCategory,
 } from '@/app/admin/api/productsDB';
-
-import style from './categoryList.module.css';
 import CustomLink from '../Link';
+import style from './categoryList.module.css';
 
 interface CategoryListProps {
   category: string;
@@ -72,16 +72,16 @@ const CategoryList: React.FC<CategoryListProps> = ({
                   product.id
                 }`}
               >
-                <img
-                  className={style.img}
-                  src={product.productImageUrl}
-                  alt={product.productName}
-                />
-                {/* <Image
+                {/* <img
                   className={style.img}
                   src={product.productImageUrl}
                   alt={product.productName}
                 /> */}
+                <Image
+                  className={style.img}
+                  src={product.productImageUrl}
+                  alt={product.productName}
+                />
                 <p className={style.text}>{product.productName}</p>
               </CustomLink>
             </li>

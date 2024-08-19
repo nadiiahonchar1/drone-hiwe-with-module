@@ -1,15 +1,17 @@
-import Wrapper from '../components/Wrapper/Wrapper';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import style from './services.module.css';
-import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
-import Button from '../components/Button/Button';
 import Image from 'next/image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+
+import Wrapper from '../components/Wrapper/Wrapper';
+import Button from '../components/Button/Button';
 import printer from '@/assets/3d_printing.png';
 import scaner from '@/assets/3d_scanner.png';
 import epoxy from '@/assets/epoxy.png';
 import carbo from '@/assets/carbo.png';
 import metal from '@/assets/metal_machining_producing_p.png';
 import pcb from '@/assets/pcb_creation_process-ar.png';
+import style from './services.module.css';
+
 export default function Services() {
   return (
     <Wrapper>

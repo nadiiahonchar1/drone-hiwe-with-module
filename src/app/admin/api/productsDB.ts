@@ -9,9 +9,10 @@ import {
   doc,
   getDoc,
 } from 'firebase/firestore';
-import { db } from './firebase';
 import Cookies from 'js-cookie';
+
 import FormData from '@/app/helpers/typings';
+import { db } from './firebase';
 
 export const addProduct = async (formData: FormData): Promise<any> => {
   const token = Cookies.get('token');
@@ -38,7 +39,6 @@ export const getProducts = async (): Promise<FormData[]> => {
       const data = doc.data() as FormData;
       myData.push({ ...data, id: doc.id });
     });
-    // console.log('getProducts myData', myData);
 
     return myData;
   } catch (e) {
@@ -62,7 +62,6 @@ export const getProductsByCategory = async (
       const data = doc.data() as FormData;
       myData.push({ ...data, id: doc.id });
     });
-    // console.log('getProductsByCategory myData', myData);
 
     return myData;
   } catch (e) {
@@ -89,7 +88,6 @@ export const getProductsBySubCategory = async (
       const data = doc.data() as FormData;
       myData.push({ ...data, id: doc.id });
     });
-    // console.log('getProductsBySubCategory myData', myData);
 
     return myData;
   } catch (e) {

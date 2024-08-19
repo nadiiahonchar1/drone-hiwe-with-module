@@ -2,9 +2,10 @@
 
 import React from 'react';
 import { FieldErrors } from 'react-hook-form';
-import style from './productForm.module.css';
+
 import FormData from '@/app/helpers/typings';
 import { categories } from '@/app/data/categories';
+import style from './productForm.module.css';
 
 interface CategorySelectProps {
   register: any;

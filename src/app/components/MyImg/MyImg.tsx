@@ -1,5 +1,6 @@
 import React from 'react';
 import Image, { StaticImageData } from 'next/image';
+
 import style from './myImg.module.css';
 
 interface MyImgProps {

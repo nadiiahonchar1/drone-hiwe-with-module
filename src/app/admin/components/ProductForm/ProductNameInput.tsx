@@ -1,6 +1,8 @@
 'use client';
+
 import React from 'react';
 import { UseFormRegister, FieldErrors } from 'react-hook-form';
+
 import style from './productForm.module.css';
 
 interface ProductNameInputProps {

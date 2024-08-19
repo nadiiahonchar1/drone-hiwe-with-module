@@ -1,10 +1,12 @@
 'use client';
+
 import Image from 'next/image';
 
-import style from './contacts.module.css';
-import img from '@/assets/banner-3.webp';
 import ContactForm from '../components/ContactForm/ContactForm';
 import Wrapper from '../components/Wrapper/Wrapper';
+import img from '@/assets/banner-3.webp';
+import style from './contacts.module.css';
+
 export default function Contact() {
   return (
     <Wrapper>

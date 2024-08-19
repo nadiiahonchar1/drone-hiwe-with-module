@@ -1,9 +1,10 @@
 'use client';
+
 import React, { useEffect, useState } from 'react';
-// import { getCustomer } from '../api/customer';
+
+import Wrapper from '@/app/components/Wrapper/Wrapper';
 import { getCustomer } from '../api/customerDB';
 import style from './customers.module.css';
-import Wrapper from '@/app/components/Wrapper/Wrapper';
 
 interface User {
   id?: string;
@@ -27,9 +28,8 @@ const Forms: React.FC = () => {
   useEffect(() => {
     getCustomer()
       .then((data: User[]) => {
-        // Перетворюємо User до Customer
         const customersData = data.map((user) => ({
-          id: user.id || '', // Встановлюємо пустий рядок якщо id undefined
+          id: user.id || '',
           name: user.name,
           phone: user.phone,
           email: user.email,

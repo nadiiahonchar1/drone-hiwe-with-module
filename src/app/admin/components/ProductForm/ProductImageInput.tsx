@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { UseFormRegisterReturn, FieldError } from 'react-hook-form';
+
 import style from './productForm.module.css';
 
 interface ProductImageInputProps {
