@@ -2,14 +2,12 @@
 
 import React from 'react';
 
+import style from './page.module.css';
+
 export default function Loading() {
   return (
-    <html>
-      <body>
-        <div>
-          <p>Loading ...</p>
-        </div>
-      </body>
-    </html>
+    <div className={style.loadContainer}>
+      <p className={style.loadText}>Loading ...</p>
+    </div>
   );
 }

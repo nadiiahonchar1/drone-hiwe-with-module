@@ -2,8 +2,8 @@
   background-color: var(--productList);
   padding: 20px;
   border-top: 4px double var(--colorProduct);
-  position: relative; /* додано для відносного позиціювання */
-  z-index: 10; /* збільшує пріоритет відображення */
+  position: relative;
+  z-index: 10;
 }
 
 .container {
@@ -32,24 +32,12 @@
   line-height: 1.25rem;
 }
 
-/* @media (min-width: 880px) {
-  .navLinks {
-    gap: 1rem;
-  }
-} */
-
 .navLink {
   position: relative;
   font-size: 1rem;
   font-weight: 500;
   color: var(--primaryColor);
 }
-
-/* @media (min-width: 640px) {
-  .navLink {
-    display: block;
-  }
-} */
 
 .cartIcon {
   margin-left: auto;
