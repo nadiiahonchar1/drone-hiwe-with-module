@@ -7,7 +7,7 @@ import style from './page.module.css';
 export default function Loading() {
   return (
     <div className={style.loadContainer}>
-      <p className={style.loadText}>Loading ...</p>
+      <p className={style.loadText}>Завантаження ...</p>
     </div>
   );
 }

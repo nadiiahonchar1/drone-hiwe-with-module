@@ -72,16 +72,16 @@ const CategoryList: React.FC<CategoryListProps> = ({
                   product.id
                 }`}
               >
-                {/* <img
-                  className={style.img}
-                  src={product.productImageUrl}
-                  alt={product.productName}
-                /> */}
-                <Image
+                <img
                   className={style.img}
                   src={product.productImageUrl}
                   alt={product.productName}
                 />
+                {/* <Image
+                  className={style.img}
+                  src={product.productImageUrl}
+                  alt={product.productName}
+                /> */}
                 <p className={style.text}>{product.productName}</p>
               </CustomLink>
             </li>
