@@ -20,6 +20,8 @@ export default function ProductItem(props: {
     [key: string]: string;
   }>({});
   const [price, setPrice] = useState<string>('');
+  const [sku, setSku] = useState<string>('');
+  const [availability, setAvailability] = useState<string>('');
 
   useEffect(() => {
     const fetchProductsByID = async () => {
@@ -84,6 +86,8 @@ export default function ProductItem(props: {
 
     if (matchedVariation) {
       setPrice(`${matchedVariation.price},00  ₴`);
+      setSku(matchedVariation.sku);
+      setAvailability(matchedVariation.availability);
     } else {
       setPrice('Нема в продажу такої конфігурації');
     }
@@ -136,7 +140,9 @@ export default function ProductItem(props: {
                     <>
                       {Object.keys(fields).map((key) => (
                         <div key={key} className={style.selectWrapper}>
-                          <label htmlFor={key}>{key}</label>
+                          <label className={style.sku} htmlFor={key}>
+                            {key}
+                          </label>
                           <select
                             id={key}
                             name={key}
@@ -152,11 +158,22 @@ export default function ProductItem(props: {
                           </select>
                         </div>
                       ))}
-                      <p className={style.price}>{price}</p>
+                      {price && (
+                        <>
+                          <p className={style.sku}>
+                            Вартість варіації:
+                            <span className={style.skuCat}>{price}</span>
+                          </p>
+                          <p className={style.availability}>{availability}</p>
+                          <p className={style.sku}>
+                            Артикул:<span className={style.skuCat}>{sku}</span>
+                          </p>
+                        </>
+                      )}
                     </>
                   )}
                   <p className={style.sku}>
-                    Категорія:{' '}
+                    Категорія:
                     <span className={style.skuCat}>
                       {getCategoryLabel(product.category)}
                     </span>
