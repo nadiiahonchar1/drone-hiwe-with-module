@@ -101,16 +101,16 @@ export default function ProductItem(props: {
           <>
             <div className={style.productWrapper}>
               <div className={style.imgWrapper}>
-                {/* <img
-                  className={style.img}
-                  src={product.productImageUrl}
-                  alt={product.productName}
-                /> */}
-                <Image
+                <img
                   className={style.img}
                   src={product.productImageUrl}
                   alt={product.productName}
                 />
+                {/* <Image
+                  className={style.img}
+                  src={product.productImageUrl}
+                  alt={product.productName}
+                /> */}
               </div>
               <div className={style.descriptionWrapper}>
                 <h1 className={style.title}>{product.productName} </h1>
