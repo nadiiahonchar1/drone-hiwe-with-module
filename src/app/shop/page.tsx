@@ -1,5 +1,6 @@
 import Product from '../components/Products/products';
 import Wrapper from '../components/Wrapper/Wrapper';
+import { ReduxProvider } from '../hooks/ReduxProvider';
 import style from './shop.module.css';
 
 export default function Shop() {
@@ -8,7 +9,9 @@ export default function Shop() {
       <section className={style.heroSection}>
         <h1 className={style.heroText}>Магазин</h1>
       </section>
-      <Product />
+      <ReduxProvider>
+        <Product />
+      </ReduxProvider>
     </Wrapper>
   );
 }
