@@ -2,8 +2,10 @@ import type { Metadata } from 'next';
 import { Inter_Tight } from 'next/font/google';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
+import { Provider } from 'react-redux';
 
 import ThemeProvider from './hooks/ThemeProvider';
+import { store } from './redux/store';
 import { AuthProvider } from './store/AuthContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -31,15 +33,17 @@ export default function RootLayout({
   return (
     <html lang="uk" className={interTight.className}>
       <body>
-        <AuthProvider>
-          <ThemeProvider>
-            <Header />
-            <main>
-              <Wrapper>{children}</Wrapper>
-            </main>
-            <Footer />
-          </ThemeProvider>
-        </AuthProvider>
+        <Provider store={store}>
+          <AuthProvider>
+            <ThemeProvider>
+              <Header />
+              <main>
+                <Wrapper>{children}</Wrapper>
+              </main>
+              <Footer />
+            </ThemeProvider>
+          </AuthProvider>
+        </Provider>
       </body>
     </html>
   );
