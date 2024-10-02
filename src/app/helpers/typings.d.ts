@@ -10,8 +10,8 @@ export default interface FormData {
   availability: string;
   sku: string;
   productImage?: FileList | null;
-  productImageUrl: string | null;
-  galleryImages?: { image: FileList | null }[];
-  galleryImageUrls: { image: string | null }[];
+  productImageUrl?: string | null;
+  galleryImages?: { image: File | null }[];
+  galleryImageUrls?: { image: string | null }[];
   variations: { [key: string]: any }[];
 }

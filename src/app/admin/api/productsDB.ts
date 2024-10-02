@@ -1,5 +1,7 @@
 'use client';
 
+import uuid4 from 'uuid4';
+
 import {
   collection,
   addDoc,
@@ -9,10 +11,22 @@ import {
   doc,
   getDoc,
 } from 'firebase/firestore';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import Cookies from 'js-cookie';
 
 import FormData from '@/app/helpers/typings';
 import { db } from './firebase';
+const storage = getStorage();
+
+const uploadImageToStorage = async (
+  image: File,
+  path: string
+): Promise<string> => {
+  const storageRef = ref(storage, `gs://drone-hive-d6daa.appspot.com/${path}`);
+  const snapshot = await uploadBytes(storageRef, image);
+  const downloadURL = await getDownloadURL(snapshot.ref);
+  return downloadURL;
+};
 
 export const addProduct = async (formData: FormData): Promise<any> => {
   const token = Cookies.get('token');
@@ -21,8 +35,40 @@ export const addProduct = async (formData: FormData): Promise<any> => {
     throw new Error('Користувач не авторизований');
   }
   try {
-    await addDoc(collection(db, 'products'), formData);
-    // console.log('formData', formData);
+    let productImageURL = '';
+    if (formData.productImage && formData.productImage.length > 0) {
+      const productImageFile = formData.productImage[0]; 
+      productImageURL = await uploadImageToStorage(
+        productImageFile,
+        `products/${uuid4()}`
+      );
+    }
+
+    let galleryImagesURLs: string[] = [];
+    if (
+      formData.galleryImages &&
+      Array.isArray(formData.galleryImages) &&
+      formData.galleryImages.length > 0
+    ) {
+      const urls = await Promise.all(
+        formData.galleryImages.map(async (galleryImage) => {
+          const imageFile = galleryImage.image; 
+          if (imageFile) {
+            return await uploadImageToStorage(imageFile, `products/${uuid4()}`);
+          }
+          return null; 
+        })
+      );
+      galleryImagesURLs = urls.filter((url): url is string => url !== null);
+    }
+    const productToUpload = {
+      ...formData,
+      productImageUrl: productImageURL,
+      galleryImageUrls: galleryImagesURLs,
+    }; 
+    delete productToUpload.productImage;
+    delete productToUpload.galleryImages;
+    await addDoc(collection(db, 'products'), productToUpload);
   } catch (e) {
     alert('Ой! Схоже ви розлогінились :(');
     console.error('Помилка при відправці даних форми реєстрації:', e);

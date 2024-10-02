@@ -1,56 +1,51 @@
 'use client'
+
 import { configureStore } from '@reduxjs/toolkit';
-import {
-  createAction,
-  createReducer,
-  UnknownAction,
-  PayloadAction,
-} from '@reduxjs/toolkit';
+import cartSlice from './cartSlice';
+// import {
+//   createAction,
+//   createReducer,
+//   UnknownAction,
+//   PayloadAction,
+// } from '@reduxjs/toolkit';
 
-interface CounterState {
-  value: number;
-}
-const initialState = { value: 0 } satisfies CounterState as CounterState;
+// interface CounterState {
+//   value: number;
+//   article: string;
+// }
+// const initialState: CounterState = { value: 0, article: '' };
 
-const increment = createAction<number>('myValue/increment');
-const decrement = createAction<number>('myValue/decrement');
+// interface ArticlePayload {
+//   value: number;
+//   article: string;
+// }
 
-function isActionWithNumberPayload(
-  action: UnknownAction
-): action is PayloadAction<number> {
-  return typeof action.payload === 'number';
-}
+// const articleIncrement = createAction<ArticlePayload>('myValue/increment');
+// const articleDecrement = createAction<ArticlePayload>('myValue/decrement');
 
-const myReducer = createReducer(
-  initialState,
-  //   {
-  //   [increment]: (state, action) => {
-  //     state + action.payload;
-  //   },
-  //   [decrement]: (state, action) => {
-  //     state - action.payload;
-  //   },
-  // }
-  (builder) => {
-    builder
-      .addCase(increment, (state, action) => {
-        state.value += action.payload;
-      })
-      .addCase(decrement, (state, action) => {
-        state.value -= action.payload;
-      })
-      // .addMatcher(isActionWithNumberPayload, (state, action) => {})
-      // .addDefaultCase((state, action) => {});
-  }
-);
+// const orderReducer = createReducer(
+//   initialState,
+//   (builder) => {
+//     builder
+//       .addCase(articleIncrement, (state, action) => {
+//         state.value += action.payload.value;
+//         state.article = action.payload.article;
+//       })
+//       .addCase(articleDecrement, (state, action) => {
+//         state.value -= action.payload.value;
+//         state.article = action.payload.article;
+//       });
+      
+//   }
+// );
 
 export const store = configureStore({
   reducer: {
-    myValue: myReducer,
+    cart: cartSlice,
   },
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
+
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+
 export type AppDispatch = typeof store.dispatch;

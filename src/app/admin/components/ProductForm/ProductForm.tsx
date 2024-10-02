@@ -18,8 +18,6 @@ import { addProduct } from '@/app/admin/api/productsDB';
 import FormData from '@/app/helpers/typings';
 import style from './productForm.module.css';
 
-const MAX_SIZE = 1 * 1024 * 1024;
-
 const ProductForm: React.FC = () => {
   const [subCategories, setSubCategories] = useState<string[]>([]);
   const [productImagePreview, setProductImagePreview] = useState<string | null>(
@@ -32,7 +30,6 @@ const ProductForm: React.FC = () => {
   const [variationNames, setVariationNames] = useState<string[]>([]);
   const [isNameVariations, setIsNameVariation] = useState(false);
   const [countArticle, setCountArticle] = useState<number>(0);
-  const [imgFile, setImgFile] = useState<File | null>(null);
   const [imgFileGallery, setImgFileGallery] = useState<File[]>([]);
 
   const {
@@ -58,8 +55,6 @@ const ProductForm: React.FC = () => {
       productImage: null,
       galleryImages: [{ image: null }],
       variations: [],
-      productImageUrl: '',
-      galleryImageUrls: [{ image: '' }],
     },
   });
 
@@ -74,40 +69,6 @@ const ProductForm: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
-      if (imgFile) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          data.productImageUrl = reader.result as string;
-        };
-        reader.readAsDataURL(imgFile);
-      }
-
-      const galleryImagePromises = imgFileGallery.map((file: File) => {
-        return new Promise<string>((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onloadend = () => {
-            resolve(reader.result as string);
-          };
-          reader.onerror = reject;
-          reader.readAsDataURL(file);
-        });
-      });
-
-      const galleryImages = await Promise.all(galleryImagePromises);
-      data.galleryImageUrls = galleryImages.map((image) => ({
-        image,
-      }));
-      delete data.productImage;
-      delete data.galleryImages;
-
-      const dataBlob = new Blob([JSON.stringify(data)], {
-        type: 'application/json',
-      });
-      if (dataBlob.size > MAX_SIZE) {
-        alert('Зменште кількість даних. Максимальний розмір - 1 МБ.');
-        return;
-      }
-
       await addProduct(data);
       alert('Продукт успішно завантажено');
       reset();
@@ -116,7 +77,6 @@ const ProductForm: React.FC = () => {
       setSubCategories([]);
       setNumOfVariations(0);
       setVariationNames([]);
-      setValue('galleryImageUrls', [{ image: '' }]);
     } catch (error) {
       console.error(error);
     }
@@ -138,7 +98,6 @@ const ProductForm: React.FC = () => {
 
   const handleProductImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file: File | null = e.target.files?.[0] ?? null;
-    setImgFile(file);
     if (file) {
       setProductImagePreview(URL.createObjectURL(file));
     }
