@@ -11,7 +11,7 @@ export default interface FormData {
   sku: string;
   productImage?: FileList | null;
   productImageUrl?: string | null;
-  galleryImages?: { image: File | null }[];
+  galleryImages?: { image: FileList | null }[];
   galleryImageUrls?: { image: string | null }[];
   variations: { [key: string]: any }[];
 }

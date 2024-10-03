@@ -50,13 +50,14 @@ export const addProduct = async (formData: FormData): Promise<any> => {
       Array.isArray(formData.galleryImages) &&
       formData.galleryImages.length > 0
     ) {
+      
       const urls = await Promise.all(
         formData.galleryImages.map(async (galleryImage) => {
-          const imageFile = galleryImage.image; 
-          if (imageFile) {
+          if (galleryImage.image && galleryImage.image[0] instanceof File) {
+            const imageFile = galleryImage.image[0];
             return await uploadImageToStorage(imageFile, `products/${uuid4()}`);
           }
-          return null; 
+          return null;
         })
       );
       galleryImagesURLs = urls.filter((url): url is string => url !== null);
