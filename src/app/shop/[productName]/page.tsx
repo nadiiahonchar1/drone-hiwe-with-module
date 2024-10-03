@@ -28,6 +28,7 @@ export default function ProductItem(props: {
       try {
         const fetchedProducts = await getProductByID(ID);
         setProduct(fetchedProducts);
+        console.log('product', fetchedProducts);
       } catch (error) {
         console.error('Error fetching products by ID:', error);
       }
@@ -114,15 +115,17 @@ export default function ProductItem(props: {
                 <div className={style.galery}>
                   {product.galleryImageUrls && (
                     <>
-                      {product.galleryImageUrls.map((galeryImg: string) => (
+                      {product.galleryImageUrls.map((galleryImg: string) => (
                         // <img
+                        //   key={galleryImg}
                         //   className={style.galeryImg}
-                        //   src={galeryImg}
+                        //   src={galleryImg}
                         //   alt={product.productName}
                         // />
                         <Image
+                          key={galleryImg}
                           className={style.galeryImg}
-                          src={galeryImg}
+                          src={galleryImg}
                           alt={product.productName}
                         />
                       ))}
