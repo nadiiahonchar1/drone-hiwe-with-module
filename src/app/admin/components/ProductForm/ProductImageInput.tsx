@@ -32,8 +32,8 @@ const ProductImageInput: React.FC<ProductImageInputProps> = ({
       />
       {errors && <p className={style.error}>{errors.message}</p>}
       {previewUrl && (
-        <img src={previewUrl} alt="Preview" className={style.img} />
-        // <Image src={previewUrl} alt="Preview" className={style.img} />
+        // <img src={previewUrl} alt="Preview" className={style.img} />
+        <Image src={previewUrl} alt="Preview" className={style.img} />
       )}
     </div>
   );
