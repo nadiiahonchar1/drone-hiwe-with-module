@@ -163,6 +163,11 @@
   flex-grow: 1;
 }
 
+.selectWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
 @media screen and (max-width: 880px) {
   .productWrapper {
     display: block;
