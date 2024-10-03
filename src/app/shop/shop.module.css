@@ -157,7 +157,9 @@
 .galeryImg {
   /* width: 100%; */
   border-radius: 10px;
-  flex-basis: 100px;
+  min-width: 100px;
+  max-width: 200px;
+  /* flex-basis: 100px; */
   flex-grow: 1;
 }
 
