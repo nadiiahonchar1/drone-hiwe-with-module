@@ -31,11 +31,11 @@
 }
 
 .imgWrapper {
-  flex-basis: calc((100% - 20px) / 3);
+  width: calc((100% - 20px) / 3);
 }
 
 .descriptionWrapper {
-  width: calc(((100% - 20px) / 3) * 2);
+  flex-basis: calc(((100% - 20px) / 3) * 2);
   min-width: 440px;
   margin-bottom: 20px;
 }
