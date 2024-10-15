@@ -25,7 +25,7 @@
 
 .productWrapper {
   display: flex;
-  width: 100%;
+  /* width: 100%; */
   gap: 20px;
   padding: 20px;
 }
@@ -36,12 +36,13 @@
 
 .descriptionWrapper {
   flex-basis: calc(((100% - 20px) / 3) * 2);
-  min-width: 440px;
+  min-width: 320px;
   margin-bottom: 20px;
 }
 
 .img {
   width: 100%;
+  height: auto;
   border-radius: 10px;
 }
 
@@ -114,6 +115,8 @@
   letter-spacing: 0.285px;
   font-weight: 700;
   font-size: 36px;
+  word-break: break-all;
+  overflow-wrap: break-word;
 }
 
 .descriptionArticle {
@@ -155,14 +158,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  /* flex-wrap: wrap; */
 }
 .galeryImg {
-  /* width: 100%; */
   border-radius: 10px;
-  /* min-width: 100px; */
   max-width: 200px;
-  /* flex-basis: 100px; */
+  height: auto;
   flex-grow: 1;
 }
 
@@ -189,5 +189,9 @@
 
   .shortDescription h3 {
     font-size: 24px;
+  }
+
+  .imgWrapper {
+    width: 100%;
   }
 }

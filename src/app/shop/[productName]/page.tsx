@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-import Wrapper from '@/app/components/Wrapper/Wrapper';
 import { getProductByID } from '@/app/admin/api/productsDB';
 import { categories } from '@/app/data/categories';
 import style from '../shop.module.css';
@@ -95,123 +94,112 @@ export default function ProductItem(props: {
   const fields = uniqueFields();
 
   return (
-    <Wrapper>
-      <section>
-        {product && (
-          <>
-            <div className={style.productWrapper}>
-              <div className={style.imgWrapper}>
-                {/* <img
-                  className={style.img}
-                  src={product.productImageUrl}
-                  alt={product.productName}
-                /> */}
-                <Image
-                  className={style.img}
-                  src={product.productImageUrl}
-                  alt={product.productName}
-                />
-                <div className={style.galery}>
-                  {product.galleryImageUrls && (
-                    <>
-                      {product.galleryImageUrls.map((galleryImg: string) => (
-                        // <img
-                        //   key={galleryImg}
-                        //   className={style.galeryImg}
-                        //   src={galleryImg}
-                        //   alt={product.productName}
-                        // />
-                        <Image
-                          key={galleryImg}
-                          className={style.galeryImg}
-                          src={galleryImg}
-                          alt={product.productName}
-                        />
-                      ))}
-                    </>
-                  )}
-                </div>
-              </div>
-              <div className={style.descriptionWrapper}>
-                <h1 className={style.title}>{product.productName} </h1>
-                <div className={style.priceWrapper}>
-                  {product.productType === 'simple' ? (
-                    <>
-                      <p className={style.price}>{product.price},00 &#8372;</p>
-                      <p className={style.availability}>
-                        {product.availability}
-                      </p>
-                    </>
-                  ) : (
-                    <p className={style.price}>
-                      {getPriceRange(product.variations)}
-                    </p>
-                  )}
-                </div>
-                <div
-                  className={style.shortDescription}
-                  dangerouslySetInnerHTML={{ __html: product.shortDescription }}
-                />
-                <div>
-                  {product.productType === 'simple' ? (
-                    <p className={style.sku}>Артикул: {product.sku}</p>
-                  ) : (
-                    <>
-                      {Object.keys(fields).map((key) => (
-                        <div key={key} className={style.selectWrapper}>
-                          <label className={style.sku} htmlFor={key}>
-                            {key}
-                          </label>
-                          <select
-                            id={key}
-                            name={key}
-                            onChange={handleSelectChange}
-                            className={style.select}
-                          >
-                            <option value="">Оберіть варіант</option>
-                            {[...fields[key]].map((option) => (
-                              <option key={option} value={option}>
-                                {option}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      ))}
-                      {price && (
-                        <>
-                          <p className={style.sku}>
-                            Вартість варіації:
-                            <span className={style.skuCat}>{price}</span>
-                          </p>
-                          <p className={style.availability}>{availability}</p>
-                          <p className={style.sku}>
-                            Артикул:<span className={style.skuCat}>{sku}</span>
-                          </p>
-                        </>
-                      )}
-                    </>
-                  )}
-                  <p className={style.sku}>
-                    Категорія:
-                    <span className={style.skuCat}>
-                      {getCategoryLabel(product.category)}
-                    </span>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className={style.descriptionArticle}>
-              <p className={style.description}>Опис</p>
-              <div
-                className={style.productDescription}
-                dangerouslySetInnerHTML={{
-                  __html: product.productDescription,
-                }}
+    <section>
+      {product && (
+        <>
+          <div className={style.productWrapper}>
+            <div className={style.imgWrapper}>
+              <Image
+                className={style.img}
+                src={product.productImageUrl}
+                alt={product.productName}
+                width={200}
+                height={200}
               />
+              <div className={style.galery}>
+                {product.galleryImageUrls && (
+                  <>
+                    {product.galleryImageUrls.map((galleryImg: string) => (
+                      <Image
+                        key={galleryImg}
+                        className={style.galeryImg}
+                        src={galleryImg}
+                        alt={product.productName}
+                        width={100}
+                        height={100}
+                      />
+                    ))}
+                  </>
+                )}
+              </div>
             </div>
-          </>
-        )}
-      </section>
-    </Wrapper>
+            <div className={style.descriptionWrapper}>
+              <h1 className={style.title}>{product.productName} </h1>
+              <div className={style.priceWrapper}>
+                {product.productType === 'simple' ? (
+                  <>
+                    <p className={style.price}>{product.price},00 &#8372;</p>
+                    <p className={style.availability}>{product.availability}</p>
+                  </>
+                ) : (
+                  <p className={style.price}>
+                    {getPriceRange(product.variations)}
+                  </p>
+                )}
+              </div>
+              <div
+                className={style.shortDescription}
+                dangerouslySetInnerHTML={{ __html: product.shortDescription }}
+              />
+              <div>
+                {product.productType === 'simple' ? (
+                  <p className={style.sku}>Артикул: {product.sku}</p>
+                ) : (
+                  <>
+                    {Object.keys(fields).map((key) => (
+                      <div key={key} className={style.selectWrapper}>
+                        <label className={style.sku} htmlFor={key}>
+                          {key}
+                        </label>
+                        <select
+                          id={key}
+                          name={key}
+                          onChange={handleSelectChange}
+                          className={style.select}
+                        >
+                          <option value="">Оберіть варіант</option>
+                          {[...fields[key]].map((option) => (
+                            <option key={option} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    ))}
+                    {price && (
+                      <>
+                        <p className={style.sku}>
+                          Вартість варіації:
+                          <span className={style.skuCat}>{price}</span>
+                        </p>
+                        <p className={style.availability}>{availability}</p>
+                        <p className={style.sku}>
+                          Артикул:<span className={style.skuCat}>{sku}</span>
+                        </p>
+                      </>
+                    )}
+                  </>
+                )}
+                <p className={style.sku}>
+                  Категорія:
+                  <span className={style.skuCat}>
+                    {getCategoryLabel(product.category)}
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className={style.descriptionArticle}>
+            <p className={style.description}>Опис</p>
+            <div
+              className={style.productDescription}
+              dangerouslySetInnerHTML={{
+                __html: product.productDescription,
+              }}
+            />
+          </div>
+        </>
+      )}
+    </section>
   );
 }
