@@ -201,7 +201,7 @@ export default function Services() {
                   <h3 className={style.listTitle}>Метало-обробка</h3>
                   <Image
                     src={metal}
-                    alt="Метало-обробкак"
+                    alt="Метало-обробка"
                     className={style.img}
                   />
                 </article>

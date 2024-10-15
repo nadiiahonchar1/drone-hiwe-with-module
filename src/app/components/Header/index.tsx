@@ -32,6 +32,8 @@ const Header = () => {
                   alt="Logo icon"
                   priority={true}
                   className={style.logo}
+                  width={700}
+                  height={69}
                 />
               </div>
             </div>
