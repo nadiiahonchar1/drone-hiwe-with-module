@@ -60,8 +60,8 @@ export default function Home() {
           <MyImg
             imgSrc={droneEngineer}
             alt="Зображення інженера"
-            width={432}
-            height={432}
+            width={400}
+            height={400}
           />
           <div>
             <h2 className={style.productionTitle}>
@@ -90,8 +90,8 @@ export default function Home() {
           <MyImg
             imgSrc={quadrocopter}
             alt="Зображення квадрокоптера"
-            width={432}
-            height={432}
+            width={400}
+            height={400}
           />
         </div>
       </section>
