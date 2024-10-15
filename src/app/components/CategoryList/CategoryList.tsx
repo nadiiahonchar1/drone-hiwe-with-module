@@ -68,6 +68,7 @@ const CategoryList: React.FC<CategoryListProps> = ({
           {products.map((product) => (
             <li className={style.item} key={product.id}>
               <CustomLink
+                className={style.link}
                 href={`/shop/${formatProductNameForURL(product.productName)}__${
                   product.id
                 }`}

@@ -59,6 +59,10 @@
   text-transform: uppercase;
 }
 
+.link {
+  width: 100%;
+}
+
 @media screen and (max-width: 990px) {
   .item {
     flex-basis: calc((100% - 24px) / 2);
