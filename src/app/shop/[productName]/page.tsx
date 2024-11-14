@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 
+import { useDispatch } from 'react-redux';
+import { addToCart } from '@/app/redux/cartSlice';
 import { getProductByID } from '@/app/admin/api/productsDB';
 import { categories } from '@/app/data/categories';
 import style from '../shop.module.css';
@@ -14,7 +16,9 @@ export default function ProductItem(props: {
   const { params } = props;
   const ID = params.productName.split('__')[1];
 
+  const dispatch = useDispatch();
   const [product, setProduct] = useState<any>(null);
+  const [quantity, setQuantity] = useState<number>(1);
   const [selectedValues, setSelectedValues] = useState<{
     [key: string]: string;
   }>({});
@@ -93,6 +97,23 @@ export default function ProductItem(props: {
 
   const fields = uniqueFields();
 
+  const handleQuantityChange = (value: number) => {
+    setQuantity((prev) => Math.max(1, prev + value));
+  };
+
+  const handleAddToCart = () => {
+    if (!product) return;
+
+    dispatch(
+      addToCart({
+        id: ID,
+        article: product.sku,
+        quantity,
+        total: product.price * quantity,
+      })
+    );
+  };
+
   return (
     <section>
       {product && (
@@ -141,6 +162,17 @@ export default function ProductItem(props: {
                 className={style.shortDescription}
                 dangerouslySetInnerHTML={{ __html: product.shortDescription }}
               />
+              <div className={style.quantityWrapper}>
+                <button onClick={() => handleQuantityChange(-1)}>-</button>
+                <span>{quantity}</span>
+                <button onClick={() => handleQuantityChange(1)}>+</button>
+              </div>
+              <button
+                className={style.addToCartButton}
+                onClick={handleAddToCart}
+              >
+                Додати до кошика
+              </button>
               <div>
                 {product.productType === 'simple' ? (
                   <p className={style.sku}>Артикул: {product.sku}</p>
