@@ -198,7 +198,6 @@
   display: inline-block;
   border-radius: 8px;
   overflow: hidden;
-  margin-right: 16px;
 }
 
 .quantityButton {
@@ -215,6 +214,7 @@
 
 .flexContainer {
   display: flex;
+  gap: 16px;
   align-items: center;
 }
 
@@ -239,12 +239,11 @@
   .imgWrapper {
     width: 100%;
   }
+
   .flexContainer {
     display: block;
   }
-  .quantityWrapper {
-    margin-right: 0;
-  }
+
   .button {
     margin-top: 16px;
     display: block;
