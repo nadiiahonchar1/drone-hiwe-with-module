@@ -107,7 +107,7 @@ export default function ProductItem(props: {
     dispatch(
       addToCart({
         id: ID,
-        article: product.sku,
+        article: product.productName,
         quantity,
         total: product.price * quantity,
       })
@@ -162,17 +162,26 @@ export default function ProductItem(props: {
                 className={style.shortDescription}
                 dangerouslySetInnerHTML={{ __html: product.shortDescription }}
               />
-              <div className={style.quantityWrapper}>
-                <button onClick={() => handleQuantityChange(-1)}>-</button>
-                <span>{quantity}</span>
-                <button onClick={() => handleQuantityChange(1)}>+</button>
+              <div className={style.flexContainer}>
+                <div className={style.quantityWrapper}>
+                  <button
+                    className={style.quantityButton}
+                    onClick={() => handleQuantityChange(-1)}
+                  >
+                    -
+                  </button>
+                  <span className={style.quantity}>{quantity}</span>
+                  <button
+                    className={style.quantityButton}
+                    onClick={() => handleQuantityChange(1)}
+                  >
+                    +
+                  </button>
+                </div>
+                <button className={style.button} onClick={handleAddToCart}>
+                  Додати до кошика
+                </button>
               </div>
-              <button
-                className={style.addToCartButton}
-                onClick={handleAddToCart}
-              >
-                Додати до кошика
-              </button>
               <div>
                 {product.productType === 'simple' ? (
                   <p className={style.sku}>Артикул: {product.sku}</p>

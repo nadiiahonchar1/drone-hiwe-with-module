@@ -16,29 +16,6 @@ const initialState: CartState = {
   items: [],
 };
 
-// export const cartSlice = createSlice({
-//   name: 'cart',
-//   initialState,
-//   reducers: {
-//     increment: (
-//       state,
-//       action: PayloadAction<{ article: string; price: number }>
-//     ) => {
-//       state.quantity += 1;
-//       state.article = action.payload.article;
-//       state.total += action.payload.price;
-//     },
-//     decrement: (
-//       state,
-//       action: PayloadAction<{ article: string; price: number }>
-//     ) => {
-//       state.quantity = Math.max(0, state.quantity - 1);
-//       state.article = action.payload.article;
-//       state.total = Math.max(0, state.total - action.payload.price);
-//     },
-//   },
-// });
-
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
@@ -56,10 +33,6 @@ const cartSlice = createSlice({
     },
   },
 });
-
-// export const { increment, decrement } = cartSlice.actions;
-
-// export default cartSlice.reducer;
 
 export const { addToCart } = cartSlice.actions;
 export default cartSlice.reducer;
