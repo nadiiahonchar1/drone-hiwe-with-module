@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-
 import { useDispatch } from 'react-redux';
+
 import { addToCart } from '@/app/redux/cartSlice';
 import { getProductByID } from '@/app/admin/api/productsDB';
 import { categories } from '@/app/data/categories';
@@ -11,7 +11,7 @@ import style from '../shop.module.css';
 
 export default function ProductItem(props: {
   params: { productName: string };
-  searchParams: {};
+  searchParams: Record<string, string> | null | undefined;
 }) {
   const { params } = props;
   const ID = params.productName.split('__')[1];
@@ -102,14 +102,16 @@ export default function ProductItem(props: {
   };
 
   const handleAddToCart = () => {
-    if (!product) return;
-
+    if (!price) return;
+    const cleanPrice = parseFloat(
+      price.replace(/[^\d,.-]/g, '').replace(',', '.')
+    );
     dispatch(
       addToCart({
         id: ID,
-        article: product.productName,
+        article: sku,
         quantity,
-        total: product.price * quantity,
+        total: Number(cleanPrice) * Number(quantity),
       })
     );
   };
