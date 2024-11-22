@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import { addToCart } from '@/app/redux/cartSlice';
 import { getProductByID } from '@/app/admin/api/productsDB';
@@ -102,18 +103,37 @@ export default function ProductItem(props: {
   };
 
   const handleAddToCart = () => {
-    if (!price) return;
     const cleanPrice = parseFloat(
       price.replace(/[^\d,.-]/g, '').replace(',', '.')
     );
-    dispatch(
-      addToCart({
-        id: ID,
-        article: sku,
-        quantity,
-        total: Number(cleanPrice) * Number(quantity),
-      })
-    );
+    if (product.productType === 'simple' && !product.price) {
+      return toast.warn('Оберіть потрібну конфігурацію');
+    }
+    if (
+      (product.productType === 'variable' && !cleanPrice) ||
+      (product.productType === 'variable' && isNaN(cleanPrice))
+    ) {
+      return toast.warn('Оберіть потрібну конфігурацію');
+    }
+    product.productType === 'variable'
+      ? dispatch(
+          addToCart({
+            id: ID,
+            article: sku,
+            quantity,
+            total: Number(cleanPrice) * Number(quantity),
+            variation: selectedValues,
+          })
+        )
+      : dispatch(
+          addToCart({
+            id: ID,
+            article: product.sku,
+            quantity,
+            total: Number(product.price) * Number(quantity),
+          })
+        );
+    toast.info('Товар додано до корзини');
   };
 
   return (

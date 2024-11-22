@@ -7,6 +7,7 @@ export interface CartItem {
   article: string;
   quantity: number;
   total: number;
+  variation?: {};
 }
 
 interface CartState {

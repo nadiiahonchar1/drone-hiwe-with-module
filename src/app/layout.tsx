@@ -3,6 +3,8 @@ import { Inter_Tight } from 'next/font/google';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import Provider from './redux/Provider';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import ThemeProvider from './hooks/ThemeProvider';
 import { store } from './redux/store';
@@ -39,6 +41,7 @@ export default function RootLayout({
               <Header />
               <main>
                 <Wrapper>{children}</Wrapper>
+                <ToastContainer />
               </main>
               <Footer />
             </ThemeProvider>
