@@ -1,0 +1,15 @@
+.emptyCart {
+  text-align: center;
+}
+.emptyCart::before {
+  background-color: currentColor;
+  content: '';
+  display: block;
+  height: 5em;
+  margin: 0 auto 2em;
+  mask-image: url('../../assets/emptyCart.svg');
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: 5em;
+  width: 5em;
+}
