@@ -1,10 +1,8 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/app/redux/store';
-// import EmptyCart from '@/assets/emptyCart.svg';
 import style from './cart.module.css';
 
 export default function Cart() {
@@ -24,13 +22,6 @@ export default function Cart() {
         ))
       ) : (
         <>
-          {/* <Image
-            className={style.emo}
-            src={EmptyCart}
-            alt="Сумний смайлик"
-            width={100}
-            height={100}
-          /> */}
           <h3 className={style.emptyCart}>Ваш кошик зараз порожній!</h3>
         </>
       )}

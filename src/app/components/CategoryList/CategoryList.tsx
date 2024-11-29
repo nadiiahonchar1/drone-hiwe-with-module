@@ -1,10 +1,13 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
+import { useSelector } from 'react-redux';
 
+import { RootState } from '@/app/redux/store';
+import { useAppDispatch } from '@/app/helpers/useAppDispatch';
 import {
-  getProductsByCategory,
-  getProductsBySubCategory,
-} from '@/app/admin/api/productsDB';
+  fetchProductsByCategory,
+  fetchProductsBySubCategory,
+} from '@/app/redux/goods';
 import CustomLink from '../Link';
 import style from './categoryList.module.css';
 
@@ -17,41 +20,24 @@ const CategoryList: React.FC<CategoryListProps> = ({
   category,
   subCategory,
 }) => {
-  const [products, setProducts] = useState<any[]>([]);
-  const isFirstRender = useRef(true);
+  const dispatch = useAppDispatch();
+  const {
+    items: products,
+    status,
+    error,
+  } = useSelector((state: RootState) => state.products);
 
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
+    if (category) {
+      dispatch(fetchProductsByCategory(category));
     }
-
-    const fetchProductsByCategory = async () => {
-      try {
-        const fetchedProducts = await getProductsByCategory(category);
-        setProducts(fetchedProducts);
-      } catch (error) {
-        console.error('Error fetching products by category:', error);
-      }
-    };
-
-    fetchProductsByCategory();
-  }, [category]);
+  }, [dispatch, category]);
 
   useEffect(() => {
-    const fetchProductsBySubCategory = async () => {
-      if (!subCategory) return;
-
-      try {
-        const fetchedProducts = await getProductsBySubCategory(subCategory);
-        setProducts(fetchedProducts);
-      } catch (error) {
-        console.error('Error fetching products by subcategory:', error);
-      }
-    };
-
-    fetchProductsBySubCategory();
-  }, [subCategory]);
+    if (subCategory) {
+      dispatch(fetchProductsBySubCategory(subCategory));
+    }
+  }, [dispatch, subCategory]);
 
   const formatProductNameForURL = (productName: string) => {
     return productName
@@ -65,7 +51,7 @@ const CategoryList: React.FC<CategoryListProps> = ({
         <p>На жаль тут поки пусто :(</p>
       ) : (
         <ul className={style.list}>
-          {products.map((product) => (
+          {products.map((product: any) => (
             <li className={style.item} key={product.id}>
               <CustomLink
                 className={style.link}
