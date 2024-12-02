@@ -2,22 +2,24 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
-import { addToCart } from '@/app/redux/cartSlice';
-import { RootState } from '@/app/redux/store';
+import { addToCart } from '@/lib/features/cart/cartSlice';
 import { categories } from '@/app/data/categories';
+import { useAppSelector, useAppDispatch, useAppStore } from '@/lib/hooks';
+
 import style from '../shop.module.css';
 
 export default function ProductItem(props: {
-  params: { productName: string };
+  params: Promise<{ productName: string }>;
 }) {
-  const { params } = props;
+  const store = useAppStore();
+  const dispatch = useAppDispatch();
+
+  const params = React.use(props.params);
   const ID = params.productName.split('__')[1];
 
-  const dispatch = useDispatch();
-  const product = useSelector((state: RootState) =>
+  const product = useAppSelector((state) =>
     state.products.items.find((item: any) => item.id === ID)
   );
 

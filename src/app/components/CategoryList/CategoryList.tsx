@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
 
-import { RootState } from '@/app/redux/store';
+import { RootState } from '@/lib/store';
 import { useAppDispatch } from '@/app/helpers/useAppDispatch';
 import {
   fetchProductsByCategory,
   fetchProductsBySubCategory,
-} from '@/app/redux/goods';
+} from '@/lib/features/products/goods';
 import CustomLink from '../Link';
 import style from './categoryList.module.css';
 

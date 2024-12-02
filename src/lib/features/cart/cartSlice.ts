@@ -1,18 +1,21 @@
 'use client'
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { CartItem, CartState } from '@/app/helpers/typings';
+// import CartItem from '@/app/helpers/typings';
+// import CartState from '@/app/helpers/typings';
 
-export interface CartItem {
-  id: string;
-  article: string;
-  quantity: number;
-  total: number;
-  variation?: {};
-}
+// export interface CartItem {
+//   id: string;
+//   article: string;
+//   quantity: number;
+//   total: number;
+//   variation?: {};
+// }
 
-interface CartState {
-  items: CartItem[];
-}
+// interface CartState {
+//   items: CartItem[];
+// }
 
 const initialState: CartState = {
   items: [],

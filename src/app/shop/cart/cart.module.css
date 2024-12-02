@@ -7,7 +7,7 @@
   display: block;
   height: 5em;
   margin: 0 auto 2em;
-  mask-image: url('../../assets/emptyCart.svg');
+  mask-image: url('../../../assets/emptyCart.svg');
   mask-position: center;
   mask-repeat: no-repeat;
   mask-size: 5em;

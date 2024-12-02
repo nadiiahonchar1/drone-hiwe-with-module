@@ -142,7 +142,7 @@ const Header = () => {
           )}
         </div>
         <div className={style.cartBox}>
-          <Link href="/cart" aria-label="Cart">
+          <Link href="/shop/cart" aria-label="Cart">
             <ShoppingBasketOutlinedIcon
               sx={{ color: '#8e8001', fontSize: 40 }}
             />

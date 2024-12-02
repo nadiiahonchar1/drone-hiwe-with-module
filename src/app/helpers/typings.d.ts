@@ -15,3 +15,15 @@ export default interface FormData {
   galleryImageUrls?: { image: string | null }[];
   variations: { [key: string]: any }[];
 }
+
+export interface CartItem {
+  id: string;
+  article: string;
+  quantity: number;
+  total: number;
+  variation?: {};
+}
+
+export interface CartState {
+  items: CartItem[];
+}
