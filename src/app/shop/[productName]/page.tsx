@@ -6,20 +6,21 @@ import { toast } from 'react-toastify';
 
 import { addToCart } from '@/lib/features/cart/cartSlice';
 import { categories } from '@/app/data/categories';
-import { useAppSelector, useAppDispatch, useAppStore } from '@/lib/hooks';
+// import { useAppSelector, useAppDispatch, useAppStore } from '@/lib/hooks';
+import { useDispatch, useSelector, useStore } from 'react-redux';
 
 import style from '../shop.module.css';
 
 export default function ProductItem(props: {
   params: Promise<{ productName: string }>;
 }) {
-  const store = useAppStore();
-  const dispatch = useAppDispatch();
+  const store = useStore();
+  const dispatch = useDispatch();
 
   const params = React.use(props.params);
   const ID = params.productName.split('__')[1];
 
-  const product = useAppSelector((state) =>
+  const product = useSelector((state) =>
     state.products.items.find((item: any) => item.id === ID)
   );
 

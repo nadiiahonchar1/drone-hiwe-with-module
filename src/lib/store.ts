@@ -1,18 +1,20 @@
 'use client'
-
 import { configureStore } from '@reduxjs/toolkit';
+import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux';
 import cartSlice from './features/cart/cartSlice';
 import productsReducer from './features/products/productSlice';
 
-export const makeStore = () => {
-  return configureStore({
-    reducer: {
-      cart: cartSlice,
-      products: productsReducer,
-    },
-  });
-};
+const store = configureStore({
+  reducer: {
+    cart: cartSlice,
+    products: productsReducer,
+  },
+});
 
-export type AppStore = ReturnType<typeof makeStore>;
-export type RootState = ReturnType<AppStore['getState']>;
-export type AppDispatch = AppStore['dispatch'];
+export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch: () => AppDispatch = useDispatch;
+
+export type RootState = ReturnType<typeof store.getState>;
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+
+export default store;

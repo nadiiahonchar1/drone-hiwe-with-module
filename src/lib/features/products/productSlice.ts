@@ -21,13 +21,18 @@ const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
+    setCategory: (state, action: PayloadAction<string>) => {
+      state.currentCategory = action.payload;
+    },
+    setSubCategory: (state, action: PayloadAction<string | null>) => {
+      state.currentSubCategory = action.payload;
+    },
     selectProductById: (state, action: PayloadAction<string>) => {
       const product = state.items.find((item) => item.id === action.payload);
       state.selectedProduct = product || null;
     },
   },
   extraReducers: (builder) => {
-    // Обробка категорій
     builder
       .addCase(fetchCategoryIfNeeded.pending, (state) => {
         state.status = 'loading';
@@ -38,7 +43,7 @@ const productsSlice = createSlice({
         if (products) {
           state.items.push(...products);
           state.loadedCategories.push(category);
-          state.currentCategory = category; // Зберігаємо поточну категорію
+          state.currentCategory = category;
         }
         state.status = 'succeeded';
       })
@@ -46,8 +51,6 @@ const productsSlice = createSlice({
         state.status = 'failed';
         state.error = action.error.message || 'Failed to load category';
       });
-
-    // Обробка підкатегорій
     builder
       .addCase(fetchSubCategoryIfNeeded.pending, (state) => {
         state.status = 'loading';
@@ -58,16 +61,18 @@ const productsSlice = createSlice({
         if (products) {
           state.items.push(...products);
           state.loadedSubCategories.push(subCategory);
-          state.currentSubCategory = subCategory; // Зберігаємо поточну підкатегорію
+          state.currentSubCategory = subCategory;
         }
         state.status = 'succeeded';
       })
       .addCase(fetchSubCategoryIfNeeded.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message || 'Failed to load subcategory';
-      });    
+      });
   },
 });
 
-export const { selectProductById } = productsSlice.actions;
+// export const { selectProductById } = productsSlice.actions;
+export const { setCategory, setSubCategory, selectProductById } =
+  productsSlice.actions;
 export default productsSlice.reducer;
