@@ -1,19 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ProductState } from '@/app/helpers/typings';
 import {
-  fetchProductsByCategory,
-  fetchProductsBySubCategory,
-  fetchProductByID,
+  fetchSubCategoryIfNeeded,
+  fetchCategoryIfNeeded,
 } from './goods';
 
-interface ProductState {
-  items: any;
-  selectedProduct: any;
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
-  error: string | null;
-}
 
 const initialState: ProductState = {
   items: [],
+  loadedCategories: [],
+  loadedSubCategories: [],
+  currentCategory: null,
+  currentSubCategory: null,
   selectedProduct: null,
   status: 'idle',
   error: null,
@@ -22,46 +20,54 @@ const initialState: ProductState = {
 const productsSlice = createSlice({
   name: 'products',
   initialState,
-  reducers: {},
+  reducers: {
+    selectProductById: (state, action: PayloadAction<string>) => {
+      const product = state.items.find((item) => item.id === action.payload);
+      state.selectedProduct = product || null;
+    },
+  },
   extraReducers: (builder) => {
+    // Обробка категорій
     builder
-      .addCase(fetchProductsByCategory.pending, (state) => {
+      .addCase(fetchCategoryIfNeeded.pending, (state) => {
         state.status = 'loading';
         state.error = null;
       })
-      .addCase(fetchProductsByCategory.fulfilled, (state, action) => {
+      .addCase(fetchCategoryIfNeeded.fulfilled, (state, action) => {
+        const { category, products } = action.payload;
+        if (products) {
+          state.items.push(...products);
+          state.loadedCategories.push(category);
+          state.currentCategory = category; // Зберігаємо поточну категорію
+        }
         state.status = 'succeeded';
-        state.items = action.payload;
       })
-      .addCase(fetchProductsByCategory.rejected, (state, action) => {
+      .addCase(fetchCategoryIfNeeded.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.payload as string;
-      })
-      .addCase(fetchProductsBySubCategory.pending, (state) => {
-        state.status = 'loading';
-        state.error = null;
-      })
-      .addCase(fetchProductsBySubCategory.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.items = action.payload;
-      })
-      .addCase(fetchProductsBySubCategory.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.payload as string;
-      })
-      .addCase(fetchProductByID.pending, (state) => {
-        state.status = 'loading';
-        state.error = null;
-      })
-      .addCase(fetchProductByID.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.selectedProduct = action.payload || null;
-      })
-      .addCase(fetchProductByID.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.payload as string;
+        state.error = action.error.message || 'Failed to load category';
       });
+
+    // Обробка підкатегорій
+    builder
+      .addCase(fetchSubCategoryIfNeeded.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(fetchSubCategoryIfNeeded.fulfilled, (state, action) => {
+        const { subCategory, products } = action.payload;
+        if (products) {
+          state.items.push(...products);
+          state.loadedSubCategories.push(subCategory);
+          state.currentSubCategory = subCategory; // Зберігаємо поточну підкатегорію
+        }
+        state.status = 'succeeded';
+      })
+      .addCase(fetchSubCategoryIfNeeded.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message || 'Failed to load subcategory';
+      });    
   },
 });
 
+export const { selectProductById } = productsSlice.actions;
 export default productsSlice.reducer;

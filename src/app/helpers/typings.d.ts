@@ -27,3 +27,21 @@ export interface CartItem {
 export interface CartState {
   items: CartItem[];
 }
+
+export interface Product {
+  id: string;
+  category: string;
+  subCategory?: string;
+  [key: string]: any;
+}
+
+export interface ProductState {
+  items: FormData[];
+  loadedCategories: string[];
+  loadedSubCategories: string[];
+  currentCategory: string | null;
+  currentSubCategory: string | null;
+  selectedProduct: FormData | null;
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  error: string | null;
+}

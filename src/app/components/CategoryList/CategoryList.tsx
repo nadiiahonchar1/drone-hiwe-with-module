@@ -5,8 +5,10 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/lib/store';
 import { useAppDispatch } from '@/app/helpers/useAppDispatch';
 import {
-  fetchProductsByCategory,
-  fetchProductsBySubCategory,
+  // fetchProductsByCategory,
+  // fetchProductsBySubCategory,
+  fetchSubCategoryIfNeeded,
+  fetchCategoryIfNeeded,
 } from '@/lib/features/products/goods';
 import CustomLink from '../Link';
 import style from './categoryList.module.css';
@@ -29,13 +31,15 @@ const CategoryList: React.FC<CategoryListProps> = ({
 
   useEffect(() => {
     if (category) {
-      dispatch(fetchProductsByCategory(category));
+      dispatch(fetchCategoryIfNeeded(category));
+      // dispatch(fetchProductsByCategory(category));
     }
   }, [dispatch, category]);
 
   useEffect(() => {
     if (subCategory) {
-      dispatch(fetchProductsBySubCategory(subCategory));
+      // dispatch(fetchProductsBySubCategory(subCategory));
+      dispatch(fetchSubCategoryIfNeeded(subCategory));
     }
   }, [dispatch, subCategory]);
 

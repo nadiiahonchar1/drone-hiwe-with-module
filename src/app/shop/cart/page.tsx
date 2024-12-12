@@ -1,12 +1,13 @@
 'use client';
 
 import React from 'react';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { RootState } from '@/lib/store';
+import { useAppSelector } from '@/lib/hooks';
 import style from './cart.module.css';
 
 export default function Cart() {
-  const cartItems = useSelector((state: RootState) => state.cart.items);
+  const cartItems = useAppSelector((state: RootState) => state.cart.items);
   console.log('cartItems', cartItems);
 
   return (
