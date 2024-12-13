@@ -7,7 +7,7 @@ import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 import Link from '../Link';
 import headerNavLinks from '@/app/data/headerNavLinks';
-import Logo from '@/assets/Logo.png';
+import Logo from '@/app/components/Logo/Logo';
 import dron from '@/assets/drone_6316693.png';
 import style from './footer.module.css';
 
@@ -54,12 +54,7 @@ const Footer = () => {
           <Link href="/" aria-label="Main page">
             <div className={style.footerLogo}>
               <div className={style.logoContainer}>
-                <Image
-                  src={Logo}
-                  alt="Logo icon"
-                  priority={true}
-                  className={style.logo}
-                />
+                <Logo />
               </div>
             </div>
           </Link>

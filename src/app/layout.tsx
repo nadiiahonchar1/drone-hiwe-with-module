@@ -3,13 +3,9 @@ import { Inter_Tight } from 'next/font/google';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { ToastContainer } from 'react-toastify';
-// import { useRef } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Provider from '../lib/Provider';
 import ThemeProvider from './hooks/ThemeProvider';
-// import { store } from '@/lib/store';
-// import { makeStore, AppStore } from '../lib/store';
 import { AuthProvider } from './store/AuthContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -34,14 +30,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const storeRef = useRef<AppStore>();
-  // if (!storeRef.current) {
-  //   storeRef.current = makeStore();
-  // }
   return (
     <html lang="uk" className={interTight.className}>
       <body>
-        {/* <Provider store={storeRef.current}> */}
         <AuthProvider>
           <ThemeProvider>
             <Header />
@@ -52,7 +43,6 @@ export default function RootLayout({
             <Footer />
           </ThemeProvider>
         </AuthProvider>
-        {/* </Provider> */}
       </body>
     </html>
   );

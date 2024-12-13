@@ -1,14 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
+// import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlined';
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 import Link from '../Link';
 import headerNavLinks from '@/app/data/headerNavLinks';
-import Logo from '@/assets/Logo.png';
+import Logo from '@/app/components/Logo/Logo';
 import { useAuth } from '@/app/store/AuthContext';
 import style from './header.module.css';
 
@@ -27,14 +27,7 @@ const Header = () => {
           <Link href="/" aria-label="Main page">
             <div className={style.headerLogo}>
               <div className={style.logoContainer}>
-                <Image
-                  src={Logo}
-                  alt="Logo icon"
-                  priority={true}
-                  className={style.logo}
-                  width={700}
-                  height={69}
-                />
+                <Logo />
               </div>
             </div>
           </Link>
