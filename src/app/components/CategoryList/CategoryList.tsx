@@ -14,8 +14,8 @@ import CustomLink from '../Link';
 import style from './categoryList.module.css';
 
 interface CategoryListProps {
-  category: string;
-  subCategory?: string;
+  category: string | null;
+  subCategory?: string | null;
 }
 
 const CategoryList: React.FC<CategoryListProps> = ({
