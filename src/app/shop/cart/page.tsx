@@ -3,7 +3,7 @@
 import React from 'react';
 // import { useSelector } from 'react-redux';
 import { RootState } from '@/lib/store';
-import { useAppSelector } from '@/lib/hooks';
+import { useAppSelector } from '@/lib/store';
 import style from './cart.module.css';
 
 export default function Cart() {

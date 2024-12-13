@@ -6,21 +6,20 @@ import { toast } from 'react-toastify';
 
 import { addToCart } from '@/lib/features/cart/cartSlice';
 import { categories } from '@/app/data/categories';
-// import { useAppSelector, useAppDispatch, useAppStore } from '@/lib/hooks';
-import { useDispatch, useSelector, useStore } from 'react-redux';
+import { useAppSelector, useAppDispatch, useAppStore } from '@/lib/store';
 
 import style from '../shop.module.css';
 
 export default function ProductItem(props: {
   params: Promise<{ productName: string }>;
 }) {
-  const store = useStore();
-  const dispatch = useDispatch();
+  const store = useAppStore();
+  const dispatch = useAppDispatch();
 
   const params = React.use(props.params);
   const ID = params.productName.split('__')[1];
 
-  const product = useSelector((state) =>
+  const product = useAppSelector((state) =>
     state.products.items.find((item: any) => item.id === ID)
   );
 
@@ -106,14 +105,19 @@ export default function ProductItem(props: {
       return toast.warn('Оберіть потрібну конфігурацію');
     }
 
+    if (!product.id) {
+      throw new Error('ID продукту не знайдено');
+    }
+
     const cartItem = {
       id: product.id,
+
       article: product.productType === 'variable' ? sku : product.sku,
       quantity,
       total:
         product.productType === 'variable'
           ? cleanPrice * quantity
-          : product.price * quantity,
+          : (product.price ?? 0) * quantity,
       variation:
         product.productType === 'variable' ? selectedValues : undefined,
     };
@@ -128,23 +132,28 @@ export default function ProductItem(props: {
         <div className={style.imgWrapper}>
           <Image
             className={style.img}
-            src={product.productImageUrl}
+            src={
+              product.productImageUrl || '@/assets/srcassetsdrone_6316693.png'
+            }
             alt={product.productName}
             width={200}
             height={200}
           />
           {product.galleryImageUrls && (
             <div className={style.galery}>
-              {product.galleryImageUrls.map((galleryImg: string) => (
-                <Image
-                  key={galleryImg}
-                  className={style.galeryImg}
-                  src={galleryImg}
-                  alt={product.productName}
-                  width={100}
-                  height={100}
-                />
-              ))}
+              {product.galleryImageUrls.map(
+                (galleryImg: { image: string | null }) =>
+                  galleryImg.image ? (
+                    <Image
+                      key={galleryImg.image}
+                      className={style.galeryImg}
+                      src={galleryImg.image}
+                      alt={product.productName}
+                      width={100}
+                      height={100}
+                    />
+                  ) : null
+              )}
             </div>
           )}
         </div>
@@ -157,7 +166,9 @@ export default function ProductItem(props: {
                 <p className={style.availability}>{product.availability}</p>
               </>
             ) : (
-              <p className={style.price}>{getPriceRange(product.variations)}</p>
+              <p className={style.price}>
+                {getPriceRange(product.variations as { price: number }[])}
+              </p>
             )}
           </div>
           <div

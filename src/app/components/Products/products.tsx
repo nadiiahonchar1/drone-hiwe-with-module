@@ -52,7 +52,7 @@
 // export default Product;
 
 // import { useSelector, useDispatch } from 'react-redux';
-import { useAppSelector, useAppDispatch } from '@/lib/hooks';
+import { useAppSelector, useAppDispatch } from '@/lib/store';
 import { RootState } from '@/lib/store';
 import {
   setCategory,

@@ -1,6 +1,6 @@
 'use client'
 import { configureStore } from '@reduxjs/toolkit';
-import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux';
+import { useDispatch, TypedUseSelectorHook, useSelector, useStore } from 'react-redux';
 import cartSlice from './features/cart/cartSlice';
 import productsReducer from './features/products/productSlice';
 
@@ -10,6 +10,9 @@ const store = configureStore({
     products: productsReducer,
   },
 });
+
+export type AppStore = typeof store;
+export const useAppStore = useStore.withTypes<AppStore>();
 
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch: () => AppDispatch = useDispatch;
