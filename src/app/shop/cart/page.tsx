@@ -12,7 +12,7 @@ export default function Cart() {
 
   return (
     <div>
-      <h2>Ваш кошик</h2>
+      {/* <h2>Ваш кошик</h2> */}
       {cartItems.length > 0 ? (
         cartItems.map((item) => (
           <div key={item.id}>
@@ -22,9 +22,9 @@ export default function Cart() {
           </div>
         ))
       ) : (
-        <>
+        <div className={style.emptyCartWrapper}>
           <h3 className={style.emptyCart}>Ваш кошик зараз порожній!</h3>
-        </>
+        </div>
       )}
     </div>
   );
