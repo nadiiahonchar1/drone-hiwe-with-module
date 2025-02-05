@@ -114,6 +114,7 @@ export default function ProductItem(props: {
 
       article: product.productType === 'variable' ? sku : product.sku,
       quantity,
+      price: product.price ?? 0,
       total:
         product.productType === 'variable'
           ? cleanPrice * quantity

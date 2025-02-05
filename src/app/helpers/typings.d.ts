@@ -20,6 +20,7 @@ export interface CartItem {
   id: string;
   article: string;
   quantity: number;
+  price: number;
   total: number;
   variation?: {};
 }
