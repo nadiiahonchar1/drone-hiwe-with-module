@@ -13,6 +13,8 @@ export interface Theme {
   darckBlueBackground: string;
   gradientLightContact: string;
   accentBgColor: string;
+  colorWarning: string;
+  accentWarning: string;
 }
 
 export const lightTheme: Theme = {
@@ -30,6 +32,8 @@ export const lightTheme: Theme = {
   goldText: '#5e5c03',
   blueBackground: '#dee4ea',
   darckBlueBackground: 'rgba(222, 228, 234, 0.19)',
+  colorWarning: '#ba5858',
+  accentWarning: '#8b0000',
 };
 
 export const darkTheme: Theme = {
@@ -47,4 +51,6 @@ export const darkTheme: Theme = {
   goldText: '#5e5c03',
   blueBackground: '#dee4ea',
   darckBlueBackground: 'rgba(222, 228, 234, 0.19)',
+  colorWarning: '#ff6b60',
+  accentWarning: '#ff3b2d',
 };

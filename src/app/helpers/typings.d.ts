@@ -18,10 +18,12 @@ export default interface FormData {
 
 export interface CartItem {
   id: string;
+  productName: string;
   article: string;
   quantity: number;
   price: number;
   total: number;
+  productImageUrl?: string | null;
   variation?: {};
 }
 

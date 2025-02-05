@@ -111,7 +111,7 @@ export default function ProductItem(props: {
 
     const cartItem = {
       id: product.id,
-
+      productName: product.productName,
       article: product.productType === 'variable' ? sku : product.sku,
       quantity,
       price: product.price ?? 0,
@@ -119,6 +119,7 @@ export default function ProductItem(props: {
         product.productType === 'variable'
           ? cleanPrice * quantity
           : (product.price ?? 0) * quantity,
+      productImageUrl: product.productImageUrl,
       variation:
         product.productType === 'variable' ? selectedValues : undefined,
     };

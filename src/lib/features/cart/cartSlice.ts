@@ -16,9 +16,11 @@ const cartSlice = createSlice({
         (item) => item.id === action.payload.id
       );
       if (existingItem) {
+        existingItem.productName = action.payload.productName;
         existingItem.quantity += action.payload.quantity;
         existingItem.total += action.payload.total;
         existingItem.price = action.payload.price;
+        existingItem.productImageUrl = action.payload.productImageUrl;
       } else {
         state.items.push(action.payload);
       }
