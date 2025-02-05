@@ -72,6 +72,29 @@
   opacity: 1;
 }
 
+.cartBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.cartLink {
+  position: relative;
+  display: inline-block;
+}
+
+.cartBadge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 3px 7px;
+  border-radius: 50%;
+}
+
 @media screen and (max-width: 880px) {
   .navLinks {
     display: none;
